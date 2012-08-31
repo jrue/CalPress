@@ -31,8 +31,8 @@
 <?php calpress_hook_colophon(); ?>
 			
 		</div>
+		<?php wp_footer(); ?>
 	</footer><!-- footer -->
-<?php wp_footer(); ?>
 </body>
 </html>
 <?php calpress_hook_after_body(); ?>
