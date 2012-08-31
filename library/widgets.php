@@ -451,6 +451,7 @@ class FlickrPoolPhoto extends WP_Widget {
 		$url = empty($instance['url']) ? '' : $instance['url'];
 		$order = empty($instance['order']) ? 'random' : $instance['order'];
 		$index = ($order == 'random' ? 'randomFlickrPick' : '0');
+		$random_id = rand(100000, 999999);
 		
 		if(!$url)
 			return;
@@ -458,8 +459,8 @@ class FlickrPoolPhoto extends WP_Widget {
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
 		echo $description;
-		echo '<div id="flickrPoolPhoto"><a><img src="http://l.yimg.com/g/images/iphone/balls-24x12-trans.gif" /></a>';
-		echo '<p id="flickrDescription"></p></div>';
+		echo '<div id="flickrPoolPhoto_' . $random_id .'"><a><img src="http://l.yimg.com/g/images/iphone/balls-24x12-trans.gif" /></a>';
+		echo '<p id="flickrDescription_' . $random_id. '"></p></div>';
 		echo $after_widget;
 		
 		echo '
@@ -467,11 +468,11 @@ class FlickrPoolPhoto extends WP_Widget {
 			jQuery(document).ready(function($){
 				$.getJSON("' . $url . '", function(data){
 					var randomFlickrPick = Math.floor(Math.random() * data.items.length);
-					$("#flickrPoolPhoto img")
+					$("#flickrPoolPhoto_' . $random_id . ' img")
 						.attr(\'src\', data.items[' . $index . '].media.m.replace("_m.jpg", ".jpg"))
 						.css({\'width\':\'100%\', \'height\':\'auto\'});
-					$("#flickrPoolPhoto a").attr(\'href\', data.items[' . $index .'].link);
-					$("#flickrDescription").html(data.items[' . $index .'].title);
+					$("#flickrPoolPhoto_' . $random_id .' a").attr(\'href\', data.items[' . $index .'].link);
+					$("#flickrDescription_' . $random_id. '").html(data.items[' . $index .'].title);
 				});
 			});
 		</script>
