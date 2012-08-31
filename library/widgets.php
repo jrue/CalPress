@@ -503,17 +503,20 @@ class FlickrPoolPhoto extends WP_Widget {
 			
 		if(isset($new_instance['url'])){
 			
-			$url = parse_url(esc_url($new_instance['url']));
+			$url = parse_url($new_instance['url']);
 			parse_str($url['query'], $flickr_vars);
 			
-			if(!$flickr_vars['id'])
+			if(!isset($flickr_vars['id']) && !isset($flickr_vars['nsid']))
 				return $instance; //wrong url
 				
 			$flickr_vars['format'] = 'json';
 			$flickr_vars['jsoncallback'] = '?';
 			
-			$instance['url'] = 'http://api.flickr.com/services/feeds/groups_pool.gne?' . build_query($flickr_vars);
-					
+			if(isset($flickr_vars['id']))
+				$instance['url'] = 'http://api.flickr.com/services/feeds/groups_pool.gne?' . build_query($flickr_vars);
+				
+			if(isset($flickr_vars['nsid']))
+				$instance['url'] = 'http://api.flickr.com/services/feeds/photoset.gne?' . build_query($flickr_vars);
 		}
 						
     	return $instance;
