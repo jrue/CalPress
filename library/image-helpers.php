@@ -17,15 +17,15 @@
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @package WordPress
- * @subpackage CalPress 2.0
+ * @subpackage CalPress2 2.0
  */
 
 /**
  * Returns the description from the featured image (formerly post thumbnail)
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $postID The ID of the post.
  * @param bool $html Include HTML paragraphs tags around the caption?
  * @param string $extra_classes Optionally include extra CSS classes (space delimited) when HTML is true
@@ -47,7 +47,7 @@ function calpress_get_description_from_image($postID, $html=false, $extra_classe
 /**
  * Returns the image thumbnail html from a post. Sets one if there isn't one present.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $postID The ID of the post.
  * @param string $size The WordPress image size, or one using add_image_size()
  * @param bool|string $extra_classes Optional space delimited string of extra classes to include on the image.
@@ -108,7 +108,7 @@ function calpress_get_featured_image_from_post($postID, $size='medium', $extra_c
  * Checks to see if the image size requested is available. If not, it will re-generate the
  * image at those sizes. Set additional image sizes in functions.php using add_image_size().
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses calpress_generate_attachment_size()
  * @param int $postID The PostID this image is attached to.
  * @param int $image_id The image attachment ID
@@ -134,7 +134,7 @@ function calpress_check_image_size_exists($image_id, $size, $postID=false){
 /**
  * If an image doesn't exist at this size, this function will generate one and attach proper metadata.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  *
  * @param int $image_id Attachment image ID to process.
  * @param string $file_path Full server file path to image.

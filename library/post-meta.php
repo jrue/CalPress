@@ -11,8 +11,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 add_action( 'add_meta_boxes', 'calpress_add_post_meta_box' );
@@ -22,7 +22,7 @@ add_action( 'save_post', 'calpress_save_postdata' );
  * Adds meta box to the posts section
  *
  * @uses add_meta_box()
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_post_meta_box() {
@@ -54,7 +54,7 @@ function calpress_add_post_meta_box() {
  * @global obj $calpress_supported_multimedia 
  * @param obj $post The current post object
  * @param obj $postmeta Passed in post metadata to fill field values
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_custom_meta_box( $post ) {
@@ -243,7 +243,7 @@ function calpress_custom_meta_box( $post ) {
  *
  * @uses add_post_meta()
  * @global obj $calpress_supported_multimedia 
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_save_postdata( $post_id ) {
@@ -451,7 +451,7 @@ function calpress_save_postdata( $post_id ) {
 /**
  * Displays error messages if the query string has them.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @global obj $calpress_supported_multimedia 
  * @param array $messages The core messages from WordPress
  * @return array Send the new array back to WordPress core

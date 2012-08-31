@@ -16,8 +16,8 @@
  * @uses calpress_hook_colophon()
  * @uses calpress_hook_above_footer()
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 ?>
 	<?php calpress_hook_above_footer(); ?>	

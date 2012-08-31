@@ -21,7 +21,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
+ * @subpackage CalPress2
  * @since CalPress 1.0
  */
 	

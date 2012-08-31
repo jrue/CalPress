@@ -18,8 +18,8 @@
  * @global array $do_not_duplicate_loop Post ids to not duplicate
  * @global int $number_of_featured_posts How many posts were featured
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 ?>
 <?php 

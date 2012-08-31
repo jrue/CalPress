@@ -21,8 +21,8 @@
  * @uses calpress_hook_below_category_blocks()
  * @uses calpress_hook_loopcontent_below()
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 get_header(); ?>

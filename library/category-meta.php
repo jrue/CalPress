@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 add_action( 'category_edit_form_fields', 'calpress_edit_category_meta' );
@@ -33,7 +33,7 @@ add_filter( 'deleted_term_taxonomy', 'calpress_remove_category_meta');
 /**
  * Renders the a field for entering the image URL on the EDIT category pages.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param obj $tag The WP category object passed in. Use term_id key to get the ID.
  * @return void
  */
@@ -76,7 +76,7 @@ function calpress_edit_category_meta($tag=NULL){
 /**
  * Saves category meta data to the options table. Uses category ID as the key pair.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $term_id The numerical id of the category we're saving.
  * @param string $taxonomy The taxonomy of the post. In this case it should be 'category'.
  * @return void
@@ -98,7 +98,7 @@ function calpress_save_category_meta($term_id=NULL, $taxonomy=NULL){
 /**
  * If user deletes a category, this will delete the associated meta data with that category.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $term_id The numerical id of the category we're deleting from the options table.
  * @return void
  */

@@ -12,8 +12,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 if( !function_exists('calpress_filter_wp_title')):
 /**
@@ -79,7 +79,7 @@ add_filter( 'wp_title', 'calpress_filter_wp_title', 10, 2 );
  * @uses calpress_legacy_support()
  * @global obj $calpress_supported_multimedia 
  * @global obj $post
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param bool $echo Echo the results, or change to false to retrieve for php.
  * @return bool|string Will return results 
  */
@@ -132,7 +132,7 @@ function calpress_lead_art($echo = true){
  * an array and trim all items.
  *
  * @example array_walk($array, 'trim_value');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $value The item to trim.
  * @return void
  */
@@ -164,7 +164,7 @@ add_action('template_redirect', 'calpress_redirect');
 /**
  * Display lead artwork for a post. Will echo HTML or return data if argument is supplied.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @global obj $calpress_supported_multimedia 
  * @param bool $echo Echo the results, or change to false to retrieve for php.
  * @return void|string Will return results if $echo is false 
@@ -258,7 +258,7 @@ function calpress_inline_art($echo = true){
  * @uses get_post_custom()
  * @global obj $calpress_supported_multimedia
  * @global obj $wp_query
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void 
  */
 function calpress_add_multimedia_scripts(){
@@ -337,7 +337,7 @@ function calpress_add_multimedia_scripts(){
  * @todo Will add open graph meta tags to head when not using SFC plugin
  * @uses language_attributes filter
  * @global obj $wp_query
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $output Current language attributes
  * @return string HTML attributes with open graph appended
  */
@@ -374,7 +374,7 @@ function calpress_story_meta_data_header($media){
  *
  * @uses wp_head
  * @global obj $wp_query
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_website_meta_data_header(){
@@ -394,7 +394,7 @@ add_action('wp_head', 'calpress_website_meta_data_header');
  * Adds open graph attribute to html tag.
  *
  * @uses language_attributes filter
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $output Current language attributes
  * @return string HTML attributes with open graph appended
  */
@@ -409,7 +409,7 @@ add_filter('language_attributes', 'calpress_add_open_graph_to_html_tag');
 /**
  * Checks if user wants to show sidebar on single.php
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @global obj $wp_query
  * @param int $post_id Optionally provide the id of the post
  * @return bool True if we should show sidebar, false if not 
@@ -431,7 +431,7 @@ function calpress_show_sidebar($post_id=''){
  * below posts they write
  *
  * @see theme-options.php
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return bool True if user wants to show author profiles
  */
 function calpress_show_author_profile_on_posts(){
@@ -444,7 +444,7 @@ function calpress_show_author_profile_on_posts(){
  * Echo's HTML5 <time> of when item was posted. Will use post's time, or a
  * timestamp can be provided.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param $timestamp Unix timestamp of the post. Defaults to the_time('U')
  * @param $limit No longer used.
  * @return void 
@@ -474,7 +474,7 @@ function calpress_posted_on($timestamp=null, $limit=86400, $echo="true"){
  * Returns the category name for posts that should end up on the front page.
  * User sets this in theme options in the admin.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return int|bool The category ID for front page posts, or false if blank
  */
 function get_calpress_front_page_category(){
@@ -489,7 +489,7 @@ function get_calpress_front_page_category(){
  * Returns the category name for posts that should be featured above the fold.
  * User sets this in theme options in the admin.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return int|bool The category ID for featured articles, or false if blank
  */
 function get_calpress_featured_category(){
@@ -504,7 +504,7 @@ function get_calpress_featured_category(){
  * Returns the name of the front page layout if the loop-{layout}.php file exists
  * User sets this in theme options in the admin.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return string The name of the front page layout, or 'index' if it doesn't find the file.
  */
 function calpress_get_featured_post_format($classes=''){
@@ -524,7 +524,7 @@ add_filter('calpress_filter_bodyclass', 'calpress_get_featured_post_format', 10)
  * Enqueues scripts needed for the carousel.
  *
  * @todo Make a dynamic mechanism for enqueueing scripts.
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_carousel_script(){
@@ -538,7 +538,7 @@ add_action('wp_enqueue_scripts', 'calpress_add_carousel_script', 5);
  * Convenience function that returns the category blocks chosen by the 
  * user in theme options.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return array The ids of all the categories chosen in theme options
  */
 function calpress_get_chosen_category_blocks(){
@@ -553,7 +553,7 @@ function calpress_get_chosen_category_blocks(){
 /**
  * Returns the omitted categories, that shouldn't appear in category blocks
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return array The category ids chosen in theme options
  */
 function calpress_get_omit_category_blocks(){
@@ -569,7 +569,7 @@ function calpress_get_omit_category_blocks(){
 /**
  * Convenience function that returns the category metadata.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $id The category ID to return meta data
  * @param string $key The metadata key to return. If omitted, returns an array of all meta data.
  * @return mixed Depending on if a $key provided, will return that piece of meta data. False if none.
@@ -589,7 +589,7 @@ function calpress_get_category_meta($id, $key=''){
 /**
  * If front page, adds "front" to the body class
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return string 
  */
 function calpress_add_front_body_class($classes){
@@ -608,7 +608,7 @@ add_filter('calpress_filter_bodyclass', 'calpress_add_front_body_class', 10);
  * If "Featured Template Name:" string is in the comment block of the file, it will use that name
  * for the human readable selection, otherwise it will default to the slug.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return array Associative array of each featured-{layout} file found, keys are the slug name and values are human readable.
  */
 function calpress_return_all_featured_post_formats(){
@@ -636,7 +636,7 @@ function calpress_return_all_featured_post_formats(){
  * Returns query string to use with WP_Query that contains categories for
  * front and/or featured as set by the user in theme_options.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param bool $front Include the front category in query?
  * @param bool $featured Include the featured category in query?
  * @param int|bool $postsperpage Optionally include a limit on the query to return
@@ -669,7 +669,7 @@ function get_query_arguments_for_front_featured($front=true, $featured=true, $po
  * Calculates how many posts we need for the WP_Query in loop-front.php in order
  * to have even columns.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @global obj $wp_query
  * @param int $num_of_featured Number of posts in featured spot.
  * @return int Number of posts we should query to have even columns.
@@ -690,7 +690,7 @@ function calpress_num_posts_for_front_loop($num_of_featured){
  * See http://wordpress.org/extend/plugins/co-authors-plus/
  * 
  * @uses coauthors()
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param bool $link Should we include a link with each author?
  * @param string $between The character between author names, defaults to ","
  * @param string $betweenLast The character between the last two author names, defaults to " and "
@@ -737,7 +737,7 @@ function calpress_co_authors($link=true, $between=", ", $betweenLast=" and ", $b
  * Adds a big news callout to the top of the front page.
  *
  * @uses calpress_hook_top_content_div hook
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_big_news_to_front(){
@@ -770,7 +770,7 @@ add_action('calpress_hook_top_content_div', 'calpress_add_big_news_to_front');
  * Adds a special project posts to front page
  *
  * @uses calpress_hook_loopcontent_below hook
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_special_projects(){
@@ -852,7 +852,7 @@ add_action('calpress_hook_below_category_blocks', 'calpress_add_special_projects
  * Code modified from: http://codex.wordpress.org/Function_Reference/wp_nav_menu
  *
  * @uses wp_nav_menu_objects filter
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return array
  */
 function calpress_add_parent_nav_menu_class($items) {
@@ -879,7 +879,7 @@ add_filter('wp_nav_menu_objects', 'calpress_add_parent_nav_menu_class');
  * Adds a search widget to the top of the site nav bar 
  *
  * @uses the_widget()
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_search_widget_top_bar(){
@@ -892,7 +892,7 @@ function calpress_add_search_widget_top_bar(){
  * Optionally adds a login link to the top-of-the-page menu bar. 
  *
  * @uses wp_loginout()
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param bool $login (optional) If true, displays a login link as last item
  * @return array Arguments for wp_nav_menu
  */
@@ -920,7 +920,7 @@ function calpress_top_nav_menu_login_link($login=true){
  * CSS media queries, reveal this item and use it to display collapsible
  * nav list for mobile phones.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param bool $login (optional) If true, displays a login link as last item
  * @return array Arguments for wp_nav_menu
  */
@@ -942,7 +942,7 @@ function calpress_primary_navigational_menu_arguments($responsive=true){
  * Adds some text to the Colophon at the bottom of the page.
  *
  * @todo Make this settable in Theme Options.
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_colophon(){
@@ -957,7 +957,7 @@ add_action('calpress_hook_colophon', 'calpress_add_colophon');
  * We don't use wp_enqueue_script because it doesn't allow conditional tags (yet)
  *
  * @uses wp_head hook
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_ie_stylesheet_to_head(){
@@ -1010,7 +1010,7 @@ add_filter('the_generator', 'calpress_complete_version_removal');
 /**
  * Test function to see if WordPress is a certain version or later
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $is_ver Version to test against.
  * @return bool True if the version is later than argument submitted.
  */
@@ -1028,7 +1028,7 @@ function is_wp_version( $is_ver ) {
 /**
  * Returns the category slug from its ID.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $cat_id The category ID.
  * @return string The corresponding category slug.
  */
@@ -1074,7 +1074,7 @@ add_action('wp_head', 'calpress_googleanalytics');
 /**
  * Add Extra CSS to head of document (set in theme options). Remove carriage returns.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_head_extra_css() {
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
@@ -1096,7 +1096,7 @@ add_action( 'wp_head', 'calpress_head_extra_css');
 /**
  * Add Extra JavaScript to head of document (set in theme options).
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_head_extra_javascript() {
 	$options =  unserialize(CALPRESSTHEMEOPTIONS);
@@ -1111,7 +1111,7 @@ add_action( 'wp_head', 'calpress_head_extra_javascript');
 /**
  * Includes the header image of h1 if it exists and is set in the theme options.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_header_image(){
@@ -1132,7 +1132,7 @@ function calpress_header_image(){
 /**
  * Adds a full RSS feed at ?feed=full that you can give to folks who might need it. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_hidden_full_rss_feed(){
@@ -1144,7 +1144,7 @@ add_action('do_feed_full', 'calpress_add_hidden_full_rss_feed', 10, 1);
  * Adds share code that was set in theme-options to the post-meta hook.
  *
  * @uses calpress_hook_single_entry_meta hook
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_share_embed_code_to_post(){
@@ -1158,7 +1158,7 @@ add_action('calpress_hook_single_entry_meta', 'calpress_add_share_embed_code_to_
 /**
  * Remove the "Insert Image into Post" option
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param array $vars The variables for inserting media
  * @return void
  */
@@ -1175,7 +1175,7 @@ add_filter('get_media_item_args', 'calpress_allow_insert_image_into_post');
  * Default menu that will show in the primary spot if there are no menus
  * selected.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_default_menu($args){ ?>
@@ -1187,7 +1187,7 @@ function calpress_default_menu($args){ ?>
  * Convenience function of whether to show comment count
  * on front page. Defaults to false.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return bool True if we should show comment count, false if not.
  */
 function calpress_show_comment_count(){
@@ -1203,7 +1203,7 @@ function calpress_show_comment_count(){
  * using wp_trim_words(), but sometimes we need more words, 
  * and the WordPress default is 55. This increases the default.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return int Number of words for excerpt
  */
 function calpress_custom_excerpt_length( $length ) {
@@ -1214,7 +1214,7 @@ add_filter( 'excerpt_length', 'calpress_custom_excerpt_length', 999 );
 /**
  * New excerpt "more" string on excerpt based on user's settings in theme options
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return string The text to display when cut-off
  */
 function calpress_new_excerpt_more( $more=NULL ) {
@@ -1227,7 +1227,7 @@ add_filter('excerpt_more', 'calpress_new_excerpt_more');
 /**
  * Displays the number of MySQL queries at bottom of document if user is logged in.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_display_num_queries(){
 	if(is_user_logged_in()){
@@ -1240,7 +1240,7 @@ add_action('wp_footer', 'calpress_display_num_queries');
  * Convenience function to be used in loops. It will calculate the first, 
  * middle and last elements in a row, and return respective classnames.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $counter Pass in the iterator of the loop (make sure it starts on zero!)
  * @param int $num_in_row How many elements per row?
  * @param string $class_prefix Optionally pass in a prefix for each classname. Defaults to 'row'.
@@ -1260,7 +1260,7 @@ function calpress_calculate_row_classes($counter, $num_in_row, $class_prefix='ro
  * Removes width and height attributes from post_thumbnail function calls.
  * In a responsive design, we want to resize with CSS.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $html Img tag html
  * @return string The filtered html without height and width attributes
  */
@@ -1278,7 +1278,7 @@ add_filter( 'post_thumbnail_html', 'calpress_remove_img_width_height_attributes'
  * regex script that supports multiple types of YouTube URL formats.
  * http://stackoverflow.com/a/6382259/838158
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $url The YouTube URL
  * @return string|bool Just the YouTube ID, false on failure
  */
@@ -1294,7 +1294,7 @@ function calpress_get_youtube_id_from_url($url){
  * Get the Vimeo ID from the URL using this regex script that supports multiple types 
  * of Vimeo URL formats.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $url The Vimeo URL
  * @return string|bool Just the Vimeo ID from a url, false on failure
  */
@@ -1309,7 +1309,7 @@ function calpress_get_vimeo_id_from_url($url){
  * Using CURL to get headers instead of PHP get_headers
  * This allows us to set a timeout in case we can't connect
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $url The url of headers you want to retrieve
  * @param int $timeout The number of seconds to wait before giving up
  * @return array The headers returned. Will be empty if timed out.
@@ -1446,7 +1446,7 @@ function calpress_custom_comments($comment, $args, $depth) {
 /**
  * Returns the comment policy as set in theme options
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return string returns the comment policy
  */
 function calpress_comment_policy(){
@@ -1463,7 +1463,7 @@ function calpress_comment_policy(){
  * Build form field for comment_form function.
  * See: http://codex.wordpress.org/Function_Reference/comment_form
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return array To be used in the comment_form argument
  */
 function calpress_comment_form_fields(){

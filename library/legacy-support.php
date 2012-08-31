@@ -13,14 +13,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 /**
  * Checks if CalPress legacy support is enabled in theme options
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return bool True if enabled, false if not. 
  */
 function calpress_legacy_support(){
@@ -33,7 +33,7 @@ function calpress_legacy_support(){
 /**
  * Converts Vimeo IDs from earlier CalPress to full URLs used in 2.0
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $id The vimeo id metadata with from custom fields
  * @return string Returns a full sanitized Vimeo url.
  */
@@ -47,7 +47,7 @@ function calpress_legacy_convert_vimeo_to_urls($id){
 /**
  * Converts YouTube IDs from earlier CalPress to full URLs used in 2.0
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $id The youtube metadata with from custom fields
  * @return string Return youtube full URL.
  */
@@ -61,7 +61,7 @@ function calpress_legacy_convert_youtube_to_urls($id){
 /**
  * Converts soundslides slug to Flash embed code.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $id The post metadata with all custom fields
  * @param string $post_date PHP timestamp to calculate the folder for soundslides
  * @param string $width (optional) Width for soundslides (defaults to lead art)
@@ -93,7 +93,7 @@ function calpress_legacy_soundslides_embed_code($id, $post_date, $width="620", $
 /**
  * Converts self-hosted videos to URLs. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $id The video metadata with from custom fields
  * @return string Return video full URL.
  */
@@ -110,7 +110,7 @@ function calpress_legacy_video_url($id){
 /**
  * Converts self-hosted videos to URLs. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $id The video metadata with from custom fields
  * @return string Return video full URL.
  */
@@ -129,7 +129,7 @@ function calpress_legacy_video_poster($id){
  * opens up an older post for editing. Checks the existing post_meta, 
  * and tries to set the new lead_art and inline_art values from older values.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param obj $post_custom The post metadata with all custom fields
  * @param array $options The default values from CalPress 2.0 post_meta
  * @param string $post_date (optional) Required for soundslides and audio files
@@ -224,7 +224,7 @@ function calpress_legacy_set_lead_art($post_custom, $options, $post_date=''){
 /**
  * Displays lead art from older posts
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses calpress_vimeo() From post_meta framework
  * @uses calpress_youtube() From post_meta framework
  * @uses calpress_video() From post_meta framework
@@ -286,7 +286,7 @@ function calpress_show_legacy_lead_art(){
 /**
  * Displays inline art from older posts
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @global obj $post
  * @return string the html for inline art
  */
@@ -378,7 +378,7 @@ function calpress_show_legacy_inline_art(){
  * will try create the necessary sizes and save the image. May fail if the image is too small 
  * and the requested size is too large, in which case we stretch the image with HTML.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param int $thePostID Required ID of the post to retrieve attached images
  * @param bool $imgtag (optional) If true, returns a full img tag string, otherwise just img src.
  * @param string $sizeString (optional) Size slug as set by add_image_size.

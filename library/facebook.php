@@ -17,15 +17,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 if (!function_exists('sfc_version')): //if sfc plug installed, use that instead
 /** 
  * CalPress Facebook init to kick things off.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_facebook_integration(){
 	

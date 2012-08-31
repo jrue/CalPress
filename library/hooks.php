@@ -17,8 +17,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 /** 
@@ -28,7 +28,7 @@
  * visible content at the bottom of the page.
  *
  * @example add_action('calpress_hook_colophon', 'my_function');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @hook action calpress_hook_colophon
  */
 function calpress_hook_colophon(){
@@ -42,7 +42,7 @@ function calpress_hook_colophon(){
  * document. Only use this to display HTML commented content.
  *
  * @example add_action('calpress_hook_after_body', 'my_function');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @hook action calpress_hook_after_body
  */
 function calpress_hook_after_body(){
@@ -56,7 +56,7 @@ function calpress_hook_after_body(){
  * document. 
  *
  * @example add_action('calpress_hook_after_opening_body_tag', 'my_function');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @hook action calpress_hook_after_opening_body_tag
  */
 function calpress_hook_after_opening_body_tag(){
@@ -98,7 +98,7 @@ function calpress_hook_header() {
  * to be executed just after <header role="banner"> 
  *
  * @example add_action('calpress_hook_below_header', 'my_function');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @hook action calpress_hook_below_header
  */
 function calpress_hook_below_header() {
@@ -111,7 +111,7 @@ function calpress_hook_below_header() {
  * Template function appearing in home.php and index.php allows actions
  * to be executed first inside the <div id="content"> block.
  * @example add_action('calpress_hook_top_content_div', 'my_function');
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @hook action calpress_hook_top_content_div
  */
 function calpress_hook_top_content_div() {

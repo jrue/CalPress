@@ -16,8 +16,8 @@
  * @uses calpress_hook_header()
  * @uses calpress_hook_below_header()
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 ?><!DOCTYPE html>
 <!--[if lt IE 7 ]><html <?php language_attributes(); ?> class="no-js ie ie6 lte7 lte8 lte9"><![endif]-->

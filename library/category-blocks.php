@@ -17,8 +17,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 
@@ -29,7 +29,7 @@
  * @global obj $post The WordPress Post object
  * @param array $categories integer IDs of which categories to display
  * @param int $limit Limit to a certain number of categories, as it increases server load
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_display_category_blocks($categories, $limit=7){
 	global $post;

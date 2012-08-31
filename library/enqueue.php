@@ -22,14 +22,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 /**
  * Registers CSS style file locations
  *
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_register_styles() {
 	wp_register_style( 'calpress', THEMECSS . '/calpress.css', array(), '1.1', 'screen, handheld');
@@ -43,7 +43,7 @@ if ( ! function_exists( 'calpress_enqueue_styles' ) ):
  *
  * For child themes, create your own calpress_enqueue_styles() to override.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_enqueue_styles(){
 	wp_enqueue_style( 'calpress' );
@@ -55,7 +55,7 @@ add_action('wp_enqueue_scripts', 'calpress_enqueue_styles', 2);
  * Registers javascript file locations
  *
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_register_scripts() {
     //Modernizer ensures HTML5 support for older IE browsers
@@ -72,7 +72,7 @@ if ( ! function_exists( 'calpress_enqueue_scripts' ) ):
  * Loads javascript files in the document head via wp_enqueue_script
  * For child themes, create your own calpress_enqueue_scripts() to override.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_enqueue_scripts(){	
 	wp_enqueue_script( 'jquery' );
@@ -87,7 +87,7 @@ add_action('wp_enqueue_scripts', 'calpress_enqueue_scripts', 4);
 /**
  * Swap the login logo with the site logo.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_login_logo() { 
 	if(get_header_image()):

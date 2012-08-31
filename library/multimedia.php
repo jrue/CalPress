@@ -15,8 +15,8 @@
  *
  * @uses calpress_add_media_support()
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 /**
@@ -43,7 +43,7 @@
  *
  * @global obj $calpress_supported_multimedia An object to store all of the supported multimedia
  * @param array $args An associative array to override the default values.
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_media_support($args){
@@ -279,7 +279,7 @@ calpress_add_media_support(array(
 /**
  * If photo gallery option is picked, make sure there is more than one photo.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return bool True if more than one image exists, false if not
@@ -308,7 +308,7 @@ function calpress_photo_gallery_verify($input, $post_id){
 /**
  * Displays photo gallery in lead art position
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The html for a photo gallery
@@ -392,7 +392,7 @@ function calpress_photo_gallery($post_id){
 /**
  * Enqueues scripts needed for photo gallery
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_photo_gallery_scripts(){
@@ -408,7 +408,7 @@ function calpress_photo_gallery_scripts(){
 /**
  * Verifies that the post has a featured image.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return bool True if there is a featured image, false if not
@@ -423,7 +423,7 @@ function featured_image_sanitize($input, $post_id){
 /**
  * Returns featured image html.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @return string|bool The HTML for the featured image if it exists
@@ -455,7 +455,7 @@ function calpress_featured_image($post_id, $inline=false){
 /**
  * Displays the input form for adding Vimeo videos
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $val The previous value
  * @param string $name The name of the form field
  * @param string $id The HTML id for this form field
@@ -468,7 +468,7 @@ function calpress_vimeo_input_form($val, $name, $id){
 /**
  * Verifies that Vimeo URL input is correct.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -493,7 +493,7 @@ function calpress_sanitize_vimeo($input, $post_id){
 /**
  * Returns Vimeo video html
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @return string|bool The HTML for the vimeo if it exists
@@ -520,7 +520,7 @@ function calpress_vimeo($input, $post_id='', $title='', $caption='', $inline=fal
 /**
  * Displays the input form for adding YouTube videos
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $val The previous value
  * @param string $name The name of the form field
  * @param string $id The HTML id for this form field
@@ -533,7 +533,7 @@ function calpress_youtube_input_form($val, $name, $id){
 /**
  * Verifies that YouTube URL input is correct.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -558,7 +558,7 @@ function calpress_validate_youtube($input, $post_id){
 /**
  * Returns YouTube video html
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @return string|bool The HTML for the YouTube if it exists
@@ -588,7 +588,7 @@ function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=f
 /**
  * MediaElement player supports YouTube API
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_youtube_scripts(){
@@ -607,7 +607,7 @@ function calpress_add_youtube_scripts(){
 /**
  * Displays the input form for adding self-hosted videos
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $val The previous value
  * @param string $name The name of the form field
  * @param string $id The HTML id for this form field
@@ -620,7 +620,7 @@ function calpress_video_input_form($val, $name, $id){
 /**
  * Verifies a self-hosted video exists.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -653,7 +653,7 @@ function calpress_sanitize_video($input, $post_id){
 /**
  * Returns self-hosted video html
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @return string|bool The HTML for the self-hosted video.
@@ -693,7 +693,7 @@ function calpress_video($input, $post_id='', $title='', $caption='', $inline=fal
 /**
  * Enqueues scripts needed for lead video
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_video_scripts(){
@@ -712,7 +712,7 @@ function calpress_add_video_scripts(){
 /**
  * Displays the textfield form for adding embed code
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses esc_textarea();
  * @param string $val The previous value
  * @param string $name The name of the form field
@@ -728,7 +728,7 @@ function calpress_embed_input_form($val, $name, $id){
  * Ostensibly validates embed code, but how? 
  * Since embed code can be anything, this just returns the value.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -740,7 +740,7 @@ function calpress_sanitize_embed($input, $post_id){
 /**
  * Returns embed code HTML
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @return string|bool The HTML for the embed code.
@@ -773,7 +773,7 @@ function calpress_inline_audio_form($val, $name, $id){
  * Check the audio URL to see if returns a proper image mime type.
  * Supports any audio content-type.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return bool True if more than one image exists, false if not
@@ -794,7 +794,7 @@ function calpress_inline_audio_sanitize($input, $post_id){
 /**
  * Returns HTML for inline audio
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The HTML code for an inline audio piece
@@ -824,7 +824,7 @@ function calpress_inline_audio($input, $post_id=NULL, $title='', $caption=''){
 /**
  * Enqueues scripts needed for inline audio
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_audio_scripts(){
@@ -843,7 +843,7 @@ function calpress_add_audio_scripts(){
 /**
  * Displays the input form for adding Vimeo videos
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $val The previous value
  * @param string $name The name of the form field
  * @param string $id The HTML id for this form field
@@ -857,7 +857,7 @@ function calpress_inline_image_form($val, $name, $id){
  * Check the image URL to see if returns a proper image mime type.
  * Supports png, jpg, gif and SVG images
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return bool True if more than one image exists, false if not
@@ -877,7 +877,7 @@ function calpress_inline_image_sanitize($input, $post_id){
 /**
  * Returns HTML for inline images
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return bool True if more than one image exists, false if not
@@ -898,7 +898,7 @@ function calpress_inline_image($input, $post_id=NULL, $title='', $caption=''){
 /**
  * Enqueues fancybox scripts for inline images
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return void
  */
 function calpress_add_fancybox_scripts(){
@@ -919,7 +919,7 @@ function calpress_add_fancybox_scripts(){
 /**
  * Displays the related links input field
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $val The previous value
  * @param string $name The name of the form field
  * @param string $id The HTML id for this form field
@@ -932,7 +932,7 @@ function calpress_related_links_input_form($val, $name, $id){
 /**
  * Validates that the related links are number and are evenly spaced.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -957,7 +957,7 @@ function calpress_sanitize_related_links($input, $post_id){
 /**
  * Returns related links
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The related link category number
  * @param int $post_id The ID of the post (unused)
  * @param string $title (optional) The title for this block of related links
@@ -984,7 +984,7 @@ function calpress_related_links($input, $post_id=NULL, $title='', $caption=''){
 /**
  * Displays the textfield form for adding manual links
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses esc_textarea();
  * @param string $val The previous value
  * @param string $name The name of the form field
@@ -999,7 +999,7 @@ function calpress_manual_links_input_form($val, $name, $id){
 /**
  * Validates manually added links
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -1020,7 +1020,7 @@ function calpress_sanitize_manual_links($input, $post_id){
 /**
  * Returns manual links
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The contents of the database for this option
  * @param int $post_id The ID of the post
  * @param string $title (optional) The title for this block of related links
@@ -1056,7 +1056,7 @@ function calpress_manual_links($input, $post_id=NULL, $title='', $caption=''){
 /**
  * Displays the textfield form for adding extra CSS
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses esc_textarea();
  * @param string $val The previous value
  * @param string $name The name of the form field
@@ -1071,7 +1071,7 @@ function calpress_extra_css_input_form($val, $name, $id){
 /**
  * Validates CSS code
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -1086,7 +1086,7 @@ function calpress_sanitize_extra_css($input, $post_id){
 /**
  * displays CSS from post meta in the head.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @return void
  */
@@ -1098,7 +1098,7 @@ function calpress_extra_css($input){
 /**
  * Displays the textfield form for adding extra JavaScript
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses esc_textarea();
  * @param string $val The previous value
  * @param string $name The name of the form field
@@ -1112,7 +1112,7 @@ function calpress_extra_js_input_form($val, $name, $id){
 /**
  * Validates JavaScript code
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The ID of the post
  * @return string The sanitized input
@@ -1127,7 +1127,7 @@ function calpress_sanitize_extra_js($input, $post_id){
 /**
  * displays JavaScript from post meta in the head.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @return void
  */
@@ -1139,7 +1139,7 @@ function calpress_extra_js($input){
 /**
  * Displays the input form for the sidebar option
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @return void
  */
@@ -1152,7 +1152,7 @@ function calpress_sidebar_input_form($val, $name, $id){ ?>
 /**
  * Ostensibly validates the sidebar option
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param int $post_id The post ID
  * @return bool $input
@@ -1164,7 +1164,7 @@ function calpress_sanitize_sidebar($input, $post_id){
 /**
  * Returns true if it show sidebar, or false if not.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @return bool $input
  */
@@ -1178,7 +1178,7 @@ function calpress_sidebar($input){
 /**
  * Adds a classname to the body tag when no sidebar is shown
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @uses calpress_filter_bodyclass filter (see hooks.php)
  * @param string $input The classname
  * @return void
@@ -1191,7 +1191,7 @@ function calpress_sidebar_add_body_class($input){
 /**
  * Renders form for eliminating validation checks
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @param string $input The $_POST results input
  * @param string $name The field name
  * @param string $id The html tag id

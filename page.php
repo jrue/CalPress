@@ -16,7 +16,7 @@
  *
  * @uses calpress_add_multimedia_scripts()
  * @package WordPress
- * @subpackage CalPress
+ * @subpackage CalPress2
  * @since CalPress 1.0
  */
 calpress_add_multimedia_scripts();

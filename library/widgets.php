@@ -12,8 +12,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 /**
@@ -21,7 +21,7 @@
  * or any ad service that offers embed code. If additional code in the head
  * is required, please visit CalPress Theme Options
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class GenericAdvertisement extends WP_Widget {
 
@@ -109,7 +109,7 @@ class GenericAdvertisement extends WP_Widget {
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class FeaturedCategory extends WP_Widget {
 
@@ -302,7 +302,7 @@ class FeaturedCategory extends WP_Widget {
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class CategoryOfPosts extends WP_Widget {
 
@@ -424,7 +424,7 @@ class CategoryOfPosts extends WP_Widget {
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class FlickrPoolPhoto extends WP_Widget {
 
@@ -546,7 +546,7 @@ class FlickrPoolPhoto extends WP_Widget {
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class AboutUS extends WP_Widget {
 
@@ -663,7 +663,7 @@ class AboutUS extends WP_Widget {
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class PromoImage extends WP_Widget {
 
@@ -737,7 +737,7 @@ class PromoImage extends WP_Widget {
 /**
  *
  * @todo Creates a widget for listing a bunch of links. 
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class BunchOfLinks extends WP_Widget {
 
@@ -845,7 +845,7 @@ class BunchOfLinks extends WP_Widget {
 /**
  * Widget showing most commented articles 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class MostCommentedPosts extends WP_Widget {
 
@@ -955,7 +955,7 @@ class MostCommentedPosts extends WP_Widget {
 /**
  * Widget showing most commented articles 
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 class CalPressRecentComments extends WP_Widget {
 

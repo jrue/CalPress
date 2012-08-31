@@ -10,14 +10,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package WordPress
- * @subpackage CalPress
- * @since CalPress 2.0
+ * @subpackage CalPress2
+ * @since CalPress 0.9.7
  */
 
 /**
  * Properly enqueue styles and scripts for our theme options page in the admin.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_admin_enqueue_scripts( $hook_suffix ) {
 	wp_enqueue_style( 'calpress-theme-options', THEMEURI . '/css/theme-options.css', false, '20120614' );
@@ -35,7 +35,7 @@ function calpress_admin_enqueue_scripts( $hook_suffix ) {
  *
  * We also use this function to add our theme option if it doesn't already exist.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 
 function calpress_theme_options_init() {
@@ -386,7 +386,7 @@ function calpress_theme_options_help() {
 /**
  * Returns the default options for CalPress.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_get_default_theme_options() {
 	
@@ -437,7 +437,7 @@ function calpress_get_default_theme_options() {
 /**
  * Returns the options array for CalPress. Set's defaults if not previously set.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_get_theme_options() {
 	return get_option( 'calpress_theme_options', calpress_get_default_theme_options() );
@@ -446,7 +446,7 @@ function calpress_get_theme_options() {
 /**
  * Renders the front page category selection input
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_front_page_category() {
 	$options = calpress_get_theme_options();
@@ -467,7 +467,7 @@ function calpress_settings_front_page_category() {
 /**
  * Renders the featured page category selection input
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_featured_story_category() {
 	$options = calpress_get_theme_options();
@@ -488,7 +488,7 @@ function calpress_settings_featured_story_category() {
 /**
  * Renders the multiple category picker form input in theme options
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_category_block(){
 	$options = calpress_get_theme_options();
@@ -535,7 +535,7 @@ function calpress_settings_category_block(){
 /**
  * Renders the a text field for omitting certain categories from the front page category blocks.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_category_block_omit(){
 	$options = calpress_get_theme_options();
@@ -548,7 +548,7 @@ function calpress_settings_category_block_omit(){
 /**
  * Renders the a text fields for creating a breaking news callout.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_big_news(){
 	$options = calpress_get_theme_options(); 
@@ -586,7 +586,7 @@ function calpress_settings_big_news(){
 /**
  * Renders the form of whether to disable the "insert image into post" option
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_featured_stories(){
 	$options = calpress_get_theme_options(); 
@@ -648,7 +648,7 @@ function calpress_settings_featured_stories(){
 /**
  * Renders the form that allows user to specify social media share buttons
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_share_code(){
 	$options = calpress_get_theme_options(); 
@@ -661,7 +661,7 @@ function calpress_settings_share_code(){
 /**
  * Renders the form for user to enter their twitter handle
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_twitter_handle(){
 	$options = calpress_get_theme_options(); 
@@ -674,7 +674,7 @@ function calpress_settings_twitter_handle(){
 /**
  * Renders the form of whether to disable the "insert image into post" option
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_insert_image_into_post(){
 	$options = calpress_get_theme_options();
@@ -690,7 +690,7 @@ function calpress_settings_insert_image_into_post(){
 /**
  * Renders the form of whether to show author profile below posts
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_show_author_profile_on_posts(){
 	$options = calpress_get_theme_options();
@@ -706,7 +706,7 @@ function calpress_settings_show_author_profile_on_posts(){
 /**
  * Renders the form for user to fill out comment policy
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_comment_policy(){
 	$options = calpress_get_theme_options();
@@ -719,7 +719,7 @@ function calpress_settings_comment_policy(){
 /**
  * Renders the question whether this theme should support earlier versions of CalPress
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_support_legacy(){
 	$options = calpress_get_theme_options();
@@ -735,7 +735,7 @@ function calpress_settings_support_legacy(){
 /**
  * Renders the question of whether to show the comment count on article on the front page.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_comment_count(){
 	$options = calpress_get_theme_options(); ?>
@@ -750,7 +750,7 @@ function calpress_settings_comment_count(){
 /**
  * Renders the question of how the front page should be presented
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_front_layout(){
 	$options = calpress_get_theme_options();
@@ -769,7 +769,7 @@ function calpress_settings_front_layout(){
 /**
  * Renders the question about legacy video
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_legacy_video(){
 	$options = calpress_get_theme_options();
@@ -782,7 +782,7 @@ function calpress_settings_legacy_video(){
 /**
  * Renders the question about legacy SoundSlides location
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_legacy_soundslides(){
 	$options = calpress_get_theme_options();
@@ -795,7 +795,7 @@ function calpress_settings_legacy_soundslides(){
 /**
  * Renders the question about legacy JW Player location
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_legacy_jw_player(){
 	$options = calpress_get_theme_options();
@@ -808,7 +808,7 @@ function calpress_settings_legacy_jw_player(){
 /**
  * Renders the question about legacy JW Player Theme location
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_legacy_jw_theme(){
 	$options = calpress_get_theme_options();
@@ -821,7 +821,7 @@ function calpress_settings_legacy_jw_theme(){
 /**
  * Renders the question about how the more text should display
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_more_text(){
 	$options = calpress_get_theme_options();
@@ -834,7 +834,7 @@ function calpress_settings_more_text(){
 /**
  * Renders the field to specify the color bar at the top of the page.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_color_bar() {
 	$options = calpress_get_theme_options();
@@ -851,7 +851,7 @@ function calpress_settings_color_bar() {
 /**
  * Renders text field for entering Google Verification code.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_google_verification() {
 	$options = calpress_get_theme_options();
@@ -864,7 +864,7 @@ function calpress_settings_google_verification() {
 /**
  * Renders text field for entering Google Analytics code.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_google_analytics() {
 	$options = calpress_get_theme_options();
@@ -877,7 +877,7 @@ function calpress_settings_google_analytics() {
 /**
  * Renders text field for entering extra javascript for the document head.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_extra_javascript() {
 	$options = calpress_get_theme_options();
@@ -890,7 +890,7 @@ function calpress_settings_extra_javascript() {
 /**
  * Renders text field for entering extra css for the document head.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_extra_css() {
 	$options = calpress_get_theme_options();
@@ -903,7 +903,7 @@ function calpress_settings_extra_css() {
 /**
  * Renders input field for entering facebook id.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_facebook_id() {
 	$options = calpress_get_theme_options();
@@ -916,7 +916,7 @@ function calpress_settings_facebook_id() {
 /**
  * Renders input field for entering Facebook secret.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_facebook_secret() {
 	$options = calpress_get_theme_options();
@@ -929,7 +929,7 @@ function calpress_settings_facebook_secret() {
 /**
  * Renders input field for entering Facebook button layout.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_facebook_layout() {
 	$options = calpress_get_theme_options();
@@ -946,7 +946,7 @@ function calpress_settings_facebook_layout() {
 /**
  * Renders input field for choosing like or recommend.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_facebook_action() {
 	$options = calpress_get_theme_options();
@@ -961,7 +961,7 @@ function calpress_settings_facebook_action() {
 /**
  * Renders input field for choosing like or recommend.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_settings_facebook_send() {
 	$options = calpress_get_theme_options();
@@ -976,7 +976,7 @@ function calpress_settings_facebook_send() {
 /**
  * Returns an array of possible post categories from the site.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  * @return $array List of categories.
  */
 function calpress_post_categories() {
@@ -987,7 +987,7 @@ function calpress_post_categories() {
 /**
  * Returns the options array for CalPress.
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_theme_options_render_page() {
 	?>
@@ -1022,7 +1022,7 @@ function calpress_theme_options_render_page() {
  * @see calpress_theme_options_init()
  * @todo set up Reset Options action
  *
- * @since CalPress 2.0
+ * @since CalPress 0.9.7
  */
 function calpress_theme_options_validate( $input ) {
 	$output = $defaults = calpress_get_default_theme_options();
