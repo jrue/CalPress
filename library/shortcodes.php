@@ -36,4 +36,21 @@ function pullquote_shortcode( $atts, $content = null ) {
     }
 }
 add_shortcode('pullquote', 'pullquote_shortcode');
+
+/**
+ * gallery_shortcode()
+ *
+ * Override the default gallery shortcode
+ *
+ * @param int Timestamp to compare to now.
+ * @return string Sentence saying how long ago it was updated
+ * @since CalPress 0.9
+*/
+function calpres_gallery_shortcode( $atts, $content = null){
+	
+}
+//add_shortcode('shortcode', 'calpres_gallery_shortcode');
+
+
+
 ?>

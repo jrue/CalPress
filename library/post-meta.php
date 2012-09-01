@@ -293,11 +293,14 @@ function calpress_save_postdata( $post_id ) {
 		/*========= LEAD ART PROCESSING =========== */
 		
 		//get values of the media type based on what the user picked for lead_art
-		$lead_art['media_object'] = $calpress_supported_multimedia->$_POST['lead_art'];
+		$lead_art['media_object'] = isset($calpress_supported_multimedia->$_POST['lead_art']) ? $calpress_supported_multimedia->$_POST['lead_art'] : false;
 		
 		if(!$lead_art['media_object']['render_form'])://if no user input was required
 			
-			$lead_art['value'] = call_user_func_array($lead_art['media_object']['sanitize_output'], array($_POST['lead_art'], $post_id));
+			if($_POST['lead_art'] != 'none')
+				$lead_art['value'] = call_user_func_array($lead_art['media_object']['sanitize_output'], array($_POST['lead_art'], $post_id));
+			else
+				$lead_art['value'] = false;
 			
 			if($lead_art['value']){
 				add_post_meta($post_id, 'lead_art', $_POST['lead_art'], true) or 

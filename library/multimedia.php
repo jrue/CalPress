@@ -124,7 +124,9 @@ calpress_add_media_support(array(
 	'sanitize_output' => 'calpress_photo_gallery_verify',
 	'error_message' => 'Photo galleries require more than one photo uploaded.',
 	'display_function' => 'calpress_photo_gallery',
+	'description' => 'Leave media area blank for photo gallery',
 	'lead' => true,
+	'inline' => true,
 	'support_scripts' => 'calpress_photo_gallery_scripts'
 ));
 
@@ -313,7 +315,7 @@ function calpress_photo_gallery_verify($input, $post_id){
  * @param int $post_id The ID of the post
  * @return string The html for a photo gallery
  */
-function calpress_photo_gallery($post_id){
+function calpress_photo_gallery($post_id, $inline=false){
 	$images = get_children(
 			array(
 				'post_parent' => $post_id, 
@@ -430,13 +432,18 @@ function featured_image_sanitize($input, $post_id){
  */
 function calpress_featured_image($post_id, $inline=false){
 	$attachment_id = get_post_thumbnail_id($post_id);
+	$sidebar = get_post_meta($post_id, 'sidebar', true);
 	
 	if(!$attachment_id)
 		return false;
 	
 	$html = '';
 	
-	$url = wp_get_attachment_image_src($attachment_id, 'post-thumbnail', false);
+	if($sidebar !== false && $sidebar == "false"){
+		$url = wp_get_attachment_image_src($attachment_id, 'full', false);
+	} else {
+		$url = wp_get_attachment_image_src($attachment_id, 'post-thumbnail', false);
+	}
 	$alt = trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
 	$description = get_post($attachment_id)->post_excerpt;
 
@@ -445,7 +452,11 @@ function calpress_featured_image($post_id, $inline=false){
 	
 	$html .= $inline ? '<div class="inline-image">' : '';
 	$html .= $inline ? '<a href="' . $url[0] .'" class="fancybox" title="See larger image">' : '';
-	$html .= '<img src="' . $url[0] . '" style="max-width:620px; height:auto;" alt="' . trim(strip_tags($alt)) . '" />'.PHP_EOL;
+	if($sidebar !== false && $sidebar == "false"){
+		$html .= '<img src="' . $url[0] . '" style="max-width:920px; height:auto;" alt="' . trim(strip_tags($alt)) . '" />'.PHP_EOL;
+	} else {
+		$html .= '<img src="' . $url[0] . '" style="max-width:620px; height:auto;" alt="' . trim(strip_tags($alt)) . '" />'.PHP_EOL;
+	}
 	$html .= $inline ? '</a>' : '';
 	$html .= '<div class="wp-caption"><p>' . $description . '</p></div>'.PHP_EOL;
 	
