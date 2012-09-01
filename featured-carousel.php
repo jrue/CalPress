@@ -1,6 +1,6 @@
 <?php
 /**
- * Featured Template Name: Carousel
+ * Featured Name: Carousel
  *
  * The template file that displays posts for an optional carousel.
  * You can add additional featured templates by dropping files with

@@ -605,7 +605,7 @@ add_filter('calpress_filter_bodyclass', 'calpress_add_front_body_class', 10);
  * an array of names. These will be used in theme options for allowing the user to select
  * which featured post format to use for the front page.
  *
- * If "Featured Template Name:" string is in the comment block of the file, it will use that name
+ * If Featured Template string is in the comment block of the file, it will use that name
  * for the human readable selection, otherwise it will default to the slug.
  *
  * @since CalPress 0.9.7
@@ -622,7 +622,7 @@ function calpress_return_all_featured_post_formats(){
 	foreach($theme_featured_templates as $theme_featured_template)
 		if(preg_match('/^featured-(.*?)\./', $theme_featured_template, $featured_match) && !is_dir($theme_featured_template)){
 			$template_file_data = implode( '', file(CHILDTHEMEFULLPATH . "/" . $theme_featured_template));
-			if ( preg_match( '|Featured Template Name:(.*)$|mi', $template_file_data, $name )):
+			if ( preg_match( '|Featured Name:(.*)$|mi', $template_file_data, $name )):
 				$found_featured_templates[substr($featured_match[0], 9, strlen($featured_match[0]) - 10)] = trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $name[1]));
 			else:
 				$found_featured_templates[substr($featured_match[0], 9, strlen($featured_match[0]) - 10)] = ucwords(substr($featured_match[0], 5, strlen($featured_match[0]) - 6));

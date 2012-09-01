@@ -1,6 +1,6 @@
 <?php
 /**
- * Featured Template Name: Headlines
+ * Featured Name: Headlines
  *
  * The template file that displays posts for an optional headlines layout.
  * You can add additional featured templates by dropping files with

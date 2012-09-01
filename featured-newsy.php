@@ -1,6 +1,6 @@
 <?php
 /**
- * Featured Template Name: Newsy
+ * Featured Name: Newsy
  *
  * The template file that displays posts for an optional newsy layout.
  * You can add additional featured templates by dropping files with
