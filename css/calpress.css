@@ -747,8 +747,8 @@ nav#nav-below a:hover{
 	text-align: center;
 }
 
-.widget_calpress_ad{
-	text-align: center;
+.widget_calpress_ad ul{
+	text-align: left;
 }
 
 /*===== Sidebar Widget: Fetured Stories ======*/
@@ -1286,6 +1286,7 @@ ul.single-post-slideshow-pager{
 .single-post-slideshow-pager li{
 	margin: 0 8px;
 	float: left;
+	list-style-type: none !important;
 }
 
 .single-post-slideshow-pager .selected{
@@ -1302,6 +1303,22 @@ body.single-post .slideshow-caption{
 	max-width: 620px;
 	display: block;
 	margin: 0 auto;
+}
+
+/*===== Slideshow Inline ======*/
+
+body.single-post aside.entry-inline .iosSlider{
+	margin: 0 !important;
+	padding: 0 !important;
+	max-width: 300px !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-height: 220px !important;
+}
+
+body.single-post aside.entry-inline .iosSlider .slider{
+	height: auto !important;
+	max-height: 220px;
 }
 
 /*===== Footer ========*/
