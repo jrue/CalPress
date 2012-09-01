@@ -1151,6 +1151,13 @@ function calpress_add_share_embed_code_to_post(){
 	$options = unserialize(CALPRESSTHEMEOPTIONS); 
 	if(!empty($options['share_code']))
 		echo $options['share_code'];
+	
+	//add facebook like button option when using SFC plugin
+	if(function_exists('sfc_like_button')):
+		echo '<div style="margin:0 1px; width:90px; text-align:center; padding:0 1px; overflow:hidden;">'.PHP_EOL;
+		sfc_like_button(array('width'=>'90', 'showfaces'=>'false', 'layout'=>'button_count', 'height'=>'20'));
+		echo '</div>'.PHP_EOL;
+	endif;
 }
 add_action('calpress_hook_single_entry_meta', 'calpress_add_share_embed_code_to_post');
 
