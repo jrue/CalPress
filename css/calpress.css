@@ -540,6 +540,7 @@ body.front article footer{
 #carousel-navigation ul li{
 	display: block;
 	float: left;
+	width:100%;
 	max-width: 123px;
 	height: 100px;
 	padding: 5px 0 0 0;
