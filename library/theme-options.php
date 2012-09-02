@@ -114,42 +114,26 @@ function calpress_theme_options_init() {
 		'look_and_feel'
 	);
 	
-	add_settings_field(
-		'twitter_handle',
-		__('This site\'s Twitter Handle', 'calpress'),
-		'calpress_settings_twitter_handle',
-		'theme_options',
-		'look_and_feel'
-	);
-	
-	add_settings_field(
-		'share_code',
-		__('Social Media Share Code', 'calpress'),
-		'calpress_settings_share_code',
-		'theme_options',
-		'look_and_feel'
-	);
-	
 	// Register our settings field group
 	add_settings_section(
 		'general', // Unique identifier for the settings section
 		__('General Settings', 'calpress'), // Section title
 		'__return_false', // Section callback (we don't want anything)
-		'theme_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
+		'calpress_setup_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
 	);
 	// Register our individual settings fields
 	add_settings_field(
 		'front_category',
 		__( 'Front Page Category', 'calpress' ), 
 		'calpress_settings_front_page_category', // Function that renders the settings field
-		'theme_options', // Menu slug, used to uniquely identify the page; see twentyeleven_theme_options_add_page()
+		'calpress_setup_options', // Menu slug, used to uniquely identify the page; see twentyeleven_theme_options_add_page()
 		'general' // Settings section. Same as the first argument in the add_settings_section()
 	);
 	add_settings_field(
 		'featured_category',
 		__( 'Featured Story Category', 'calpress' ), 
 		'calpress_settings_featured_story_category', 
-		'theme_options', 
+		'calpress_setup_options', 
 		'general' 
 	);
 	
@@ -157,7 +141,7 @@ function calpress_theme_options_init() {
 		'comment_policy',
 		__( 'Comment Policy', 'calpress' ), 
 		'calpress_settings_comment_policy', 
-		'theme_options', 
+		'calpress_setup_options', 
 		'general' 
 	);
 	
@@ -165,7 +149,7 @@ function calpress_theme_options_init() {
 		'show_author_profile_on_posts',
 		__( 'Show author profile on posts?', 'calpress' ), 
 		'calpress_settings_show_author_profile_on_posts', 
-		'theme_options', 
+		'calpress_setup_options', 
 		'general' 
 	);
 	
@@ -173,70 +157,86 @@ function calpress_theme_options_init() {
 		'insert_image_into_post',
 		__( 'Remove "Insert Image Into Post"?', 'calpress' ), 
 		'calpress_settings_insert_image_into_post', 
-		'theme_options', 
+		'calpress_setup_options', 
 		'general' 
+	);
+	
+	add_settings_field(
+		'twitter_handle',
+		__('This site\'s Twitter Handle', 'calpress'),
+		'calpress_settings_twitter_handle',
+		'calpress_setup_options',
+		'general'
+	);
+	
+	add_settings_field(
+		'share_code',
+		__('Social Media Share Code', 'calpress'),
+		'calpress_settings_share_code',
+		'calpress_setup_options',
+		'general'
 	);
 	
 	add_settings_section(
 		'legacy_options', // Unique identifier for the settings section
 		__('Legacy Options', 'calpress'), // Section title
 		'__return_false', // Section callback (we don't want anything)
-		'theme_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
+		'calpress_legacy_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
 	);
 	
 	add_settings_field(
 		'legacy_calpress',
 		__( 'Support Legacy CalPress?', 'calpress'),
 		'calpress_settings_support_legacy',
-		'theme_options',
+		'calpress_legacy_options',
 		'legacy_options'
 	);
 	add_settings_field(
 		'legacy_video',
 		__( 'Legacy Video Location', 'calpress'),
 		'calpress_settings_legacy_video',
-		'theme_options',
+		'calpress_legacy_options',
 		'legacy_options'
 	);
 	add_settings_field(
 		'legacy_soundslides',
 		__( 'Legacy SoundSlides Location', 'calpress'),
 		'calpress_settings_legacy_soundslides',
-		'theme_options',
+		'calpress_legacy_options',
 		'legacy_options'
 	);
 	add_settings_field(
 		'jw_player',
 		__( 'JW Player Location', 'calpress'),
 		'calpress_settings_legacy_jw_player',
-		'theme_options',
+		'calpress_legacy_options',
 		'legacy_options'
 	);
 	add_settings_field(
 		'jw_theme',
 		__( 'JW Theme Location', 'calpress'),
 		'calpress_settings_legacy_jw_theme',
-		'theme_options',
+		'calpress_legacy_options',
 		'legacy_options'
 	);
 	add_settings_section(
 		'advanced', // Unique identifier for the settings section
 		__('Site Administration Settings', 'calpress'), // Section title
 		'__return_false', // Section callback (we don't want anything)
-		'theme_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
+		'calpress_site_admin_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
 	);
 	add_settings_field(
 		'google_verification',
 		__('Google Webmaster Verification', 'calpress'),
 		'calpress_settings_google_verification',
-		'theme_options',
+		'calpress_site_admin_options',
 		'advanced' 
 	);
 	add_settings_field(
 		'google_analytics',
 		__('Google Analytics Code', 'calpress'),
 		'calpress_settings_google_analytics',
-		'theme_options',
+		'calpress_site_admin_options',
 		'advanced' 
 	);
 	
@@ -244,14 +244,14 @@ function calpress_theme_options_init() {
 		'extra_js_head',
 		__('Extra JavaScript Code in &lt;head&gt;', 'calpress'),
 		'calpress_settings_extra_javascript',
-		'theme_options',
+		'calpress_site_admin_options',
 		'advanced' 
 	);
 	add_settings_field(
 		'extra_css_head',
 		__('Custom CSS styles', 'calpress'),
 		'calpress_settings_extra_css',
-		'theme_options',
+		'calpress_site_admin_options',
 		'advanced' 
 	);
 	/*
@@ -332,20 +332,149 @@ function calpress_theme_options_add_page() {
 	//add_menu_page( 'CalPress Options', 'CalPress Options', 'edit_theme_options', 'calpress_menu', 'calpress_menu', '', 95 );
 	
 	$theme_page = add_menu_page(
-		__( 'CalPress Options', 'calpress' ),   // Name of page
-		__( 'CalPress Options', 'calpress' ),   // Label in menu
+		__( 'CalPress Options', 'CalPress' ),   // Name of page
+		__( 'CalPress Options', 'CalPress' ),   // Label in menu
 		'edit_theme_options',                // Capability required
 		'theme_options',                     // Menu slug, used to uniquely identify the page
-		'calpress_theme_options_render_page', // Function that renders the options page
-		'',
+		'', 	// Function that renders the options page
+		'', 	//icon for menu item
 		95
 	);
+	
+	$sub_page_look_and_feel = add_submenu_page(
+		'theme_options',
+		__('Look and Feel', 'CalPress'),
+		__('Look and Feel', 'CalPress'),
+		'edit_theme_options',
+		'theme_options',
+		'calpress_theme_options_render_page'
+	);
+	
+	$sub_page_general = add_submenu_page(
+		'theme_options',
+		__('Setup Settings', 'CalPress'),
+		__('Setup Settings', 'CalPress'),
+		'edit_theme_options',
+		'calpress_setup_options',
+		'calpress_setup_options_render_page'
+	);
+	
+	$legacy_options = add_submenu_page(
+		'theme_options',
+		__('Legacy Options', 'CalPress'),
+		__('Legacy Options', 'CalPress'),
+		'edit_theme_options',
+		'calpress_legacy_options',
+		'calpress_legacy_options_render_page'
+	);
+	
+	$site_admin_options = add_submenu_page(
+		'theme_options',
+		__('Site Administration Settings', 'CalPress'),
+		__('Admin Settings', 'CalPress'),
+		'edit_theme_options',
+		'calpress_site_admin_options',
+		'calpress_site_admin_options_render_page'
+	);
+	
 	if ( ! $theme_page )
 		return;
 	add_action( 'load-' . $theme_page, 'calpress_theme_options_help' );
 	add_action( 'admin_print_styles-' . $theme_page, 'calpress_admin_enqueue_scripts' );
+	add_action( 'admin_print_styles-' . $sub_page_look_and_feel, 'calpress_admin_enqueue_scripts' );
+	add_action( 'admin_print_styles-' . $sub_page_general, 'calpress_admin_enqueue_scripts' );
+	add_action( 'admin_print_styles-' . $legacy_options, 'calpress_admin_enqueue_scripts' );
+	add_action( 'admin_print_styles-' . $site_admin_options, 'calpress_admin_enqueue_scripts' );
+	
 }
 add_action( 'admin_menu', 'calpress_theme_options_add_page' );
+
+
+function calpress_setup_options_render_page(){
+	?>
+	<div class="wrap">
+		<?php screen_icon('options-general'); ?>
+		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
+		<h2><?php printf( __( '%s Theme Setup Options', 'calpress' ), $theme_name ); ?></h2>
+		<?php settings_errors(); ?>
+		<form method="post" action="options.php">
+			<?php
+				settings_fields( 'calpress_options' );
+				do_settings_sections( 'calpress_setup_options' );
+				submit_button();
+			?>
+		</form>
+	</div>
+<?php	
+}
+
+function calpress_legacy_options_render_page(){
+	?>
+	<div class="wrap">
+		<?php screen_icon('options-general'); ?>
+		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
+		<h2><?php printf( __( '%s Legacy Options', 'calpress' ), $theme_name ); ?></h2>
+		<?php settings_errors(); ?>
+		<form method="post" action="options.php">
+			<?php
+				settings_fields( 'calpress_options' );
+				do_settings_sections( 'calpress_legacy_options' );
+				submit_button();
+			?>
+		</form>
+	</div>
+<?php
+}
+
+function calpress_site_admin_options_render_page(){
+	?>
+	<div class="wrap">
+		<?php screen_icon('options-general'); ?>
+		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
+		<h2><?php printf( __( '%s Administration Settings', 'calpress' ), $theme_name ); ?></h2>
+		<?php settings_errors(); ?>
+		<form method="post" action="options.php">
+			<?php
+				settings_fields( 'calpress_options' );
+				do_settings_sections( 'calpress_site_admin_options' );
+				submit_button();
+			?>
+		</form>
+	</div>
+<?php	
+}
+
+/**
+ * Returns the options array for CalPress.
+ *
+ * @since CalPress 0.9.7
+ */
+function calpress_theme_options_render_page() {
+	?>
+	<div class="wrap">
+		<?php screen_icon('options-general'); ?>
+		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
+		<h2><?php printf( __( '%s Look and Feel Settings', 'calpress' ), $theme_name ); ?></h2>
+		<?php settings_errors(); ?>
+		<h3>Helpful Links</h3>
+		<table class="form-table">
+			<tbody>
+				<tr valign="top">
+					<th scope="row"></th>
+					<td><a href="customize.php"><?php __('Customize the front page layout, as well as header/background images.'); ?></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<form method="post" action="options.php">
+			<?php
+				settings_fields( 'calpress_options' );
+				do_settings_sections( 'theme_options' );
+				submit_button();
+			?>
+		</form>
+	</div>
+	<?php
+}
 
 function calpress_theme_options_help() {
 	$help = '<p>' . __( 'These are some basic options you can set after you activate CalPress. These should really only be set once to personalize the site. Other options for adjusting the front page will be found under the Calpress menu item on the left.', 'calpress' ) . '</p>' .
@@ -412,7 +541,7 @@ function calpress_get_default_theme_options() {
 		'insert_image_into_post' => "true",
 		'front_page_layout' => 'index',
 		'big_news' => array('', '', '', ''),
-		'featured_stories' => array('', '', ''),
+		'featured_stories' => array(array('',''), array('',''), array('',''), array('',''), array('','')),
 		'category_block' => array(),
 		'comment_count' => "true",
 		'omit_category_block'=> '',
@@ -590,7 +719,7 @@ function calpress_settings_big_news(){
  */
 function calpress_settings_featured_stories(){
 	$options = calpress_get_theme_options(); 
-	wp_parse_args($options['featured_stories'], array(array('',''), array('',''), array('',''), array('',''), array('','')));
+	//wp_parse_args($options['featured_stories'], );
 	
 	?>
 	<table cellspacing="0" cellpadding="0" border="0">
@@ -985,38 +1114,6 @@ function calpress_post_categories() {
 }
 
 /**
- * Returns the options array for CalPress.
- *
- * @since CalPress 0.9.7
- */
-function calpress_theme_options_render_page() {
-	?>
-	<div class="wrap">
-		<?php screen_icon('options-general'); ?>
-		<?php $theme_name = function_exists( 'wp_get_theme' ) ? wp_get_theme() : get_current_theme(); ?>
-		<h2><?php printf( __( '%s Theme Options', 'calpress' ), $theme_name ); ?></h2>
-		<?php settings_errors(); ?>
-		<h3>Helpful Links</h3>
-		<table class="form-table">
-			<tbody>
-				<tr valign="top">
-					<th scope="row"></th>
-					<td><a href="customize.php">Customize the front page layout, as well as header/background images.</a></td>
-				</tr>
-			</tbody>
-		</table>
-		<form method="post" action="options.php">
-			<?php
-				settings_fields( 'calpress_options' );
-				do_settings_sections( 'theme_options' );
-				submit_button();
-			?>
-		</form>
-	</div>
-	<?php
-}
-
-/**
  * Sanitize and validate form input. Accepts an array, return a sanitized array.
  *
  * @see calpress_theme_options_init()
@@ -1025,19 +1122,30 @@ function calpress_theme_options_render_page() {
  * @since CalPress 0.9.7
  */
 function calpress_theme_options_validate( $input ) {
-	$output = $defaults = calpress_get_default_theme_options();
+	$output = calpress_get_theme_options();
+	$defaults = calpress_get_default_theme_options();
+	
+
+	// LOOK AND FEEL SETTINGS
+	if ( isset($_POST['calpress_theme_options']['front_page_layout']) && isset( $input['front_page_layout'] )){ 
+		if(@file_exists(CHILDTHEMEFULLPATH . '/featured-' . (string) $input['front_page_layout'] . '.php')){
+			$output['front_page_layout'] = $input['front_page_layout'];
+		} else {
+			add_settings_error('front_page_layout', 'front_page_layout', 'Error: No featured-'. (string) $input['front_page_layout'] . '.php file found in childtheme directory!', 'error');
+		}
+	};
 	
 	// Color scheme must be in our array of color scheme options
-	if ( isset( $input['front_category'] ) )
+	if ( isset($_POST['calpress_theme_options']['front_category']) && isset( $input['front_category'] ) )
 		$output['front_category'] = $input['front_category'];
 		
-	if ( isset( $input['featured_category'] ) )
+	if ( isset($_POST['calpress_theme_options']['featured_category']) && isset( $input['featured_category'] ) )
 		$output['featured_category'] = $input['featured_category'];
 		
-	if ( isset( $input['legacy_calpress'] ) )
+	if ( isset($_POST['calpress_theme_options']['legacy_calpress']) && isset( $input['legacy_calpress'] ) )
 		$output['legacy_calpress'] = $input['legacy_calpress'];
 		
-	if ( isset( $input['legacy_soundslides'] ) ){
+	if ( isset($_POST['calpress_theme_options']['legacy_soundslides']) && isset( $input['legacy_soundslides'] ) ){
 		if(preg_match('/\/$/', $input['legacy_soundslides'])){
 			$output['legacy_soundslides'] = esc_url_raw($input['legacy_soundslides']);
 		} else {
@@ -1045,7 +1153,7 @@ function calpress_theme_options_validate( $input ) {
 		}	
 	}
 		
-	if ( isset( $input['legacy_video'] ) ){
+	if ( isset($_POST['calpress_theme_options']['legacy_video']) && isset( $input['legacy_video'] ) ){
 		if(preg_match('/\/$/', $input['legacy_soundslides'])){
 			$output['legacy_video'] = esc_url_raw($input['legacy_video']);
 		} else {
@@ -1053,127 +1161,112 @@ function calpress_theme_options_validate( $input ) {
 		}
 	}
 	
-	if ( isset( $input['jw_player'] ) )
+	if ( isset($_POST['calpress_theme_options']['jw_player']) && isset( $input['jw_player'] ) )
 		$output['jw_player'] = esc_url_raw($input['jw_player']);
 
-	if ( isset( $input['jw_theme'] ) )
+	if ( isset($_POST['calpress_theme_options']['jw_theme']) && isset( $input['jw_theme'] ) )
 		$output['jw_theme'] = esc_url_raw($input['jw_theme']);
 
 	
-	if ( isset( $input['front_page_layout'] ) && @file_exists(CHILDTHEMEFULLPATH . '/featured-' . (string) $input['front_page_layout'] . '.php')){
-		$output['front_page_layout'] = $input['front_page_layout'];
-	} else {
-		add_settings_error('front_page_layout', 'front_page_layout', 'Error: No featured-'. (string) $input['front_page_layout'] . '.php file found in childtheme directory!', 'error');
-	}
-	
-	if ( isset($input['comment_policy'] ) )
+	if ( isset($_POST['calpress_theme_options']['comment_policy']) && isset($input['comment_policy'] ) )
 		$output['comment_policy'] = esc_attr($input['comment_policy']);
 		
-	if ( isset($input['featured_stories'] ) )
+	if ( isset($_POST['calpress_theme_options']['featured_stories']) && isset($input['featured_stories'] ) )
 		$output['featured_stories'] = (array) $input['featured_stories'];
 	
-	if ( isset( $input['big_news'] ) ){
+	if ( isset($_POST['calpress_theme_options']['big_news']) && isset( $input['big_news'] ) ){
 		if(isset($input['big_news'][2])) $input['big_news'][2] = esc_url($input['big_news'][2]);
 		
 		$output['big_news'] = (array) $input['big_news'];
 	}
 	
-	if ( isset( $input['share_code'] ) )
+	if ( isset($_POST['calpress_theme_options']['share_code']) && isset( $input['share_code'] ) )
 		$output['share_code'] = $input['share_code'];
 		
-	if ( isset( $input['twitter_handle'] ) )
+	if ( isset($_POST['calpress_theme_options']['twitter_handle']) && isset( $input['twitter_handle'] ) )
 		$output['twitter_handle'] = strip_tags($input['twitter_handle']);
 	
-	if ( isset( $input['insert_image_into_post'] ) )
+	if ( isset($_POST['calpress_theme_options']['insert_image_into_post']) && isset( $input['insert_image_into_post'] ) )
 		$output['insert_image_into_post'] = (string) $input['insert_image_into_post'];
 		
-	if ( isset( $input['show_author_profile_on_posts'] ) )
+	if ( isset($_POST['calpress_theme_options']['show_author_profile_on_posts']) && isset( $input['show_author_profile_on_posts'] ) )
 		$output['show_author_profile_on_posts'] = $input['show_author_profile_on_posts'];
 		
-	if ( isset( $input['category_block'] ) )
+	if ( isset($_POST['calpress_theme_options']['category_block']) && isset( $input['category_block'] ) )
 		$output['category_block'] = (array) $input['category_block'];
 		
-	if ( isset( $input['omit_category_block'] ) && !preg_match('/[a-z]/i', $input['omit_category_block'])){
-		$temp = explode(",", strip_tags($input['omit_category_block']));
-		array_walk($temp, 'trim_value');
-		$output['omit_category_block'] = (string) implode(",", $temp);
-	} else {
-		add_settings_error('omit_category_block', 'omit_category_block', 'Error: Use category ID numbers only to omit categories from blocks.', 'error');
+	if ( isset($_POST['calpress_theme_options']['omit_category_block']) && isset( $input['omit_category_block'] )){ 
+		if(!preg_match('/[a-z]/i', $input['omit_category_block'])){
+			$temp = explode(",", strip_tags($input['omit_category_block']));
+			array_walk($temp, 'trim_value');
+			$output['omit_category_block'] = (string) implode(",", $temp);
+		} else {
+			add_settings_error('omit_category_block', 'omit_category_block', 'Error: Use category ID numbers only to omit categories from blocks.', 'error');
+		}
 	}
 	
-	if ( isset( $input['comment_count'] ) )
+	if ( isset($_POST['calpress_theme_options']['comment_count']) && isset( $input['comment_count'] ) )
 		$output['comment_count'] = (string) $input['comment_count'];
 	
-	if ( isset( $input['more_text'] ) )
+	if ( isset($_POST['calpress_theme_options']['more_text']) && isset( $input['more_text'] ) )
 		$output['more_text'] = $input['more_text'];
 
 	// Link color must be 3 or 6 hexadecimal characters
-	if ( isset( $input['theme_color'] ) && preg_match( '/^#?([a-f0-9]{3}){1,2}$/i', $input['theme_color'] ) ){
-		$output['theme_color'] = '#' . strtolower( ltrim( $input['theme_color'], '#' ) );
-	} else {
-		add_settings_error('theme_color', 'theme_color', 'Error: Color bar code not properly formed hex value. Must include # with three or six alphanumerical digits.');
-	}
-
-	//TO DO: Actual validation
-	if ( isset( $input['google_verification'] ) )
-		$output['google_verification'] = strip_tags($input['google_verification']);
-	
-	if ( isset( $input['google_analytics'] ) && preg_match('/UA-[0-9]+-[0-9]+/i', $input['google_analytics'] ) ) {
-		$output['google_analytics'] = strip_tags($input['google_analytics']);
-	} else{
-		if($input['google_analytics'] != "") {
-			add_settings_error('google_analytics', 'bad_google_analytics', 'Error: Google Analytics code must formatted as UA-XXXXXX-X with more or fewer numbers.', 'error');
+	if ( isset($_POST['calpress_theme_options']['theme_color']) && isset( $input['theme_color'] )){ 
+		if(preg_match( '/^#?([a-f0-9]{3}){1,2}$/i', $input['theme_color'] ) ){
+			$output['theme_color'] = '#' . strtolower( ltrim( $input['theme_color'], '#' ) );
+		} else {
+			add_settings_error('theme_color', 'theme_color', 'Error: Color bar code not properly formed hex value. Must include # with three or six alphanumerical digits.');
 		}
 	}
 
-	if ( isset( $input['extra_js_head'] ) && (preg_match('/\<script+/i', $input['extra_js_head']) || $input['extra_js_head'] == "")){
-		$output['extra_js_head'] = $input['extra_js_head'];
-	} else {
-		add_settings_error('extra_js_head', 'extra_js_head', 'Warning: Extra Javascript embed code requires use of the &lt;script&gt; tag. Without this, raw code may appear on the page.', 'updated');
-		$output['extra_js_head'] = $input['extra_js_head'];
+	if ( isset($_POST['calpress_theme_options']['google_verification']) && isset( $input['google_verification'] ) )
+		$output['google_verification'] = strip_tags($input['google_verification']);
+	
+	if ( isset($_POST['calpress_theme_options']['google_analytics']) && isset( $input['google_analytics'] )){ 
+		if(preg_match('/UA-[0-9]+-[0-9]+/i', $input['google_analytics'] ) ) {
+			$output['google_analytics'] = strip_tags($input['google_analytics']);
+		} else{
+			if($input['google_analytics'] != "") {
+				add_settings_error('google_analytics', 'bad_google_analytics', 'Error: Google Analytics code must formatted as UA-XXXXXX-X with more or fewer numbers.', 'error');
+			}
+		}
+	}
+
+	if ( isset($_POST['calpress_theme_options']['extra_js_head']) && isset( $input['extra_js_head'] )){ 
+		if(preg_match('/\<script+/i', $input['extra_js_head']) || $input['extra_js_head'] == ""){
+			$output['extra_js_head'] = $input['extra_js_head'];
+		} else {
+			add_settings_error('extra_js_head', 'extra_js_head', 'Warning: Extra Javascript embed code requires use of the &lt;script&gt; tag. Without this, raw code may appear on the page.', 'updated');
+			$output['extra_js_head'] = $input['extra_js_head'];
+		}
 	}
 	
-	if ( isset( $input['extra_css_head'] ) )
+	if ( isset($_POST['calpress_theme_options']['extra_css_head']) && isset( $input['extra_css_head'] ) )
 		$output['extra_css_head'] = strip_tags(trim($input['extra_css_head']));
 
-	if ( isset( $input['facebook_id'] ) && is_numeric($input['facebook_id'])){
-		$output['facebook_id'] = $input['facebook_id'];
-	} else {
-		if (isset($input['facebook_id']) && $input['facebook_id'] != ""){
+	if ( isset($_POST['calpress_theme_options']['facebook_id']) && isset( $input['facebook_id'] )){ 
+		if(is_numeric($input['facebook_id']) || $input['facebook_id'] == ""){
+			$output['facebook_id'] = $input['facebook_id'];
+		} else {
 			add_settings_error('facebook_id', 'calpress_theme_options[facebook_id]', 'Error: Facebook App ID/API Key can only be numbers.', 'error');
 		}
 	}
 	
-	if ( isset( $input['facebook_secret'] ) )
+	if ( isset($_POST['calpress_theme_options']['facebook_secret']) && isset( $input['facebook_secret'] ) )
 		$output['facebook_secret'] = $input['facebook_secret'];
 
-	if ( isset( $input['facebook_button_layout'] ) )
+	if ( isset($_POST['calpress_theme_options']['facebook_button_layout']) && isset( $input['facebook_button_layout'] ) )
 		$output['facebook_button_layout'] = $input['facebook_button_layout'];
 	
-	if ( isset( $input['facebook_button_action'] ) )
+	if ( isset($_POST['calpress_theme_options']['facebook_button_action']) && isset( $input['facebook_button_action'] ) )
 		$output['facebook_button_action'] = $input['facebook_button_action'];
 
-	if ( isset( $input['facebook_send_button'] ) )
+	if ( isset($_POST['calpress_theme_options']['facebook_send_button']) && isset( $input['facebook_send_button'] ) )
 		$output['facebook_send_button'] = $input['facebook_send_button'];
 	
 	return apply_filters( 'calpress_theme_options_validate', $output, $input, $defaults );
 }
 
-function calpress_add_menu(){
-	add_menu_page( 'CalPress Options', 'CalPress Options', 'edit_theme_options', 'calpress_menu', 'calpress_menu', '', 95 );
-	add_submenu_page('calpress_menu', 'Front Page Customizer', 'Customizer', 'edit_theme_options', 'calpress_customizer', 'calpress_menu' );	
-}
-//add_action('admin_menu', 'calpress_add_menu');
-
-function calpress_menu(){
-?>
-	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br /></div>
-		<h2>CalPress 2.0 Options</h2>
-		<h3>Helpful Links</h3>
-
-	</div>
-<?php
-}
 
 ?>
