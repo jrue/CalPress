@@ -1081,9 +1081,9 @@ body.page h1.entry-title{
 }
 
 body.page #content{
-	margin: 10px;
+	margin: 0px;
 	width: 100%;
-	max-width: 940px;
+	max-width: 960px;
 }
 
 body.page .entry-content{
