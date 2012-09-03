@@ -52,15 +52,12 @@ function calpress_display_category_blocks($categories, $limit=7){
 		
 <?php	
 		$cat_block_posts = new WP_Query( array( 'posts_per_page' => 9, 'cat' => $category, 'category__not_in' => calpress_get_omit_category_blocks() ));
-		$acounter = 0;
-		$amaxposts = $cat_block_posts->post_count -1;
-
+		$acounter = 1;
+		$amaxposts = $cat_block_posts->post_count;
 
 		while( $cat_block_posts->have_posts() ) : $cat_block_posts->the_post();
-		
-		if (in_array($post->ID, $do_not_duplicate_loop)) { $amaxposts--; continue; } $do_not_duplicate_loop[] = $post->ID;	
-		
-		if($acounter == 0){ ?>
+				
+		if($acounter == 1){ ?>
 		<div class="category-block-content">
 			<article class="clearfix">
 				<header>
@@ -74,7 +71,8 @@ function calpress_display_category_blocks($categories, $limit=7){
 			</article>
 			<ul>
 			
-<?php 	} elseif($acounter > 0 && $acounter < $amaxposts-1) { ?>
+<?php 	} elseif($acounter > 1 && $acounter <= $amaxposts) { ?>
+<?php 	if (in_array($post->ID, $do_not_duplicate_loop)) { $amaxposts--; continue; } $do_not_duplicate_loop[] = $post->ID; ?>
 	
 				<li><a href="<?php the_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 13, calpress_new_excerpt_more()); ?></a></li>
 			
