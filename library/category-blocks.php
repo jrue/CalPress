@@ -72,7 +72,6 @@ function calpress_display_category_blocks($categories, $limit=7){
 			<ul>
 			
 <?php 	} elseif($acounter > 1 && $acounter <= $amaxposts) { ?>
-<?php 	if (in_array($post->ID, $do_not_duplicate_loop)) { $amaxposts--; continue; } $do_not_duplicate_loop[] = $post->ID; ?>
 	
 				<li><a href="<?php the_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 13, calpress_new_excerpt_more()); ?></a></li>
 			
