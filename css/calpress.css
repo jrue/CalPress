@@ -1,3 +1,6 @@
+/* @override 
+	http://missionlocal.dev/wp-content/themes/calpress2/css/calpress.css?ver=1.1.2 */
+
 /**
  * CalPress styles. These are CalPress specific styles which are included using
  * wp_enqueue_script function. If you want to omit this style sheet from a child
@@ -1179,6 +1182,36 @@ body.single-post .entry-content a{
 	display: inline-block;
 }
 
+body.single-post .entry-content div.wp-caption{
+	background: #efefef;
+	font-size: 0.8em;
+	color: #555;
+}
+
+body.single-post .entry-content div.wp-caption img,
+body.single-post .entry-content div.wp-caption .wp-caption-text{
+	padding: 5px;
+	margin: 0;
+}
+
+
+body.single-post .entry-content div.wp-caption.alignright,
+body.single-post .entry-content img.alignright{
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+body.single-post .entry-content div.wp-caption.alignleft,
+body.single-post .entry-content img.alignleft{
+	margin-right: 10px;
+	margin-bottom: 5px;	
+}
+
+body.single-post .entry-content img{
+	margin: 0;
+	padding: 0;
+}
+
 .ie7 aside.entry-inline{
 	float: right !important;
 }
@@ -1265,6 +1298,62 @@ body.single-post footer#entry-author-info img{
 .share-code > *{
 	display: block;
 	float: right;
+}
+
+/*===== Single Post Typography ======*/
+
+body.single-post .entry-content h1{
+	font: bold 2em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+body.single-post .entry-content h2{
+	font: bold 1.8em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body.single-post .entry-content h3{
+	font: bold 1.5em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body.single-post .entry-content h4{
+	font: bold 1.3em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body.single-post .entry-content h5{
+	font: bold 1.2em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body.single-post .entry-content h6{
+	font: bold 1.1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body.single-post .entry-content ul,
+body.single-post .entry-content ol{
+	font: normal 1.1em/1.6em Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+	margin: 1em 0;
+	padding: 0 0 0 2em;
+	background: none;
+}
+
+body.single-post .entry-content ul li{
+	list-style: disc outside none;
+}
+
+body.single-post .entry-content ol li{
+	list-style: decimal outside none;
+}
+
+
+body.single-post .entry-content li{
+	padding: 0;
+	margin: 0.5em 0;
+	display: list-item;
+
+}
+
+body.single-post blockquote{
+	border-left: 3px solid #ddd;
+	padding: 0 0 0 2em;
+}
+
+body.single-post blockquote, 
+body.single-post blockquote p{
+	font: normal 1em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif !important;
+	color: #777;
 }
 
 /*===== Slideshow Lead Art ======*/
