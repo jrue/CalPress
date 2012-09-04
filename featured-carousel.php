@@ -44,11 +44,11 @@ $navigational_carousel_items = array(); ?>
 			$('#carousel-container').iosSlider({
 				snapToChildren: true,
 				scrollbar: false,
-				desktopClickDrag: true,
+				desktopClickDrag: false,
 				responsiveSlideContainer:true,
 				responsiveSlides:true,
 				autoSlide: true,
-				autoSlideTimer: 7000,
+				autoSlideTimer: 5000,
 				navSlideSelector: $('.carousel-navigation'),
 				onSlideChange: slideContentChange,
 				onSliderLoaded: slideContentChange
@@ -70,15 +70,21 @@ $navigational_carousel_items = array(); ?>
 			$navigational_carousel_items[] = $post;//save posts for nav
 			$counter++;
 ?>
+		
 		<article id="post-<?php the_ID(); ?>" <?php post_class('carousel-article slide'); ?>>
+			<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
 			<?php echo calpress_get_featured_image_from_post($post->ID, 'carousel-image', 'carousel-image'); ?>
+			</a>
 			<header class="article-header">
 				<h2 class="entry-title">
-					<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+					<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+					<?php the_title(); ?>
+					</a>
 				</h2>
 				<p class="entry-meta"><?php calpress_co_authors(); ?> &ndash; <?php calpress_posted_on(get_the_time('U')); ?></p>
 			</header>
 		</article>
+
 <?php 
 endif; //end has_post_thumbnail
 endwhile; //end featured post loop
