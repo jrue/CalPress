@@ -444,7 +444,7 @@ function calpress_featured_image($post_id, $inline=false){
 	} else {
 		$url = wp_get_attachment_image_src($attachment_id, 'post-thumbnail', false);
 	}
-	$alt = trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
+	$alt = esc_attr(trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true))));
 	$description = get_post($attachment_id)->post_excerpt;
 
 	if(!$alt)
@@ -458,7 +458,7 @@ function calpress_featured_image($post_id, $inline=false){
 		$html .= '<img src="' . $url[0] . '" style="max-width:620px; height:auto;" alt="' . trim(strip_tags($alt)) . '" />'.PHP_EOL;
 	}
 	$html .= $inline ? '</a>' : '';
-	$html .= '<div class="wp-caption"><p>' . $description . '</p></div>'.PHP_EOL;
+	$html .= '<div class="wp-caption"><p>' . esc_attr($description) . '</p></div>'.PHP_EOL;
 	
 	return $html;
 }
@@ -514,13 +514,13 @@ function calpress_vimeo($input, $post_id='', $title='', $caption='', $inline=fal
 	
 	if($inline){
 		$html .= '<div class="inline-item inline-vimeo">'.PHP_EOL;
-		$html .= $title ? '<h3>'. $title . '</h3>'.PHP_EOL : '';
+		$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
 	}
 	
 	$html .= '<div class="video-container">';
 	$html .= '<iframe src="http://player.vimeo.com/video/' . calpress_get_vimeo_id_from_url($input) . '?title=0&byline=0&portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
 	$html .= '</div>';
-	$html .= $caption ? '<div class="wp-caption">' . $caption . '</div>'.PHP_EOL : '';
+	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 	
 	if($inline)
 		$html .= '</div>';
@@ -579,7 +579,7 @@ function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=f
 	
 	if($inline){
 		$html .= '<div class="inline-item inline-youtube">'.PHP_EOL;
-		$html .= $title ? '<h3>'. $title . '</h3>'.PHP_EOL : '';
+		$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
 	}
 	
 	$html .= '
@@ -588,7 +588,7 @@ function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=f
 		</div>
 	';
 	
-	$html .= $caption ? '<div class="wp-caption">' . $caption . '</div>'.PHP_EOL : '';
+	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 
 	if($inline)
 		$html .= '</div>';
@@ -675,7 +675,7 @@ function calpress_video($input, $post_id='', $title='', $caption='', $inline=fal
 	if($inline)
 		$html .= '<div class="inline-item inline-video">'.PHP_EOL;
 		
-	$html .= $title ? '<h3>'. $title . '</h3>'.PHP_EOL : '';
+	$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
 	$html .= '
 	
 	<video width="100%" height="100%" controls="controls" preload="none"' . $poster .'>
@@ -693,7 +693,7 @@ function calpress_video($input, $post_id='', $title='', $caption='', $inline=fal
 		</div>
 	</video>
 	';
-	$html .= $caption ? '<div class="wp-caption">' . $caption . '</div>'.PHP_EOL : '';
+	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 	
 	if($inline)
 		$html .= '</div>'.PHP_EOL;
@@ -762,11 +762,11 @@ function calpress_embed($input, $post_id='', $title='', $caption='', $inline=fal
 	if($inline)
 		$html .= '<div class="inline-item">'.PHP_EOL;
 		
-	$html .= $title ? '<h3>'. $title . '</h3>'.PHP_EOL : '';
+	$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
 	$html .= '<div class="embed-container">';
 	$html .= $input . PHP_EOL;
 	$html .= '</div>';
-	$html .= $caption ? '<div class="wp-caption">' . $caption . '</div>'.PHP_EOL : '';
+	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 
 	if($inline)
 		$html .= '</div>';
@@ -820,13 +820,13 @@ function calpress_inline_audio($input, $post_id=NULL, $title='', $caption=''){
 	$input = preg_replace('/\?.*/', '', $input);
 	
 	$html = '<div class="inline-audio inline-item">';
-	$html .= $title ? '<h3>'.$title.'</h3>': '';
+	$html .= $title ? '<h3>'. esc_attr($title) .'</h3>': '';
 	
 	$html .= '<audio controls="controls" preload="none">';
 	$html .= '	<source src="' . $input .'" ' . trim($query_string) . ' />';
 	$html .= '</audio>';
 
-	$html .= $caption ? '<p class="wp-caption">' . $caption . '</p>' : '';
+	$html .= $caption ? '<p class="wp-caption">' . esc_attr($caption) . '</p>' : '';
 	$html .= '</div>';
 	
 	return $html;
@@ -896,9 +896,9 @@ function calpress_inline_image_sanitize($input, $post_id){
 function calpress_inline_image($input, $post_id=NULL, $title='', $caption=''){
 	
 	$html = '<div class="inline-image inline-item">'.PHP_EOL;
-	$html .= $title ? '	<h3>'.$title.'</h3>'.PHP_EOL: '';
+	$html .= $title ? '	<h3>'. esc_attr($title) .'</h3>'.PHP_EOL: '';
 	$html .= '	<a href="' . $input .'" class="fancybox" title="See larger image">';
-	$html .= '<img src="' . $input .'" alt="'. trim(strip_tags($caption)) .'" style="max-width:300px; height:auto;" />';
+	$html .= '<img src="' . $input .'" alt="'. esc_attr(trim(strip_tags($caption))) .'" style="max-width:300px; height:auto;" />';
 	$html .= '</a>'.PHP_EOL;
 	$html .= $caption ? '	<p class="wp-caption">' . esc_attr($caption) . '</p>'.PHP_EOL : '';
 	$html .= '</div>'.PHP_EOL;
@@ -982,8 +982,8 @@ function calpress_related_links($input, $post_id=NULL, $title='', $caption=''){
 	$before = '		<li>';
 	
 	$html = '<div class="related_links inline-item">'.PHP_EOL;
-	$html .= $title ? '	<h3>' . $title . '</h3>'.PHP_EOL : '';
-	$html .= $caption ? '	<p class="link-caption">' . $caption . '</p>'.PHP_EOL : '';
+	$html .= $title ? '	<h3>' . esc_attr($title) . '</h3>'.PHP_EOL : '';
+	$html .= $caption ? '	<p class="link-caption">' . esc_attr($caption) . '</p>'.PHP_EOL : '';
 	$html .= '	<ul>'.PHP_EOL;
 	$html .= wp_list_bookmarks('before=' . $before . '&echo=0&title_li=&categorize=0&category=' . $input . '&orderby=rating&show_images=0&show_updated=0');
 	$html .= '	</ul>'.PHP_EOL;
@@ -1043,14 +1043,14 @@ function calpress_manual_links($input, $post_id=NULL, $title='', $caption=''){
 	
 	if(!empty($lines)):
 		$html = '<div class="related_links inline-item">';
-		$html .= $title ? '<h3>' . $title . '</h3>' : '';
-		$html .= $caption ? '<p class="link-caption">' . $caption . '</p>' : '';
+		$html .= $title ? '<h3>' . esc_attr($title) . '</h3>' : '';
+		$html .= $caption ? '<p class="link-caption">' . esc_attr($caption) . '</p>' : '';
 		$html .= '<ul>';
 	
 		foreach($lines as $line):
 	
 		if(preg_match('/^\[(.*?)\]\((.*?)\)/', $line, $matches)):
-			$html .= '<li><a href="' . $matches[2] . '" target="_blank">' . $matches[1] . '</a></li>';
+			$html .= '<li><a href="' . $matches[2] . '" target="_blank">' . esc_attr($matches[1]) . '</a></li>';
 		endif;
 		
 		endforeach;
