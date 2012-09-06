@@ -1098,6 +1098,10 @@ body.page article{
 	border: none;
 }
 
+body.page article img{
+	float: none;
+}
+
 
 /*===== Single Post ======*/
 
