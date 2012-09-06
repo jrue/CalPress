@@ -50,7 +50,7 @@ if($featured_query->have_posts() && !is_paged()) while ($featured_query->have_po
 		</h2>
 		<p class="entry-meta"><?php calpress_co_authors(); ?> | <?php calpress_posted_on(get_the_time('U')); ?></p>
 		<div class="entry-content">
-			<?php echo wp_trim_words(get_the_excerpt(), 40, calpress_new_excerpt_more()); ?>
+			<?php echo wp_trim_words(get_the_excerpt(), 55, calpress_new_excerpt_more()); ?>
 		</div>
 	</header>
 </article>
