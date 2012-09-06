@@ -900,7 +900,7 @@ function calpress_inline_image($input, $post_id=NULL, $title='', $caption=''){
 	$html .= '	<a href="' . $input .'" class="fancybox" title="See larger image">';
 	$html .= '<img src="' . $input .'" alt="'. trim(strip_tags($caption)) .'" style="max-width:300px; height:auto;" />';
 	$html .= '</a>'.PHP_EOL;
-	$html .= $caption ? '	<p class="wp-caption">' . $caption . '</p>'.PHP_EOL : '';
+	$html .= $caption ? '	<p class="wp-caption">' . esc_attr($caption) . '</p>'.PHP_EOL : '';
 	$html .= '</div>'.PHP_EOL;
 	
 	return $html;
