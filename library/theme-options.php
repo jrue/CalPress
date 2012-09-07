@@ -461,7 +461,7 @@ function calpress_theme_options_render_page() {
 			<tbody>
 				<tr valign="top">
 					<th scope="row"></th>
-					<td><a href="customize.php"><?php __('Customize the front page layout, as well as header/background images.'); ?></a></td>
+					<td><a href="customize.php"><?php _e('Customize the front page layout, as well as header/background images.'); ?></a></td>
 				</tr>
 			</tbody>
 		</table>

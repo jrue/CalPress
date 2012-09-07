@@ -32,7 +32,7 @@
  * @since CalPress 0.9.7
  */
 function calpress_register_styles() {
-	wp_register_style( 'calpress', THEMECSS . '/calpress.css', array(), '1.1.3', 'screen, handheld');
+	wp_register_style( 'calpress', THEMECSS . '/calpress.css', array(), '1.1.4', 'screen, handheld');
 	wp_register_style( 'calpress_960', THEMECSS . '/960.css', array('calpress'), '1.0');
 }
 add_action('wp_enqueue_scripts', 'calpress_register_styles', 1);//doesn't load in admin
@@ -64,6 +64,7 @@ function calpress_register_scripts() {
 	wp_register_script( 'custom_plugins', THEMEJS . '/plugins.js', array('jquery'), '1.0', true);
 	wp_register_script( 'custom_scripts', THEMEJS . '/custom.js', array('jquery', 'modernizr'), '1.0', true);
 	wp_register_script( 'iosslider', THEMEJS . '/jquery.iosslider.min.js', array('jquery'), '1.0.27', false);
+	wp_register_script( 'feature_comments', THEMEJS . '/feature-comments.js', array('jquery'), '1.1.1', true);
 }
 add_action('wp_enqueue_scripts', 'calpress_register_scripts', 3);
 
@@ -79,9 +80,20 @@ function calpress_enqueue_scripts(){
 	wp_enqueue_script( 'modernizr' );
 	wp_enqueue_script( 'respond' );
 	wp_enqueue_script( 'custom_scripts' );
+	wp_enqueue_script( 'feature_comments' );
 }
 endif;
 add_action('wp_enqueue_scripts', 'calpress_enqueue_scripts', 4);
+
+/**
+ * Loads featured comments JS script in the admin
+ *
+ * @since CalPress 0.9.7
+ */
+function calpress_admin_featured_comments_script(){
+	wp_enqueue_script( 'feature_comments', THEMEJS . '/feature-comments.js', array('jquery'), '1.1.1', true);
+}
+add_action('admin_enqueue_scripts', 'calpress_admin_featured_comments_script');
 
 
 /**

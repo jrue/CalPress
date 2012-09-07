@@ -64,6 +64,7 @@ require_once(THEMELIB . '/shortcodes.php'); //Shortcode support
 require_once(THEMELIB . '/widgets.php'); //pre-packaged widgets with CalPress
 require_once(THEMELIB . '/category-blocks.php'); //The category modules that appear on front page.
 require_once(THEMELIB . '/hooks.php'); //various custom hooks
+require_once(THEMELIB . '/featured-comments.php'); //ability to feature or bury comments
 
 //uses hook to setup theme so functions can be overridden in a child theme.
 add_action( 'after_setup_theme', 'calpress_setup' );

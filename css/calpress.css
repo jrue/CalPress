@@ -1,3 +1,6 @@
+/* @override 
+	http://missionlocal.dev/wp-content/themes/calpress2/css/calpress.css?ver=1.1.4 */
+
 /**
  * CalPress styles. These are CalPress specific styles which are included using
  * wp_enqueue_script function. If you want to omit this style sheet from a child
@@ -1520,18 +1523,18 @@ body.single-post aside.entry-inline .iosSlider .slider{
  http://wordpress.org/extend/themes/magazine-basic
 *************************/
 
-#comments{
+.comments{
     clear: both;
 }
 
-#comments-list > h3{
+.comments-list > h3{
 	background-color: #999;
 	color: #fff;
 	padding: 4px;
 	margin-bottom: 0;
 }
 
-#comments-list .says{
+.comments-list .says{
     display: none;
 }
 ol.commentlist li { border:1px solid #d5d5d5; margin:0 0 10px; padding:5px 7px 5px 64px; position:relative; }
@@ -1574,19 +1577,38 @@ ol.commentlist li div.reply:hover, #comments input#submit:hover, input.pushbutto
     border:1px solid #999; 
 }
 
-#comments input#submit, input.pushbutton-wide{
+.comments input#submit, input.pushbutton-wide{
     width: 85px;
     margin: 20px 0;
     cursor:pointer;
     cursor:hand;
 }
 
-#comments #respond{
+.comments #respond{
     margin-top: 18px;
 }
 
 .bypostauthor{
     background-color: #FEFFCD;
+}
+
+.comments li.comment.featured,
+.comments li.comment.featured.depth-2,
+.comments li.comment.featured.depth-3,
+.comments li.comment.featured.depth-4,
+.comments li.comment.featured.depth-5{
+	background-image:  url('../images/staff-pick.png') !important;
+	background-repeat: no-repeat;
+	background-position: top right;
+	padding-right: 56px;
+}
+
+.comments li.comment.featured{
+	background-color:#ff7743 !important;
+}
+
+.comments li.comment.featured div.comment-meta{
+	right: 75px;
 }
 
 /* ==|== media queries ======================================================

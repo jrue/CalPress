@@ -964,7 +964,7 @@ function calpress_add_ie_stylesheet_to_head(){
 	echo '<!--[if IE]>
 <script type="text/javascript" charset="utf-8" src="'. THEMEJS . '/ie.js"></script>
 <![endif]-->
-	';
+';
 }
 add_action('wp_head', 'calpress_add_ie_stylesheet_to_head', 10);
 
@@ -1365,6 +1365,26 @@ function calpress_get_comment_count(){
 function calpress_update_comment_count(){
     add_filter('get_comments_number', 'calpress_get_comment_count', 0);
 }
+
+/**
+ * Sets the background color of the featured comment "staff pick" callout on comments and
+ * the top bar near the top of the site.
+ *
+ * @return void
+ */
+function calpress_featured_comment_color(){
+	$options =  unserialize(CALPRESSTHEMEOPTIONS);
+	
+	if($options['theme_color'])
+	{
+	echo '<style type="text/css" id="custom-background-css">
+.comments li.comment.featured{ background-color:' . $options['theme_color'] . ' !important; } 
+div#top-menu-bar{ border-bottom:5px solid ' . $options['theme_color'] . ';}
+</style>'.PHP_EOL;
+	}
+}
+
+add_action('wp_head', 'calpress_featured_comment_color');
 
 /**
  * A custom callback for wp_list_comments, so we can 
