@@ -31,7 +31,7 @@ get_header(); ?>
 						<?php edit_post_link( __( 'Edit this post', 'CalPress' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-meta -->
 					<?php calpress_inline_art(); ?>
-					<div class="entry-content clearfix">
+					<div class="entry-content clearfix" aria-label="<?php _e('Begin story'); ?>">
 						<?php the_content(); ?>
 					</div><!-- .entry-content -->
 					<?php wp_link_pages( array( 'before' => '' . __( 'Pages:', 'CalPress' ), 'after' => '' ) ); ?>

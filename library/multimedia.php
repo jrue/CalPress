@@ -359,7 +359,7 @@ function calpress_photo_gallery($post_id, $inline=false){
 			</script>'.PHP_EOL;
 
 	$counter = 0;
-	$html .= '<div class="clearfix iosSlider" aria-label="Photo Gallery" role="complementary">'.PHP_EOL;
+	$html .= '<div class="clearfix iosSlider" aria-label="'. __('Below is a Photo Gallery. You may consider skipping this to arrive at the story content.', 'CalPress') . '" role="complementary">'.PHP_EOL;
 	$html .= '	<div class="slider">'.PHP_EOL;
 	
 	foreach($images as $image):
