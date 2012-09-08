@@ -1377,7 +1377,7 @@ function calpress_featured_comment_color(){
 	
 	if($options['theme_color'])
 	{
-	echo '<style type="text/css" id="custom-background-css">
+	echo '<style type="text/css">
 .comments li.comment.featured{ background-color:' . $options['theme_color'] . ' !important; } 
 div#top-menu-bar{ border-bottom:5px solid ' . $options['theme_color'] . ';}
 </style>'.PHP_EOL;
