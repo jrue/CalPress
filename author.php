@@ -55,7 +55,7 @@ echo '<ul>';
 
 // email
 if (!empty($currauth->user_email)) {
-    printf ('<li class="author-profile aux email">'. __('Email: ', 'CalPress') . '<a href="mailto:%s">%s</a></li>', $currauth->user_email, $currauth->user_email);
+   // printf ('<li class="author-profile aux email">'. __('Email: ', 'CalPress') . '<a href="mailto:%s">%s</a></li>', $currauth->user_email, $currauth->user_email);
 }
 
 // twitter

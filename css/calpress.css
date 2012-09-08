@@ -1,6 +1,3 @@
-/* @override 
-	http://missionlocal.dev/wp-content/themes/calpress2/css/calpress.css?ver=1.1.4 */
-
 /**
  * CalPress styles. These are CalPress specific styles which are included using
  * wp_enqueue_script function. If you want to omit this style sheet from a child
@@ -925,6 +922,10 @@ nav#nav-below a:hover{
 
 .eventsListWidget .event{
 	font: bold 1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.eventsListWidget .entry-meta{
+	margin: 0 !important;
 }
 
 .eventsListWidget .event a{

@@ -190,7 +190,7 @@ calpress_add_media_support(array(
 calpress_add_media_support(array(
 	'media_id' => 'inline_image',
 	'field_label' => 'Inline Image',
-	'description' => 'Paste in the URL for an image. Only one URL is allowed, otherwise you will need to add an additional inline element. For images that were uploaded, look for the <strong>LINK URL</strong> in the upload dialogue box and paste here.',
+	'description' => 'Paste in the URL for an image. Only one URL is allowed, otherwise you will need to add an additional inline element. For images that were uploaded, use the upload-dialogue box above the post and then click the <strong>FILE URL</strong> button. Paste the url here.',
 	'error_message' => 'Could not find an image for the URL entered in the inline image spot. Make sure you\'re linking to the actual image file.',
 	'render_form' => 'calpress_inline_image_form',
 	'sanitize_output' => 'calpress_inline_image_sanitize',
