@@ -5,7 +5,7 @@ Theme Name: CalPress
 Used to style the TinyMCE editor.
 */
 html .mceContentBody {
-	max-width:640px;
+	max-width:100%;
 }
 * {
 	font-family: Georgia, "Bitstream Charter", serif;
