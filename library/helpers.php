@@ -462,7 +462,7 @@ function calpress_posted_on($timestamp=null, $limit=86400, $echo="true"){
 		$thetime = get_the_time();
 	}
 	
-	$html = '<time pubdate class="date updated" datetime="'. $datetime . '">' . $thedate . ' ' . $thetime . '</time>';
+	$html = '<time class="date updated" datetime="'. $datetime . '" pubdate>' . $thedate . ' ' . $thetime . '</time>';
 	
 	if($echo)
 		echo $html;
@@ -701,7 +701,7 @@ function calpress_num_posts_for_front_loop($num_of_featured){
 function calpress_co_authors($link=true, $between=", ", $betweenLast=" and ", $before="By ", $after=""){
 	global $authordata;
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
-	
+		
 	//Old CalPress used byline in the custom field
  	if($options['legacy_calpress'] == "true" && get_post_custom_values('byline')){	//support older version of calpress bylines
 		$bylines = get_post_custom_values('byline');
@@ -727,7 +727,7 @@ function calpress_co_authors($link=true, $between=", ", $betweenLast=" and ", $b
 			echo '</span>';
 	} else {	//just show the author name
 		if($link)
-			echo '<span class="fn"><a href="' . $authordata->user_url .'" title="Link to posts by '. $authordata->display_name .'">' . $before . $authordata->display_name . $after . '</a></span>';
+			echo '<span class="fn"><a href="/author/' . sanitize_title($authordata->user_login) .'/" title="Link to posts by '. $authordata->display_name .'">' . $before . $authordata->display_name . $after . '</a></span>';
 		if(!$link)
 			echo '<span class="fn">' . $before . $authordata->display_name . $after . '</span>';
 	}
@@ -1177,6 +1177,18 @@ function calpress_allow_insert_image_into_post($vars) {
 	return $vars;
 }
 add_filter('get_media_item_args', 'calpress_allow_insert_image_into_post');
+
+/**
+ * Remove the "Insert Gallery" option
+ *
+ * @since CalPress 0.9.7
+ * @param array $fields The variables for inserting media
+ * @return void
+ */
+function calpress_remove_insert_gallery() {
+    echo '<style type="text/css">#media-items .savesend input.button, #gallery-settings * {display:none;}</style>';
+}
+add_action('admin_head', 'calpress_remove_insert_gallery');
 
 /**
  * Default menu that will show in the primary spot if there are no menus
