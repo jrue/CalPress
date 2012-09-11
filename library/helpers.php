@@ -1542,7 +1542,7 @@ function calpress_comment_form_fields(){
 			'must_log_in' => '<p id="login-req">' . sprintf(__('You must be <a href="%s" title="Log in">logged in</a> to post a comment.', 'CalPress'),
 			wp_login_url(apply_filters( 'the_permalink', get_permalink( ) )) ) . '</p>', 
 			
-			'logged_in_as' => '<p id="login">' . sprintf( __( '<span class="loggedin">Logged in as <a href="%1$s" title="Logged in as %2$s">%2$s</a>.</span> <span class="logout"><a href="%3$s" title="Log out of this account">Log out?</a></span>', 'CalPress' ), admin_url( 'profile.php' ), esc_html( $user_identity, 1 ), wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) ) )  . '</p>',
+			'logged_in_as' => calpress_comment_policy(). '<p id="login">' . sprintf( __( '<span class="loggedin">Logged in as <a href="%1$s" title="Logged in as %2$s">%2$s</a>.</span> <span class="logout"><a href="%3$s" title="Log out of this account">Log out?</a></span>', 'CalPress' ), admin_url( 'profile.php' ), esc_html( $user_identity, 1 ), wp_logout_url( apply_filters( 'the_permalink', get_permalink() ) ) )  . '</p>',
 			
 			'comment_notes_before' => calpress_comment_policy(),
 			
