@@ -458,7 +458,7 @@ function calpress_featured_image($post_id, $inline=false){
 		$html .= '<img src="' . $url[0] . '" style="max-width:620px; height:auto;" alt="' . trim(strip_tags($alt)) . '" />'.PHP_EOL;
 	}
 	$html .= $inline ? '</a>' : '';
-	$html .= '<div class="wp-caption"><p>' . esc_attr($description) . '</p></div>'.PHP_EOL;
+	$html .= '<div class="wp-caption"><p>' . $description . '</p></div>'.PHP_EOL;
 	
 	return $html;
 }
