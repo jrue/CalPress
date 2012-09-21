@@ -286,6 +286,24 @@ nav#primary-navigation a{
 	left: 100%;
 }
 
+/*Firefox Hacks*/
+@-moz-document url-prefix(){
+	nav#primary-navigation ul li{
+		display: -moz-box;
+		-moz-box-orient:horizontal;
+		box-flex: 1;
+		padding:0 20px;
+	}
+
+	#primary-navigation ul li.menu-parent-item:hover ul{
+		top:100%;
+	}
+
+	#primary-navigation ul li ul li{
+		padding:0;
+	}
+}
+
 
 /*===== Document structure ======*/
 
@@ -1112,6 +1130,12 @@ body.page article img{
 	float: none;
 }
 
+body.page #respond,
+body.page .comments{
+	margin: 0 auto;
+	width: 98%;
+}
+
 
 /*===== Single Post ======*/
 
@@ -1130,6 +1154,10 @@ body.single-post div.entry-meta{
 	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	font-size: 0.9em;
 	margin: 15px 0;
+}
+
+body.single-post .entry-lead-art img{
+	float: none;
 }
 
 body.single-post span.time:before {
@@ -1512,6 +1540,10 @@ body.single-post aside.entry-inline .iosSlider .slider{
 
 #commentform input{
 	margin: 0 0 10px;
+}
+
+#commentform input#submit{
+	width: 110px;
 }
 
 #reply-title small{
