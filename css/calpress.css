@@ -1218,7 +1218,7 @@ body.single-post .entry-content p{
 }
 
 body.single-post .entry-content a{
-	display: inline-block;
+	display: inline;
 }
 
 body.single-post .entry-content div.wp-caption{
