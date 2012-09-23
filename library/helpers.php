@@ -1141,6 +1141,33 @@ function calpress_add_hidden_full_rss_feed(){
 add_action('do_feed_full', 'calpress_add_hidden_full_rss_feed', 10, 1);
 
 /**
+ * Adds enclosure tag to display a featured image in RSS feeds. 
+ *
+ * @since CalPress 0.9.7
+ * @return void
+ */
+function calpress_rss_leadart_enclosure(){
+	global $post;
+	
+	if(has_post_thumbnail()):
+		
+		//get the url, filesize and content mime type of current post
+		$img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'carousel-image');
+		$img_src = (string) $img[0];
+		$img_header = get_headers($img_src, 1);   
+		$filesize = (string) $img_header['Content-Length'];
+		$contentype = (string) $img_header['Content-Type'];
+		
+		$enclosure = "	<enclosure url='".$img_src."' length ='".$filesize."'  type='". $contentype ."' />".PHP_EOL;
+		
+		echo $enclosure;
+		
+	endif;
+}
+add_action('rss_item', 'calpress_rss_leadart_enclosure');
+add_action('rss2_item', 'calpress_rss_leadart_enclosure');
+
+/**
  * Adds share code that was set in theme-options to the post-meta hook.
  *
  * @uses calpress_hook_single_entry_meta hook
