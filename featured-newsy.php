@@ -37,12 +37,16 @@ foreach($featured_query->posts as $postids):
 endforeach;
 
 if($featured_query->have_posts() && !is_paged()) while ($featured_query->have_posts()) : $featured_query->the_post();
-	//$do_not_duplicate_loop[] = $post->ID;
+
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('front-featured-post clearfix'); ?>>
 	<div class="post-image-with-caption">
-		<?php echo calpress_get_featured_image_from_post($post->ID, 'front-featured'); ?>
-		<?php echo calpress_get_description_from_image($post->ID, true); ?>
+		<?php echo calpress_get_featured_image_from_post($post->ID, 'front-featured'); 
+		if(has_post_thumbnail()):
+			$attachment_id = get_post_thumbnail_id($post->ID);
+			$description = get_post($attachment_id)->post_excerpt;
+		endif;
+		if(isset($description) && $description != '') echo '<div class="wp-caption"><p>' . $description . '</p></div>'.PHP_EOL; ?>
 	</div>
 	<header class="article-header">
 		<h2 class="entry-title">
