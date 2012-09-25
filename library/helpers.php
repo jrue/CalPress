@@ -1152,12 +1152,12 @@ function calpress_rss_leadart_enclosure(){
 	if(has_post_thumbnail()):
 		
 		//get the url, filesize and content mime type of current post
-		$img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'carousel-image');
+		$attachment_id = get_post_thumbnail_id($post->ID);
+		$img = wp_get_attachment_image_src($attachment_id, 'carousel-image');
 		$img_src = (string) $img[0];
 		$img_header = get_headers($img_src, 1);   
 		$filesize = (string) $img_header['Content-Length'];
 		$contentype = (string) $img_header['Content-Type'];
-		
 		$enclosure = "	<enclosure url='".$img_src."' length ='".$filesize."'  type='". $contentype ."' />".PHP_EOL;
 		
 		echo $enclosure;
@@ -1166,6 +1166,31 @@ function calpress_rss_leadart_enclosure(){
 }
 add_action('rss_item', 'calpress_rss_leadart_enclosure');
 add_action('rss2_item', 'calpress_rss_leadart_enclosure');
+
+/**
+ * Adds the lead image to the description tag of RSS feeds.
+ *
+ * @since CalPress 0.9.7
+ * @return void
+ */
+function calpress_rss_image_in_description($content){
+	global $post;
+	
+	$img_tag = '';
+	$description = '';
+	if(has_post_thumbnail()):
+		
+		$attachment_id = get_post_thumbnail_id($post->ID);
+		$img = wp_get_attachment_image_src($attachment_id, 'carousel-image');
+		$img_src = (string) $img[0];
+		$description = wp_trim_words(get_post($attachment_id)->post_excerpt, 10, '...');
+		$img_tag = "<img url='".$img_src."' alt ='".$description."' />".PHP_EOL;
+		
+	endif;
+	
+	return $img_tag . $content;
+}
+add_filter('the_excerpt_rss', 'calpress_rss_image_in_description');
 
 /**
  * Adds share code that was set in theme-options to the post-meta hook.
