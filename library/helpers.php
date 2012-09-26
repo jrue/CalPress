@@ -344,7 +344,7 @@ function calpress_add_multimedia_scripts(){
 function calpress_story_meta_data_header($media){
 	global $wp_query;
 	
-	if(!function_exists('sfc_base_meta')):
+	if(!function_exists('sfc_base_meta') && is_single()):
 		//store post excerpt if it exists, or make one from content
 		$the_excerpt = ($wp_query->post->post_excerpt ? 
 			substr($wp_query->post->post_excerpt, 0, 199) : 
@@ -405,6 +405,20 @@ function calpress_add_open_graph_to_html_tag($output){
 	return $output;
 }
 add_filter('language_attributes', 'calpress_add_open_graph_to_html_tag');
+
+/**
+ * Adds iphone app id to the head for use in iOS6, it will show that
+ * there exists an app for this website.
+ *
+ * @since CalPress 0.9.7
+ * @return void
+ */
+function calpress_add_iphone_app_id_head(){
+	$options = unserialize(CALPRESSTHEMEOPTIONS); 
+	if(!empty($options['iphone_app_id']))
+		echo '<meta name="apple-itunes-app" content="app-id=' . $options['iphone_app_id'] . '" />'.PHP_EOL;
+}
+add_action('wp_head', 'calpress_add_iphone_app_id_head');
 
 /**
  * Checks if user wants to show sidebar on single.php
