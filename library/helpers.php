@@ -1184,7 +1184,7 @@ function calpress_rss_image_in_description($content){
 		$img = wp_get_attachment_image_src($attachment_id, 'carousel-image');
 		$img_src = (string) $img[0];
 		$description = wp_trim_words(get_post($attachment_id)->post_excerpt, 10, '...');
-		$img_tag = "<img url='".$img_src."' alt ='".$description."' />".PHP_EOL;
+		$img_tag = "<img src='".$img_src."' alt ='". esc_url($description) ."' />".PHP_EOL;
 		
 	endif;
 	
