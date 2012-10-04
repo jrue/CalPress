@@ -1291,8 +1291,8 @@ function calpress_show_comment_count(){
 function calpress_taged_in_and_filed_under(){
 	if(is_category() || is_tag() || is_archive() || is_paged()):
 		echo '<br />';
-		echo '<span class="cat-links">' . __( 'Filed under ', 'CalPress' ) . get_the_category_list(', ') . '</span>'.PHP_EOL;
-		the_tags( __( '<br /><span class="tag-links">Tagged ', 'CalPress' ), ", ", "</span>" );
+		echo '<span class="cat-links">' . __( 'Filed under ', 'CalPress' ) . get_the_category_list(', ') . '</span><br />'.PHP_EOL;
+		the_tags( __( '<span class="tag-links">Tagged ', 'CalPress' ), ", ", "</span><br />" );
 	endif;
 }
 
