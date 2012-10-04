@@ -315,7 +315,7 @@ function calpress_photo_gallery_verify($input, $post_id){
  * @param int $post_id The ID of the post
  * @return string The html for a photo gallery
  */
-function calpress_photo_gallery($post_id, $inline=false){
+function calpress_photo_gallery($post_id, $inline=false, $title='', $caption=''){
 	$images = get_children(
 			array(
 				'post_parent' => $post_id, 
@@ -359,6 +359,7 @@ function calpress_photo_gallery($post_id, $inline=false){
 			</script>'.PHP_EOL;
 
 	$counter = 0;
+	//$html .= $title ? '	<h3>'. esc_attr($title) .'</h3>'.PHP_EOL: '';
 	$html .= '<div class="clearfix iosSlider" aria-label="'. __('Below is a Photo Gallery. You may consider skipping this to arrive at the story content.', 'CalPress') . '" role="complementary">'.PHP_EOL;
 	$html .= '	<div class="slider">'.PHP_EOL;
 	
@@ -793,13 +794,15 @@ function calpress_inline_audio_sanitize($input, $post_id){
 	$input = (string) esc_url($input);
 	$input = preg_replace('/\?.*/', '', $input);
 	
+	/* (Firefox can't use content type other than MP3)
 	$headers = calpress_get_headers_curl($input, 5);
 	$headers_string = implode(' ', $headers);
 	
 	if (preg_match('/audio\/(.*?)\s/i', $headers_string, $matches) )
 		return $input . '?' . urlencode($matches[0]);
-		
-	return false;
+	*/
+	
+	return $input;
 }
 
 /**
@@ -812,19 +815,24 @@ function calpress_inline_audio_sanitize($input, $post_id){
  */
 function calpress_inline_audio($input, $post_id=NULL, $title='', $caption=''){
 	$url = parse_url($input);
-	$query_string = 'type="audio/mpeg"';//default to audio/mpeg
+	$query_string = 'type="audio/mp3"';//default to audio/mpeg
 	
-	if(isset($url['query']))
-		$query_string = 'type="'. urldecode($url['query']) . '"';
+	/* Media player doesn't work with other content types in FireFox */
+	//if(isset($url['query']))
+		//$query_string = 'type="'. urldecode($url['query']) . '"';
 	
 	$input = preg_replace('/\?.*/', '', $input);
 	
 	$html = '<div class="inline-audio inline-item">';
-	$html .= $title ? '<h3>'. esc_attr($title) .'</h3>': '';
+	$html .= $title ? '<h3>'. esc_attr($title) .'</h3>'.PHP_EOL: ''.PHP_EOL;
 	
-	$html .= '<audio controls="controls" preload="none">';
-	$html .= '	<source src="' . $input .'" ' . trim($query_string) . ' />';
-	$html .= '</audio>';
+	$html .= '<audio controls="controls" preload="none">'.PHP_EOL;
+	$html .= '	<source src="' . $input .'" ' . trim($query_string) . ' />'.PHP_EOL;
+	$html .= '	<object width="280" height="30" type="application/x-shockwave-flash" data="' . THEMEURI . '/js/mediaelement/flashmediaelement.swf">'.PHP_EOL;
+	$html .= '		<param name="movie" value="' . THEMEURI . '/js/mediaelement/flashmediaelement.swf" />'.PHP_EOL;
+	$html .= '		<param name="flashvars" value="controls=true&file=' . $input .'" />'.PHP_EOL;
+	$html .= '	</object>'.PHP_EOL;
+	$html .= '</audio>'.PHP_EOL;
 
 	$html .= $caption ? '<p class="wp-caption">' . esc_attr($caption) . '</p>' : '';
 	$html .= '</div>';
