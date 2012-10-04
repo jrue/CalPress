@@ -481,6 +481,10 @@ body.front .front-featured-post .post-image-with-caption{
 	margin-right: 10px;
 }
 
+body.front.newsy .front-featured-post div.wp-caption{
+	clear: both;
+}
+
 body.front header.article-header h2.entry-title{
 	margin: 5px 0;
 }

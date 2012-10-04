@@ -62,7 +62,7 @@ while ($front_query->have_posts()) : $front_query->the_post();
 		<?php endif; ?>
 		<header class="article-header">
 			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php echo wp_trim_words(get_the_title(), 10, '...'); ?></a></h1>
-			<p class="entry-meta"><span class="vcard author"><?php calpress_co_authors(false); ?></span> <br /><span class="time">Posted <?php calpress_posted_on(get_the_time('U')); ?></span></p>
+			<p class="entry-meta"><span class="vcard author"><?php calpress_co_authors(); ?></span> <br /><span class="time">Posted <?php calpress_posted_on(get_the_time('U')); ?></span></p>
 			<?php calpress_hook_front_entry_meta(); ?>
 		</header>
 		<div class="entry-content">

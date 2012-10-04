@@ -46,11 +46,17 @@ if(have_posts() && !is_paged()): ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('front-featured-post clearfix' . ($counter < 1 ? ' front-featured-first' : '')); ?>>
 	<header class="article-header">
 		<?php if($counter < 1): ?>
+			<?php if(has_post_thumbnail()): ?>
 			<div class="post-image-with-caption">
 				<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php echo calpress_get_featured_image_from_post($post->ID, 'front-featured'); ?></a>
-				<?php echo calpress_get_description_from_image($post->ID, true); ?>
+			<?php 	$attachment_id = get_post_thumbnail_id($post->ID);
+					$description = wp_trim_words(get_post($attachment_id)->post_excerpt, 40, calpress_new_excerpt_more());
+					if(isset($description) && $description != '') echo '<div class="wp-caption"><p>' . $description . '</p></div>'.PHP_EOL; 
+			?>
 			</div>
-		<?php endif; ?>
+			<?php endif; //has_post_thumb ?>
+			
+		<?php endif; //counter ?>
 		<h2 class="entry-title">
 			<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'calpress' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h2>
