@@ -384,6 +384,14 @@ body.tagged article footer{
 	text-align: right;
 }
 
+body.category section#content > header p,
+body.archive section#content > header p,
+body.tagged section#content > header p{
+	font: normal 1em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	padding: 5px 10px;
+	color: #777;
+}
+
 /*===== Category Styles ======*/
 
 body.category section#content > header h1{
