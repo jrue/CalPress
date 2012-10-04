@@ -1283,6 +1283,22 @@ function calpress_show_comment_count(){
 }
 
 /**
+ * Displays tags and categories in the footer of article listings.
+ *
+ * @since CalPress 0.9.7
+ * @return void
+ */
+function calpress_taged_in_and_filed_under(){
+	if(is_category() || is_tag() || is_archive() || is_paged()):
+		echo '<br />';
+		echo '<span class="cat-links">' . __( 'Filed under ', 'CalPress' ) . get_the_category_list(', ') . '</span>'.PHP_EOL;
+		the_tags( __( '<br /><span class="tag-links">Tagged ', 'CalPress' ), ", ", "</span>" );
+	endif;
+}
+
+add_action('calpress_hook_front_entry_footer', 'calpress_taged_in_and_filed_under');
+
+/**
  * Limits the number of words to return for the excerpt.
  * We override this manually in most of the templates by 
  * using wp_trim_words(), but sometimes we need more words, 

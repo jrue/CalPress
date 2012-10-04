@@ -44,11 +44,11 @@ get_header(); ?>
 							<?php printf( __( 'View all posts by %s &rarr;', 'CalPress' ), get_the_author() ); ?>
 						</a>
 					</footer><!-- #entry-author-info -->
-					<div class="filed-under">
-						<p><?php echo 'Filed under: '; the_category(', '); ?></p>
-						<?php the_tags('<p>Tagged:', ', ', '</p>'); ?>
-					</div>
 <?php endif; ?>
+					<div class="filed-under">
+						<p><?php printf(__('Filed under: %s', 'CalPress'), get_the_category_list(', ')); ?></p>
+						<?php the_tags('<p>Tagged: ', ', ', '</p>'); ?>
+					</div>
 				</article><!-- #post-## -->
 				<?php comments_template( '/comments.php', true ); ?>
 <?php endwhile; // end of the loop. ?>

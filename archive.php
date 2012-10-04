@@ -21,6 +21,7 @@
 get_header(); ?>
 	<section id="content" class="clearfix">
 <?php if ( have_posts() ) the_post(); ?>
+				<header>
 					<h1 class="page-title"><?php
 						if ( is_day() ) :
 							printf( __( 'Archive for %s', 'CalPress' ), get_the_date() );
@@ -32,6 +33,7 @@ get_header(); ?>
 							_e( 'Blog Archives', 'CalPress' );
 						endif;
 					?></h1>
+				</header>
 <?php
 	rewind_posts();
 	get_template_part( 'loop', 'archive' );

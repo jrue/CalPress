@@ -90,7 +90,6 @@ while ($front_query->have_posts()) : $front_query->the_post();
 			<?php echo wp_trim_words(get_the_excerpt(), 35, calpress_new_excerpt_more()); ?>
 		</div>
 		<footer>
-			<?php echo 'Filed under: '; the_category(', '); echo ' | '; ?>
 			<?php if(calpress_show_comment_count()) comments_popup_link( __( 'Leave a comment', 'CalPress' ), __( '1 Comment', 'CalPress' ), __( '% Comments', 'calpress' ),'','' ); ?>
 			<?php edit_post_link( __( 'Edit this article', 'CalPress' ), ' | ', '' ); ?>
 			<?php calpress_hook_front_entry_footer(); ?>
