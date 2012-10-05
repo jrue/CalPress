@@ -1769,6 +1769,10 @@ and (max-width : 960px) {
 and (max-width : 620px)
  {
 
+	html, body{
+		overflow-x: hidden !important;
+	}
+
 	header#header{
 		width: 100%;
 		text-align: center;
@@ -1782,7 +1786,7 @@ and (max-width : 620px)
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
+		width: 100% !important;
 		white-space: nowrap;
 		overflow: hidden;
 	}
@@ -1866,9 +1870,14 @@ and (max-width : 620px)
 		margin: 0 auto;
 	}
 	
+	body.front.newsy img.attachment-front-featured{
+		width: 100% !important;
+		height: auto !important;
+	}
+	
 	body.front article.newsy-front{
 		max-width: 100%;
-		width: 100% !important;
+		width: 98% !important;
 		padding: 1.5%;
 		height: 100%;
 	}
@@ -1899,6 +1908,12 @@ and (max-width : 620px)
 	body.single article{
 		padding: 0;
 		margin: 0;
+	}
+	
+	.widget{
+		max-width: 100% !important;
+		width: 100% !important;
+		overflow: hidden !important;
 	}
 	
 	#carousel-container{
