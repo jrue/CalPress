@@ -1199,6 +1199,7 @@ body.page .comments{
 body.single-post article{
 	background: none;
 	border: none;
+	padding: 0;
 }
 
 body.single-post article h1{
