@@ -199,7 +199,7 @@ function calpress_custom_meta_box( $post ) {
 				</tr>
 				<tr valign="top" class="inline_fields_<?php echo $i; ?>"<?php if($options['inline_art'][$i] == 'none' || $options['inline_art'][$i] == 'image') echo ' style="display:none;" '; ?>>
 					<th scope="row"><label for="inline_art_caption_<?php echo $i; ?>">Caption: </label></th>
-					<td><input type="text" size="60" name="inline_art_caption[<?php echo $i; ?>]" id="inline_art_caption_<?php echo $i; ?>" value="<?php echo $options['inline_art_caption'][$i] ?>" /></td>
+					<td><input type="text" size="60" name="inline_art_caption[<?php echo $i; ?>]" id="inline_art_caption_<?php echo $i; ?>" value="<?php echo esc_attr($options['inline_art_caption'][$i]) ?>" /></td>
 				</tr>
 				<tr valign="top" class="inline_fields_<?php echo $i; ?>"<?php if($options['inline_art'][$i] == 'none' || $options['inline_art'][$i] == 'image') echo ' style="display:none;" '; ?>>
 					<th scope="row"><label for="inline_art_media_<?php echo $i; ?>">Media: </label></th>
