@@ -1252,7 +1252,9 @@ add_filter('get_media_item_args', 'calpress_allow_insert_image_into_post');
  * @return void
  */
 function calpress_remove_insert_gallery() {
-    echo '<style type="text/css">#media-items .savesend input.button, #gallery-settings * {display:none;}</style>';
+	$options = unserialize(CALPRESSTHEMEOPTIONS);
+	if($options['insert_image_into_post'] == "true")
+    	echo '<style type="text/css">#media-items .savesend input.button, #gallery-settings * {display:none;}</style>';
 }
 add_action('admin_head', 'calpress_remove_insert_gallery');
 
