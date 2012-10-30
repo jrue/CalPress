@@ -127,6 +127,9 @@ abstract class FeatureComments
 	{
 		if(is_admin() || !current_user_can('moderate_comments')) return $comment_text;
 		global $comment;
+		
+		if(!is_object($comment)) return $comment_text;
+		
 		$comment_id = $comment->comment_ID;
 		$data_id = ' data-comment_id=' . $comment_id;
 		
@@ -190,6 +193,7 @@ abstract class FeatureComments
 	static function comment_class($classes = array())
 	{
 		global $comment;
+		if(!is_object($comment)) return $classes;
 		
 		$comment_id = $comment->comment_ID;
 		
