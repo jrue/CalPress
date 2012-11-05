@@ -2013,6 +2013,23 @@ and (max-width : 620px)
 		font-size: 1.3em !important;
 		border: none !important;
 	}
+	
+	body.breaking .front-featured-post header h2.entry-title{
+		font-size: 1.2em;
+	}
+	
+	body.breaking .front-featured-post .liveblog-front-image{
+		width: 100%;
+		margin: 10px 0;
+	}
+	body.breaking .front-featured-post .liveblog-front-no-image #entry-description,
+	body.breaking .front-featured-post .liveblog-front-no-image #entry-liveblog{
+		width: 100%;
+		float: none;
+		margin-top: 10px;
+	}
+	
+	
 }
 
 /* ==== print styles Avoid required HTTP connection: h5bp.com/r ====== */

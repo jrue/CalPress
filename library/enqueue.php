@@ -32,7 +32,7 @@
  * @since CalPress 0.9.7
  */
 function calpress_register_styles() {
-	wp_register_style( 'calpress', THEMECSS . '/calpress.css', array(), '1.2.0', 'screen, handheld');
+	wp_register_style( 'calpress', THEMECSS . '/calpress.css', array(), '1.2.1', 'screen, handheld');
 	wp_register_style( 'calpress_960', THEMECSS . '/960.css', array('calpress'), '1.0');
 }
 add_action('wp_enqueue_scripts', 'calpress_register_styles', 1);//doesn't load in admin
