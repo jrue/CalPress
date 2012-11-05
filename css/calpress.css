@@ -455,7 +455,6 @@ body.headlines .front-featured-first{
 	float: left;
 }
 
-
 /*===== Newsy Styles ======*/
 
 body.front article{
@@ -533,6 +532,58 @@ body.front article footer{
 	position: absolute;
 	top: 346px;
 }
+
+/*===== Breaking News Styles ======*/
+
+body.breaking .front-featured-post > header h2.entry-title{
+	font: bold 1.6em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	margin: 0 0 10px;
+}
+
+body.breaking .front-featured-post #entry-liveblog h2{
+	font: bold 1.3em/1.5em "Gnuolane", "Helvetica Neue", Helvetica, Geneva, sans-serif;
+	border-bottom: 1px dotted #333;
+	margin: 0 0 5px 0;
+}
+
+body.breaking .front-featured-post p.entry-meta{
+	margin: 0 0 15px 0;
+}
+
+body.breaking .front-featured-post .liveblog-front-image{
+	padding: 0 5px;
+	float: right;
+	width: 280px;
+}
+
+body.breaking .front-featured-post .liveblog-front-image #entry-liveblog{
+	padding: 10px 0 0 0;	
+}
+
+body.breaking .front-featured-post .liveblog-front-no-image #entry-description{
+	width: 300px;
+	float: left;
+}
+
+body.breaking .front-featured-post .liveblog-front-no-image #entry-liveblog{
+	width: 300px;
+	float: right;
+}
+
+body.breaking .front-featured-post #entry-liveblog li{
+	font: bold 0.9em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	margin: 0 0 7px 10px;
+}
+
+body.breaking .front-featured-post #entry-liveblog a{
+	text-decoration: none;
+}
+
+body.breaking .front-featured-post #entry-liveblog li:before{
+	content: '\00BB \0020';
+	margin-left: -10px;
+}
+
 
 /*===== Carousel ======*/
 
