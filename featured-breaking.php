@@ -68,14 +68,15 @@ if($featured_query->have_posts() && !is_paged()) while ($featured_query->have_po
 			<?php echo wp_trim_words(get_the_excerpt(), 90, calpress_new_excerpt_more()); ?>
 		</div>
 	<?php else: //if liveblog ?>
-		<?php if(has_post_thumbnail()): $lb_length = 75; ?>
+		<?php if(has_post_thumbnail()): $lb_length = 70; ?>
 		<div class="entry-content liveblog-front-image">
 			<div id="entry-description">
 				<?php echo wp_trim_words(get_the_excerpt(), 30, calpress_new_excerpt_more()); ?>
 			</div>
-		<?php else: $lb_length = 120; ?>
+		<?php else: $lb_length = 90; ?>
 		<div class="entry-content liveblog-front-no-image">
 			<div id="entry-description">
+				<p class="entry-meta"><?php calpress_co_authors(); ?> | <?php calpress_posted_on(get_the_time('U')); ?></p>
 				<?php echo wp_trim_words(get_the_excerpt(), 100, calpress_new_excerpt_more()); ?>
 			</div>
 		<?php endif; ?>
@@ -102,9 +103,10 @@ if($featured_query->have_posts() && !is_paged()) while ($featured_query->have_po
 						while(lb_counter < Math.min(4, response.entries.length)){
 							var lb_link = '<a href="<?php the_permalink(); ?>#liveblog-entry-' + response.entries[i].id + '">';					
 							var lb_content = $('.liveblog-entry-text', response.entries[num_of_lb - i].html).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+							var lb_timestamp = $('.time', response.entries[num_of_lb - i].html).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 							if(lb_content != ""){
 								lb_counter++;
-								lb_string += '<li>' + lb_link + lb_content.substring(0, <?php echo $lb_length; ?>) + '...</a></li>';
+								lb_string += '<li>' + lb_link + '<span class="time">' + lb_timestamp + '</span> ' + lb_content.substring(0, <?php echo $lb_length; ?>) + '...</a></li>';
 							}
 							i++;
 							lb_counter = i > response.entries.length-1 ? response.entries.length : lb_counter;

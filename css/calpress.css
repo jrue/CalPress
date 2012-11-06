@@ -572,18 +572,23 @@ body.breaking .front-featured-post .liveblog-front-no-image #entry-liveblog{
 
 body.breaking .front-featured-post #entry-liveblog li{
 	font: bold 0.9em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	margin: 0 0 7px 10px;
+	margin: 0 0 7px 0px;
 }
 
 body.breaking .front-featured-post #entry-liveblog a{
 	text-decoration: none;
 }
 
+body.breaking .front-featured-post #entry-liveblog li .time{
+	color: #971d1d;
+	font-weight: bold;
+}
+/*
 body.breaking .front-featured-post #entry-liveblog li:before{
 	content: '\00BB \0020';
 	margin-left: -10px;
 }
-
+*/
 
 /*===== Carousel ======*/
 
