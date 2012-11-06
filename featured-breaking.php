@@ -90,7 +90,7 @@ if($featured_query->have_posts() && !is_paged()) while ($featured_query->have_po
 				
 				var counter = 0;
 				var timestamp = 0;
-				var id = setInterval(loadLiveBlogs, 10000);
+				var id = setInterval(loadLiveBlogs, 45000);
 				loadLiveBlogs();
 				
 				function success_callback(response, status, xhr){
