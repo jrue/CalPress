@@ -1604,13 +1604,17 @@ body.single-post aside.entry-inline .iosSlider .slider{
 }
 
 #main-footer .widget_calpress_about_us ul li{
-	text-indent: 20px;
+	text-indent: 0px;
 	padding:0;
 	margin: 5px;
 }
 
+#main-footer .widget_calpress_about_us ul li:before{
+	content: '\00BB \0020';
+}
+
 #main-footer .widget_calpress_about_us ul li a{
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 #colophon{

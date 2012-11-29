@@ -591,7 +591,8 @@ class AboutUS extends WP_Widget {
 			if(${'link'.$i}){
 				
 				preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63})\.[a-z\.]{2,6}$/i', ${'link'.$i}['host'], $domain);
-				echo '<li style="background:url(\'http://www.google.com/s2/u/0/favicons?domain=' . ${'link'.$i}['host'] .'\') no-repeat 0 0">';
+				//style="background:url(\'http://www.google.com/s2/u/0/favicons?domain=' . ${'link'.$i}['host'] .'\') no-repeat 0 0"
+				echo '<li>';
 				echo '<a href="' . $instance['link'.$i] . '">'. ucwords($domain['domain']) . '</a>';
 				echo '</li>';
 			}
