@@ -890,16 +890,18 @@ add_filter('wp_nav_menu_objects', 'calpress_add_parent_nav_menu_class');
 
 
 /**
- * Adds a search widget to the top of the site nav bar 
+ * Adds a leaderboard widgets to the calpress hook above banner
  *
- * @uses the_widget()
+ * @uses calpress_hook_above_banner()
+ * @hook calpress_hook_above_banner
  * @since CalPress 0.9.7
  * @return void
  */
-function calpress_add_search_widget_top_bar(){
-	the_widget('WP_Widget_Search'); 
+function calpress_add_leaderboard_widgets(){
+	if (is_active_sidebar( 'leaderboard-sidebar' )) //always show lower sidebar
+  	dynamic_sidebar( 'leaderboard-sidebar' );
 }
-//add_action('calpress_hook_above_banner', 'calpress_add_search_widget_top_bar');
+add_action('calpress_hook_above_banner', 'calpress_add_leaderboard_widgets');
 
 
 /**

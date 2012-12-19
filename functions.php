@@ -156,8 +156,7 @@ function calpress_setup() {
 		'top_bar' => __( 'Top of the page menu', 'calpress')
 	) );
 	
-	
-	//register sidebars
+	//register sidebars	
 	$calpress_top_sidebar = array(
 		'name'          => __('Top Sidebar', 'CalPress'),
 		'id'            => 'top-sidebar',
@@ -218,11 +217,22 @@ function calpress_setup() {
 		'after_title'   => '</h2>' 
 	);
 	
+	$calpress_leaderboard = array(
+		'name'          => __('Leaderboard', 'CalPress'),
+		'id'            => 'leaderboard-sidebar',
+		'description'   => __('This appear above the banner', 'CalPress'),
+		'before_widget' => '<div id="%1$s" class="leaderboard clearfix %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '',
+		'after_title'   => ''
+	);
+	
 	register_sidebar($calpress_top_sidebar);
 	register_sidebar($calpress_lower_sidebar);
 	register_sidebar($calpress_footer_column_1);
 	register_sidebar($calpress_footer_column_2);
 	register_sidebar($calpress_footer_column_3);
+	register_sidebar($calpress_leaderboard);
 
 }
 endif; //end calpress_setup

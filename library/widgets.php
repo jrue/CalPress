@@ -106,6 +106,137 @@ class GenericAdvertisement extends WP_Widget {
 }
 
 /**
+ * Creates a widget for Leaderboard Advertisements. It allows you to specify some
+ * embed code for the leaderboard spot, and some alternate code when on mobile devices.
+ * The alternate code gets swapped out by JavaScript when the screen size shrinks.
+ *
+ * @since CalPress 0.9.7
+ */
+class LeaderboardAdvertisement extends WP_Widget {
+
+	/**
+	 * Register widget with WordPress.
+	 */
+	public function __construct() {
+		parent::__construct( 'calpress_leaderboard', 'Leaderboard Advertisement', array( 'description' => 'Put HTML code for an advertisement' ) );
+	}
+
+	/**
+	 * Front-end display of widget.
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args Widget arguments.
+	 * @param array $instance Saved values from database.
+	 */
+	public function widget( $args, $instance ) {
+		extract( $args );
+		
+		$title = empty($instance['title']) ? '' : $instance['title'];
+		$ad_html = empty($instance['ad_html']) ? '' : $instance['ad_html'];
+		$ad_small = empty($instance['ad_small']) ? '' : $instance['ad_small'];
+		$ad_category = empty($instance['ad_category']) ? '' : explode(",", $instance['ad_category']);
+		
+		if(!empty($ad_category)){
+			if(is_category($ad_category)){
+				echo $before_widget;
+				echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
+				echo '<div id="leaderboard-holder" style="overflow:hidden;"></div>';
+				echo $after_widget;
+			}
+		} else {
+			echo $before_widget;
+			echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
+			echo '<div id="leaderboard-holder" style="overflow:hidden;"></div>';
+			echo $after_widget;
+		}
+		
+		echo '
+		<script>
+		  jQuery(document).ready(function($){
+		    if($(window).width() < 620){
+		     $("#leaderboard-holder").html(\'' . (empty($ad_small) ? addslashes($ad_html) : addslashes($ad_small)) .'\')
+		     .css({
+		       \'width\':\'320px\',
+		       \'height\':\'50px\',
+		       \'margin-left\':\'auto\', 
+		       \'margin-right\':\'auto\',
+		       \'margin-bottom\':\'-30px\'
+		      });
+		    } else {
+ 		     $("#leaderboard-holder").html(\'' . addslashes($ad_html) .'\')
+ 		     .css({
+ 		       \'width\':\'728px\',
+ 		       \'height\':\'90px\',
+ 		       \'margin-left\':\'auto\', 
+ 		       \'margin-right\':\'auto\',
+ 		       \'margin-bottom\':\'-30px\'
+ 		      });
+		    }
+		  });
+		</script>
+		';
+		
+	}
+
+	/**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+    $instance = wp_parse_args($old_instance, $new_instance);
+    
+    if(isset($new_instance['title'])) 
+			$instance['title'] = $new_instance['title'];
+
+    if(isset($new_instance['ad_html'])) 
+			$instance['ad_html'] = $new_instance['ad_html'];
+			
+		if(isset($new_instance['ad_small'])) 
+			$instance['ad_small'] = $new_instance['ad_small'];
+			
+		if(isset($new_instance['ad_category'])){
+			$temp = explode(",", strip_tags($new_instance['ad_category']));
+			array_walk($temp, 'trim_value');
+			$instance['ad_category'] = (string) implode(",", $temp);
+		}
+			
+    return $instance;
+	}
+
+	public function form( $instance ) {
+		$instance = wp_parse_args( (array) $instance, array('title'=>'', 'ad_html' => '', 'ad_category'=> '', 'ad_small'=>''));
+    ?>
+	<p>To create a advertisement, type or paste in HTML code below.</p>
+	<p>
+	  <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+	  <input type="text" id="<?php echo $this->get_field_id('title'); ?>" class="widefat" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>">
+	</p>
+	<p>
+		<label for="<?php echo $this->get_field_id('ad_html'); ?>"><?php _e('HTML code only:'); ?></label>
+		<textarea class="widefat" rows="10" id="<?php echo $this->get_field_id('ad_html'); ?>" name="<?php echo $this->get_field_name('ad_html'); ?>"><?php echo esc_textarea($instance['ad_html']); ?></textarea>
+	</p>
+	<p>
+	  <label for="<?php echo $this->get_field_id('ad_small'); ?>"><?php _e('Optional: HTML code for mobile'); ?></label>
+	  <textarea class="widefat" rows="10" id="<?php echo $this->get_field_id('ad_small'); ?>" name="<?php echo $this->get_field_name('ad_small'); ?>"><?php echo esc_textarea($instance['ad_small']); ?></textarea>
+	</p>
+	<p>Type in which categories this ad should appear. These should only be numerical category IDs and they <strong>MUST</strong> be separated by commas.</p>
+	<p>
+		<label for="<?php echo $this->get_field_id('ad_category'); ?>">Categories:</label>
+		<input type="text" class="widefat" id="<?php echo $this->get_field_id('ad_category'); ?>" name="<?php echo $this->get_field_name('ad_category'); ?>" value="<?php echo esc_attr($instance['ad_category']); ?>">
+	</p>
+<?php
+	}
+}
+
+
+/**
  * Creates a widget for Todays Posts, which is a featured category
  * to display in a widget on the site. 
  *
@@ -1077,6 +1208,7 @@ function calpress_sidebar_register_widgets() {
 	register_widget( 'GenericAdvertisement' );
 	register_widget( 'MostCommentedPosts' );
 	register_widget( 'CalPressRecentComments' );
+	register_widget( 'LeaderboardAdvertisement' );
 	
 }
 
