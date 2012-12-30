@@ -2047,6 +2047,7 @@ and (max-width : 620px)
   * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
   a, a:visited { text-decoration: underline; }
   a[href]:after { content: " (" attr(href) ")"; }
+  .front a[href]:after { content: none; }
   abbr[title]:after { content: " (" attr(title) ")"; }
   .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
   pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
@@ -2056,4 +2057,16 @@ and (max-width : 620px)
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
+  #top-menu-bar{display:none !important;}
+  .leaderboard{display:none !important;}
+  .entry-inline{display:none;}
+  #header{text-align:center !important;margin:5px auto !important; width:30% !important; height:auto !important; font-size:0.9em !important;}
+  #primary-navigation{display:none !important;}
+  #container{border:none; width:100%; float:none;}
+  .entry-content{width:98% !important; border:none;}
+  #sidebar, #main-footer, #respond, .entry-lead-art, .post-edit-link, .filed-under, .avatar{display:none !important;}
+  .comment{border: none !important;}
+  .reply, .feature-comments{display:none !important;}
+  .comment, .comment-meta, .comment-author{float:none !important; padding:0 !important;}
+  .comments a[href]:after{content:none !important;}
 }
