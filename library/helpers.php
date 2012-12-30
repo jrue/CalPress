@@ -181,10 +181,10 @@ function calpress_inline_art($echo = true){
 	   !isset($post_custom['inline_art_title']) || 
 	   !isset($post_custom['inline_art_caption']) || 
 	   !isset($post_custom['inline_art_media'])
-	) {
+	) { 
 		if(calpress_legacy_support()){
 			$html = calpress_show_legacy_inline_art();
-			
+
 			if($html){
 				$html = '<aside class="entry-inline clearfix">'.PHP_EOL. $html . '</aside>'.PHP_EOL;				
 				if($echo)

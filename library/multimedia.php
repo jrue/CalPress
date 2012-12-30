@@ -277,6 +277,81 @@ calpress_add_media_support(array(
 	'advanced' => true
 ));
 
+//only add media support for polls if the wp-polls plugin is installed
+if (function_exists('vote_poll')){
+  calpress_add_media_support(array(
+    'media_id' => 'wp-polls',
+    'field_label' => 'WP Poll',
+    'description' => 'Enter the ID number of a poll that was created.',
+    'render_form' => 'calpress_wp_polls_render',
+    'sanitize_output' => 'calpress_wp_polls_sanitize',
+    'display_function' => 'calpress_wp_polls_display',
+    'default_value' => '',
+    'lead' => false,
+  	'inline' => true,
+  	'error_message' => 'No poll with that id found!'
+  ));
+}
+
+/**
+ * Unused, but required for now
+ *
+ * @since CalPress 0.9.7
+ */
+function calpress_wp_polls_render($val, $name, $id){
+  
+}
+
+/**
+ * If photo gallery option is picked, make sure there is more than one photo.
+ *
+ * @since CalPress 0.9.7
+ * @param string $input The $_POST results input
+ * @param int $post_id The ID of the post
+ * @param string $title Title for inline element
+ * @param string $caption Caption for inline element
+ * @param bool $inline is this an inline element?
+ * @return string The sanitized input
+ */
+function calpress_wp_polls_display($input, $post_id='', $title='', $caption='', $inline=false){
+
+  $html  = '<div class="wp-poll-inline inline-item">';
+  $html .= $title ? ' <h3>' . esc_attr($title) . '</h3>' : '';
+  $html .= '  <ul>';
+  $html .= '   <li>' . get_poll($input, false) . '</li>';
+  $html .= '  </ul>';
+  $html .= $caption ? ' <p class="wp-caption">' . esc_attr($caption) . '</p>': '';
+  $html .= '</div>';
+  $html .= '<style type="text/css">.wp-poll-inline ul li{list-style-type:none !important;}</style>';
+
+  return $html;
+}
+
+/**
+ * TODO: Sanitization of polls
+ *
+ * @param string $input User input
+ * @param int $post_id ID of post
+ * @return int The user input as an integer
+ * @since CalPress 0.9.7
+ */
+function calpress_wp_polls_sanitize($input, $post_id){
+  $input = intval($input);
+  return $input;
+  
+  /* TODO: Possible sanitization
+  global $wpdb;
+  $input = intval($input);
+  $poll_exists = $wpdb->get_var( "SELECT pollq_id FROM $wpdb->wp_pollsq WHERE pollq_id = $input");
+  _log($poll_exists);
+  if(!is_null($poll_exists)){
+    return $input;
+  } else {
+    return false;
+  }
+  */
+}
+
 
 /**
  * If photo gallery option is picked, make sure there is more than one photo.

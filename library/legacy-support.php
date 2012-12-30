@@ -26,7 +26,7 @@
 function calpress_legacy_support(){
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
 	$legacy = ($options['legacy_calpress'] == "true" ? true : false);
-	
+
 	return (bool) $legacy;
 }
 
@@ -138,7 +138,6 @@ function calpress_legacy_video_poster($id){
 function calpress_legacy_set_lead_art($post_custom, $options, $post_date=''){
 	$counter = 0;
 	$related = "false";
-	
 	foreach($post_custom as $key => $custom):
 		foreach($custom as $cus):
 			switch($key){
@@ -215,6 +214,14 @@ function calpress_legacy_set_lead_art($post_custom, $options, $post_date=''){
 					if(isset($related_links[2])) $options['inline_art_caption'][$counter] = $related_links[2];
 					$counter++;
 					break;
+				case 'inline_poll':
+				  $options['inline_art'][$counter] = 'wp-polls';
+				  $inline_polls = calpress_explodeandtrim("|", $cus);
+				  $options['inline_art_media'][$counter] = $inline_polls[0];
+				  if(isset($inline_polls[1])) $options['inline_art_title'][$counter] = $inline_polls[1];
+				  if(isset($inline_polls[2])) $options['inline_art_caption'][$counter] = $inline_polls[2];
+				  $counter++;
+				  break;
 			}
 			endforeach;
 	endforeach;
@@ -298,7 +305,7 @@ function calpress_show_legacy_inline_art(){
 	$post_custom = get_post_custom($postid);
 	$post_date = $post->post_date;
 	$scripts = false;//ensures scripts are only loaded once
-	
+
 	$html = '';
 	
 	foreach($post_custom as $key => $custom):
@@ -359,6 +366,12 @@ function calpress_show_legacy_inline_art(){
 				case 'inline_story':
 					$html .= calpress_embed($cus, $postid, '', '', true);
 					break;
+				case 'inline_poll':
+				  $polls = calpress_explodeandtrim("|", $cus);
+				  $polls[1] = (isset($polls[1]) ? $polls[1] : '');
+					$polls[2] = (isset($polls[2]) ? $polls[2] : '');
+				  $html .= calpress_wp_polls_display($polls[0], $postid, $polls[1], $polls[2]);
+				  break;
 				default:
 					break;
 			}
