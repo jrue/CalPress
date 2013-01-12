@@ -441,6 +441,29 @@ function calpress_show_sidebar($post_id=''){
 }
 
 /**
+ * Put Google news keywords meta tag for better SEO. Grab tags from post.
+ *
+ * @see http://support.google.com/news/publisher/bin/answer.py?hl=en&answer=68297
+ * @since CalPress 0.9.7
+ * @return null
+ */
+function calpress_add_google_news_keyword_meta_tag(){
+  global $post;
+  if(is_single()):
+    $tags = wp_get_post_tags($post->ID);
+    foreach($tags as $tag):
+      $t[] = $tag->name;
+    endforeach;
+    if(!empty($t) && count($t) > 0):
+      $t = implode(', ', $t);
+      echo '<meta name="news_keywords" content="'. trim($t) .'" />'.PHP_EOL;
+    endif;
+  endif;
+}
+
+add_action('wp_head', 'calpress_add_google_news_keyword_meta_tag');
+
+/**
  * Returns bool depending on whether user wants to show author profile
  * below posts they write
  *
@@ -952,6 +975,36 @@ function calpress_primary_navigational_menu_arguments($responsive=true){
 		$arguments['items_wrap'] = '<div id="toggle-nav-menu" style="display:none;"><a>Sections</a></div><ul id="%1$s" class="%2$s">%3$s</ul>';
 	
 	return $arguments;
+}
+
+/**
+ * Use Google Custom Search results instead of built-in WordPress search
+ * if the cx id is set in theme options. You need to sign up for a free
+ * account here: http://www.google.com/cse/
+ *
+ * From the embed code it generates, retrieve the "cx" value.
+ *
+ * @since CalPress 0.9.7
+ * @return bool False if not set in theme options
+ */
+function calpress_google_search(){
+  $options = unserialize(CALPRESSTHEMEOPTIONS);
+	if(isset($options['google_custom_search']) && $options['google_custom_search'] != ""):
+    echo '
+    <script>
+      (function() {
+        var cx = \''. $options['google_custom_search'] .'\';
+        var gcse = document.createElement(\'script\'); gcse.type = \'text/javascript\'; gcse.async = true;
+        gcse.src = (document.location.protocol == \'https:\' ? \'https:\' : \'http:\') +
+            \'//www.google.com/cse/cse.js?cx=\' + cx;
+        var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:searchresults-only queryParameterName="s"></gcse:searchresults-only>'.PHP_EOL;
+    return true;
+  else:
+    return false;
+  endif;
 }
 
 /**

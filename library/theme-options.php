@@ -178,6 +178,14 @@ function calpress_theme_options_init() {
 	);
 	
 	add_settings_field(
+		'google_custom_search',
+		__('Google Custom Search', 'calpress'),
+		'calpress_google_custom_search',
+		'calpress_setup_options',
+		'general'
+	);
+	
+	add_settings_field(
 		'share_code',
 		__('Social Media Share Code', 'calpress'),
 		'calpress_settings_share_code',
@@ -557,6 +565,7 @@ function calpress_get_default_theme_options() {
 		'share_code' => '',
 		'twitter_handle' => '',
 		'iphone_app_id' => '',
+		'google_custom_search' => '',
 		'theme_color' => '000000',
 		'google_verification' => '',
 		'google_analytics' => $legacy_google_analytics,
@@ -821,6 +830,21 @@ function calpress_settings_iphone_app_id(){
 	?>
 	<input name="calpress_theme_options[iphone_app_id]" id="calpress_theme_options[iphone_app_id]" type="text" value="<?php echo esc_attr($options['iphone_app_id']); ?>" class="regular-text">
 	<p class="description">Does this site have a companion iPhone app? If so, enter the Apple App Store ID here.</p>
+<?php
+}
+
+/**
+ * Renders the form for google custom search
+ *
+ * @since CalPress 0.9.7
+ */
+function calpress_google_custom_search(){
+	$options = calpress_get_theme_options();
+	if(!isset($options['google_custom_search']))
+		$options['google_custom_search'] = '';
+	?>
+	<input name="calpress_theme_options[google_custom_search]" id="calpress_theme_options[google_custom_search]" type="text" value="<?php echo esc_attr($options['google_custom_search']); ?>" class="regular-text">
+	<p class="description">If you would rather use Google Custom Search for your search results, enter in the "cx" id here. <a href="//www.google.com/cse/">Sign up for an account here.</a></p>
 <?php
 }
 
@@ -1212,6 +1236,9 @@ function calpress_theme_options_validate( $input ) {
 		
 	if ( isset($_POST['calpress_theme_options']['iphone_app_id']) && isset( $input['iphone_app_id'] ) )
 		$output['iphone_app_id'] = strip_tags($input['iphone_app_id']);
+		
+	if ( isset($_POST['calpress_theme_options']['google_custom_search']) && isset($input['google_custom_search'] ) )
+	  $output['google_custom_search'] = strip_tags($input['google_custom_search']);
 	
 	if ( isset($_POST['calpress_theme_options']['insert_image_into_post']) && isset( $input['insert_image_into_post'] ) )
 		$output['insert_image_into_post'] = (string) $input['insert_image_into_post'];

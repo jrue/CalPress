@@ -380,13 +380,15 @@ article footer{
 body.category article footer,
 body.archive article footer,
 body.paged article footer,
-body.tagged article footer{
+body.tagged article footer,
+body.search article footer{
 	text-align: right;
 }
 
 body.category section#content > header p,
 body.archive section#content > header p,
-body.tagged section#content > header p{
+body.tagged section#content > header p,
+body.search section#content > header p{
 	font: normal 1em/1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	padding: 5px 10px;
 	color: #777;
@@ -437,6 +439,20 @@ body.archive section#content > header{
 	padding: 0 0 20px;
 }
 
+/*===== Search Styles ======*/
+
+body.search section#content > header h1{
+	font: bold 2em/1.5em "Gnuolane", "Helvetica Neue", Helvetica, Geneva, sans-serif;
+	background: #fff;
+	padding: 0 15px 0 0;
+	display: inline;
+}
+
+body.search section#content > header{
+	font: normal 0.9em/1em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	background: #ffffff url('../images/category-block-bar.png') repeat-x 0px 18px;
+	padding: 0 0 20px;
+}
 
 
 /*===== Headline Styles ======*/
