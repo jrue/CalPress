@@ -1051,11 +1051,11 @@ nav#nav-below a:hover{
 
 /*===== Sidebar Widget: Event Calendar ======*/
 
-.eventsListWidget h2.widgettitle{
+.eventsListWidget h2.widgettitle, .eventsAdvancedListWidget h2.widgettitle{
 	cursor: pointer;
 }
 
-.eventsListWidget .event-image img{
+.eventsListWidget .event-image img, .eventsAdvancedListWidget .event-image img{
 	width: 70px;
 	height: auto;
 	float: left;
@@ -1063,29 +1063,36 @@ nav#nav-below a:hover{
 }
 
 .eventsListWidget ul,
-.eventsListWidget li{
+.eventsListWidget li,
+.eventsAdvancedListWidget ul,
+.eventsAdvancedListWidget li{
 	margin: 0;
 	padding: 0;
 	text-indent: 0;
 }
 
-.eventsListWidget li:before{
+.eventsListWidget li:before,
+.eventsAdvancedListWidget li:before{
 	content: none;
 }
 
-.eventsListWidget .event{
+.eventsListWidget .event,
+.eventsAdvancedListWidget .event{
 	font: bold 1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
-.eventsListWidget .entry-meta{
+.eventsListWidget .entry-meta,
+.eventsAdvancedListWidget .entry-meta{
 	margin: 0 !important;
 }
 
-.eventsListWidget .event a{
+.eventsListWidget .event a,
+.eventsAdvancedListWidget .event a{
 	text-decoration: none;
 }
 
-.eventsListWidget .when{
+.eventsListWidget .when,
+.eventsAdvancedListWidget .when{
 	font: normal 0.8em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 

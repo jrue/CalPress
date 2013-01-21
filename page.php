@@ -24,14 +24,19 @@ get_header(); ?>
 	<div id="content" class="clearfix">
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<?php if ( is_front_page() ) { ?>
+				<?php if ( 
+				is_front_page() || 
+				(function_exists('tribe_is_event') && tribe_is_event()) || 
+				(function_exists('tribe_is_venue') && tribe_is_venue())) { ?>
 					<h2 class="entry-title"><?php the_title(); ?></h2>
 				<?php } else { ?>	
 					<h1 class="entry-title visuallyhidden"><?php the_title(); ?></h1>
 				<?php } ?>
+				<?php if((function_exists('tribe_is_event') && !tribe_is_event()) || !function_exists('tribe_is_event')): ?>
 					<div class="entry-lead-art">
 						<?php calpress_lead_art(); ?>
 					</div>
+				<?php endif; ?>
 					<div class="entry-content">
 						<?php the_content(); ?>
 						<?php wp_link_pages( array( 'before' => '' . __( 'Pages:', 'CalPress' ), 'after' => '' ) ); ?>
@@ -41,5 +46,10 @@ get_header(); ?>
 				<?php comments_template( '', true ); ?>
 <?php endwhile; ?>
 	</div><!-- #container -->
-<?php //get_sidebar(); ?>
+<?php if(
+((function_exists('tribe_is_event') && tribe_is_event()) || 
+(function_exists('tribe_is_venue') && tribe_is_venue())) &&
+(function_exists('tribe_is_month') && !tribe_is_month())): ?>
+<?php get_sidebar(); ?>
+<?php endif; ?>
 <?php get_footer(); ?>
