@@ -317,7 +317,7 @@ class FeaturedCategory extends WP_Widget {
 					$this = $(\'ul.featured-post-list\');
 					$pager = $(\'.scroll-button div span\');
 					$pager.eq(0).css(\'color\', \'#999\');
-					var totalSlides = $this.children().length;
+					var totalSlides = $(\'ul > div\').length;
 					var currentSlide = 1;
 					var speed = 500;
 
