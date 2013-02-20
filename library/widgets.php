@@ -73,8 +73,11 @@ class GenericAdvertisement extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
     	$instance = wp_parse_args($old_instance, $new_instance);
+    	
+    if(isset($new_instance['title']))
+      $instance['title'] = esc_attr($new_instance['title']);
 
-    	if(isset($new_instance['ad_html'])) 
+    if(isset($new_instance['ad_html'])) 
 			$instance['ad_html'] = $new_instance['ad_html'];
 			
 		if(isset($new_instance['ad_category'])){
@@ -87,11 +90,15 @@ class GenericAdvertisement extends WP_Widget {
 	}
 
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array('ad_html' => '', 'ad_category'=> ''));
+		$instance = wp_parse_args( (array) $instance, array('ad_html' => '', 'ad_category'=> '', 'title'=>''));
 		$ad_html = isset($instance['ad_html']) ? $instance['ad_html'] : '';
 		$ad_category = isset($instance['ad_category']) ? $instance['ad_category'] : '';
     ?>
-	<p>To create a advertisement, type or paste in HTML code below.</p> 
+  <p>
+    <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title: (won\'t be displayed)'); ?></label>
+    <input type="text" id="<?php echo $this->get_field_id('title'); ?>" class="widefat" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" placeholder="<?php _e('Title'); ?>"></p>
+  </p>
+	<p>To create a advertisement, type or paste in HTML code below.</p>
 	<p>
 		<label for="<?php echo $this->get_field_id('ad_html'); ?>"><?php _e('HTML code only:'); ?></label>
 		<textarea class="widefat" rows="10" id="<?php echo $this->get_field_id('ad_html'); ?>" name="<?php echo $this->get_field_name('ad_html'); ?>"><?php echo esc_textarea($ad_html); ?></textarea>
@@ -118,7 +125,7 @@ class LeaderboardAdvertisement extends WP_Widget {
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
-		parent::__construct( 'calpress_leaderboard', 'Leaderboard Advertisement', array( 'description' => 'Put HTML code for an advertisement' ) );
+		parent::__construct( 'calpress_leaderboard', 'Leaderboard Ad', array( 'description' => 'Put HTML code for an advertisement' ) );
 	}
 
 	/**
@@ -134,48 +141,21 @@ class LeaderboardAdvertisement extends WP_Widget {
 		
 		$title = empty($instance['title']) ? '' : $instance['title'];
 		$ad_html = empty($instance['ad_html']) ? '' : $instance['ad_html'];
-		$ad_small = empty($instance['ad_small']) ? '' : $instance['ad_small'];
 		$ad_category = empty($instance['ad_category']) ? '' : explode(",", $instance['ad_category']);
 		
 		if(!empty($ad_category)){
 			if(is_category($ad_category)){
 				echo $before_widget;
 				echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
-				echo '<div id="leaderboard-holder" style="overflow:hidden;"></div>';
+				echo '<div id="leaderboard-holder" style="overflow:hidden; max-width:728px; width:100%; height:90px; margin:5px auto -30px;">' . $ad_html .'</div>';
 				echo $after_widget;
 			}
 		} else {
 			echo $before_widget;
 			echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
-			echo '<div id="leaderboard-holder" style="overflow:hidden;"></div>';
+			echo '<div id="leaderboard-holder" style="overflow:hidden; max-width:728px; width:100%; height:90px; margin:5px auto -30px;">' . $ad_html . '</div>';
 			echo $after_widget;
 		}
-		
-		echo '
-		<script>
-		  jQuery(document).ready(function($){
-		    if($(window).width() < 620){
-		     $("#leaderboard-holder").html(\'' . (empty($ad_small) ? addslashes($ad_html) : addslashes($ad_small)) .'\')
-		     .css({
-		       \'width\':\'320px\',
-		       \'height\':\'50px\',
-		       \'margin-left\':\'auto\', 
-		       \'margin-right\':\'auto\',
-		       \'margin-bottom\':\'-30px\'
-		      });
-		    } else {
- 		     $("#leaderboard-holder").html(\'' . addslashes($ad_html) .'\')
- 		     .css({
- 		       \'width\':\'728px\',
- 		       \'height\':\'90px\',
- 		       \'margin-left\':\'auto\', 
- 		       \'margin-right\':\'auto\',
- 		       \'margin-bottom\':\'-30px\'
- 		      });
-		    }
-		  });
-		</script>
-		';
 		
 	}
 
@@ -198,9 +178,6 @@ class LeaderboardAdvertisement extends WP_Widget {
     if(isset($new_instance['ad_html'])) 
 			$instance['ad_html'] = $new_instance['ad_html'];
 			
-		if(isset($new_instance['ad_small'])) 
-			$instance['ad_small'] = $new_instance['ad_small'];
-			
 		if(isset($new_instance['ad_category'])){
 			$temp = explode(",", strip_tags($new_instance['ad_category']));
 			array_walk($temp, 'trim_value');
@@ -221,10 +198,6 @@ class LeaderboardAdvertisement extends WP_Widget {
 	<p>
 		<label for="<?php echo $this->get_field_id('ad_html'); ?>"><?php _e('HTML code only:'); ?></label>
 		<textarea class="widefat" rows="10" id="<?php echo $this->get_field_id('ad_html'); ?>" name="<?php echo $this->get_field_name('ad_html'); ?>"><?php echo esc_textarea($instance['ad_html']); ?></textarea>
-	</p>
-	<p>
-	  <label for="<?php echo $this->get_field_id('ad_small'); ?>"><?php _e('Optional: HTML code for mobile'); ?></label>
-	  <textarea class="widefat" rows="10" id="<?php echo $this->get_field_id('ad_small'); ?>" name="<?php echo $this->get_field_name('ad_small'); ?>"><?php echo esc_textarea($instance['ad_small']); ?></textarea>
 	</p>
 	<p>Type in which categories this ad should appear. These should only be numerical category IDs and they <strong>MUST</strong> be separated by commas.</p>
 	<p>
@@ -844,20 +817,26 @@ class PromoImage extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
     	$instance = wp_parse_args($old_instance, $new_instance);
+    	
+    	if(isset($new_instance['title']))
+    	  $instance['title'] = esc_attr($new_instance['title']);
 
-    	if(isset($new_instance['link'])) 
-			$instance['link'] = esc_url($new_instance['link']);
+      if(isset($new_instance['link'])) 
+  			$instance['link'] = esc_url($new_instance['link']);
 			
-		if(isset($new_instance['url'])) 
-			$instance['url'] = esc_url($new_instance['url']);
+  		if(isset($new_instance['url'])) 
+  			$instance['url'] = esc_url($new_instance['url']);
 						
     	return $instance;
 	}
 
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array('link'=>'', 'url'=>''));
+		$instance = wp_parse_args( (array) $instance, array('link'=>'', 'url'=>'', 'title'=>''));
 
 		echo '<p class="description">' . __('This widget will display a photo. You can optionally make the photo a clickable link. Width needs to be 300 pixels.', 'CalPress') . '</p>'.PHP_EOL;
+		
+		echo '<p><label for="' . $this->get_field_id('title') . '">' . __('Title (won\'t be shown)', 'CalPress') . '</label>'.PHP_EOL;
+		echo '<input type="text" id="' . $this->get_field_id('title') . '" class="widefat" name="' . $this->get_field_name('title') . '" value="' . $instance['title'] . '" placeholder="' . __('Title') . '"></p>'.PHP_EOL;
 		
 		echo '<p><label for="' . $this->get_field_id('url') . '">' . __('URL of image', 'CalPress') . '</label>'.PHP_EOL;
 		echo '<input type="url" id="' . $this->get_field_id('url') . '" class="widefat" name="' . $this->get_field_name('url') . '" value="' . $instance['url'] . '" placeholder="' . __('http://') . '" required></p>'.PHP_EOL;
