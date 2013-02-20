@@ -146,13 +146,13 @@ class LeaderboardAdvertisement extends WP_Widget {
 		if(!empty($ad_category)){
 			if(is_category($ad_category)){
 				echo $before_widget;
-				echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
+				echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">advertisement</h3>'.PHP_EOL;
 				echo '<div id="leaderboard-holder" style="overflow:hidden; max-width:728px; width:100%; height:90px; margin:5px auto -30px;">' . $ad_html .'</div>';
 				echo $after_widget;
 			}
 		} else {
 			echo $before_widget;
-			echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">' . $title .'</h3>'.PHP_EOL;
+			echo '<h3 class="advertisement" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;text-align:center;margin-top:25px;">advertisement</h3>'.PHP_EOL;
 			echo '<div id="leaderboard-holder" style="overflow:hidden; max-width:728px; width:100%; height:90px; margin:5px auto -30px;">' . $ad_html . '</div>';
 			echo $after_widget;
 		}
