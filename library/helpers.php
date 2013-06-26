@@ -814,13 +814,17 @@ function calpress_add_special_projects(){
 	global $post;
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
 
-	//get post ids from theme options and store in arrays
-	foreach($options['featured_stories'] as $key => $value):
-		if(!empty($value[1]) && is_numeric($value[1])):
-			$terms[] = $value[1];
-			$slugs[$value[1]] = $value[0];
-		endif;
-	endforeach;
+	if($options['featured_stories']):
+
+		//get post ids from theme options and store in arrays
+		foreach($options['featured_stories'] as $key => $value):
+			if(!empty($value[1]) && is_numeric($value[1])):
+				$terms[] = $value[1];
+				$slugs[$value[1]] = $value[0];
+			endif;
+		endforeach;
+	
+	endif;
 	
 	if(empty($terms))
 		return false;
@@ -893,22 +897,30 @@ add_action('calpress_hook_below_category_blocks', 'calpress_add_special_projects
  * @return array
  */
 function calpress_add_parent_nav_menu_class($items) {
-    $hasSub = function ($menu_item_id, &$items) {
-        foreach ($items as $item) {
-            if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
-                return true;
-            }
-        }
-        return false;
-    };
-
     foreach ($items as &$item) {
-        if ($hasSub($item->ID, &$items)) {
+        if (hasSub($item->ID, &$items)) {
             $item->classes[] = 'menu-parent-item';
         }
     }
     return $items;    
 }
+
+/**
+ * Convenience function used by calpress_add_parent_nav_menu_class
+ * 
+ *
+ * @uses calpress_add_parent_nav_menu_class
+ * @since CalPress 0.9.7
+ * @return boolean
+ */
+function hasSub($menu_item_id, &$items) {
+    foreach ($items as $item) {
+        if ($item->menu_item_parent && $item->menu_item_parent==$menu_item_id) {
+            return true;
+        }
+    }
+    return false;
+};
 add_filter('wp_nav_menu_objects', 'calpress_add_parent_nav_menu_class');
 
 
