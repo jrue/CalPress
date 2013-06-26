@@ -119,6 +119,9 @@ function calpress_get_featured_image_from_post($postID, $size='medium', $extra_c
 function calpress_check_image_size_exists($image_id, $size, $postID=false){
 	$image_meta = wp_get_attachment_metadata($image_id);
 	
+	if(!is_array($image_meta))
+		$image_meta = array($image_meta);
+	
 	if((array_key_exists('sizes', $image_meta) ? array_key_exists($size, $image_meta['sizes']) : false)){
 		return ($postID ? set_post_thumbnail($postID, $image_id) : true);
 			
