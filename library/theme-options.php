@@ -1284,6 +1284,9 @@ function calpress_theme_options_validate( $input ) {
 			if($input['google_analytics'] != "") {
 				add_settings_error('google_analytics', 'bad_google_analytics', 'Error: Google Analytics code must formatted as UA-XXXXXX-X with more or fewer numbers.', 'error');
 			}
+			if($input['google_analytics'] == "") {
+				$output['google_analytics'] = "";
+			}
 		}
 	}
 
