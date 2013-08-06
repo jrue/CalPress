@@ -271,8 +271,8 @@ function calpress_save_postdata( $post_id ) {
 	);
  
   //don't autosave
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
-      return;
+  //if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+  //   return;
 
   // Check permissions
   if ( !current_user_can( 'edit_post', $post_id ) )

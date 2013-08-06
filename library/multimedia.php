@@ -303,7 +303,7 @@ function calpress_wp_polls_render($val, $name, $id){
 }
 
 /**
- * If photo gallery option is picked, make sure there is more than one photo.
+ * WP Polls Plugin.
  *
  * @since CalPress 0.9.7
  * @param string $input The $_POST results input

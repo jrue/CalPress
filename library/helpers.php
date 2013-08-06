@@ -1495,7 +1495,7 @@ function calpress_get_headers_curl($url, $timeout=10)
     curl_setopt($ch, CURLOPT_TIMEOUT,        $timeout); 
 
     $r = curl_exec($ch); 
-    $r = split("\n", $r); 
+    $r = explode("\n", $r); 
     return $r; 
 }
 
