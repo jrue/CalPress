@@ -60,6 +60,7 @@ function calpress_add_post_meta_box() {
 function calpress_custom_meta_box( $post ) {
 	global $calpress_supported_multimedia;
 	
+	//get the post custom meta for this post we're on
 	$post_custom = get_post_custom($post->ID, true);
 	
 	$maximum_lead_art_items = 10;
@@ -72,11 +73,11 @@ function calpress_custom_meta_box( $post ) {
 	
 	
 	//default settings for inline and lead art
-	$args['lead_art'] = array('image');
-	$args['inline_art'] = array('none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none');
-	$args['inline_art_title'] = array('', '', '', '', '', '', '', '', '', '');
+	$args['lead_art']           = array('image');
+	$args['inline_art']         = array('none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none');
+	$args['inline_art_title']   = array('', '', '', '', '', '', '', '', '', '');
 	$args['inline_art_caption'] = array('', '', '', '', '', '', '', '', '', '');
-	$args['inline_art_media'] = array('', '', '', '', '', '', '', '', '', '');
+	$args['inline_art_media']   = array('', '', '', '', '', '', '', '', '', '');
 
 	
 	//if legacy support is activated, peform a few functions to support older posts, and replace above as needed.
@@ -87,19 +88,19 @@ function calpress_custom_meta_box( $post ) {
 	}
 	
 	//Have to serialize the data here because add_post_meta serializes arrays
-	$args['inline_art'] = array(serialize($args['inline_art']));
-	$args['inline_art_title'] = array(serialize($args['inline_art_title']));
+	$args['inline_art']         = array(serialize($args['inline_art']));
+	$args['inline_art_title']   = array(serialize($args['inline_art_title']));
 	$args['inline_art_caption'] = array(serialize($args['inline_art_caption']));
-	$args['inline_art_media'] = array(serialize($args['inline_art_media']));
+	$args['inline_art_media']   = array(serialize($args['inline_art_media']));
 	
 	//sets defaults if previous values arent set
 	$options = wp_parse_args($post_custom, $args); 
 	
 	//wordpress serializes arrays in post meta
-	$options['inline_art'] = unserialize($options['inline_art'][0]);
-	$options['inline_art_title'] = unserialize($options['inline_art_title'][0]);
+	$options['inline_art']         = unserialize($options['inline_art'][0]);
+	$options['inline_art_title']   = unserialize($options['inline_art_title'][0]);
 	$options['inline_art_caption'] = unserialize($options['inline_art_caption'][0]);
-	$options['inline_art_media'] = unserialize($options['inline_art_media'][0]);
+	$options['inline_art_media']   = unserialize($options['inline_art_media'][0]);
 
 	?>
 	
@@ -358,9 +359,9 @@ function calpress_save_postdata( $post_id ) {
 		
 		//setup arrays for storing $_POST values.
 		$inline_art_setting = array();
-		$inline_art_title = array();
+		$inline_art_title   = array();
 		$inline_art_caption = array();
-		$inline_art_media = array();
+		$inline_art_media   = array();
 		
 		//only process items that have inline art option set
 		foreach($_POST['inline_art'] as $key => $inline_art):

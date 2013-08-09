@@ -566,12 +566,17 @@ function calpress_sanitize_vimeo($input, $post_id){
 	
 	// http://vimeo.com/00000
 	if(preg_match('/^(http|https):\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/', $input, $match)){
+		
+		/* Too many issues sanitizing Vimeo videos from their server. Just check URL format.
+
 		$headers = calpress_get_headers_curl('http://vimeo.com/api/v2/video/' . $match[4] . '.json', 5);
 		if (strpos($headers[0], '200'))
 			return $input;
 		
 		if (empty($headers[0])) //response timed out, still give it to them. Vimeo might be slow
 			return $input;
+		*/
+		return $input;
 	}
 
 	return false;
@@ -586,6 +591,8 @@ function calpress_sanitize_vimeo($input, $post_id){
  * @return string|bool The HTML for the vimeo if it exists
  */
 function calpress_vimeo($input, $post_id='', $title='', $caption='', $inline=false){
+	global $wp_embed;
+
 	$html = '';
 	
 	if($inline){
@@ -594,7 +601,8 @@ function calpress_vimeo($input, $post_id='', $title='', $caption='', $inline=fal
 	}
 	
 	$html .= '<div class="video-container">';
-	$html .= '<iframe src="http://player.vimeo.com/video/' . calpress_get_vimeo_id_from_url($input) . '?title=0&byline=0&portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+	//$html .= '<iframe src="http://player.vimeo.com/video/' . calpress_get_vimeo_id_from_url($input) . '?title=0&byline=0&portrait=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+	$html .=  $wp_embed->run_shortcode('[embed]' . $input .'[/embed]');
 	$html .= '</div>';
 	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 	
@@ -631,12 +639,18 @@ function calpress_validate_youtube($input, $post_id){
 	
 	//regex for every possible YouTube ID http://stackoverflow.com/a/6382259/838158
 	if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $input, $match)) {
+		
+		return $input;//'http://www.youtube.com/watch?v=' . $match[1];
+
+		/* issues with live sanitizing YouTube videos.
+
 		$headers = calpress_get_headers_curl('http://gdata.youtube.com/feeds/api/videos/' . $match[1], 5);
 		if (strpos($headers[0], '200'))
 			return 'http://www.youtube.com/watch?v=' . $match[1];
 		
 		if (empty($headers[0])) //response timed out, still give it to them. YouTube might be slow
 			return 'http://www.youtube.com/watch?v=' . $match[1];
+		*/
 	}
 	
 	return false;
@@ -651,6 +665,7 @@ function calpress_validate_youtube($input, $post_id){
  * @return string|bool The HTML for the YouTube if it exists
  */
 function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=false){
+	global $wp_embed;
 	$html = '';
 	
 	if($inline){
@@ -658,11 +673,10 @@ function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=f
 		$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
 	}
 	
-	$html .= '
-		<div class="video-container">
-			<iframe src="http://www.youtube.com/embed/' . calpress_get_youtube_id_from_url($input) . '?modestbranding=1&showinfo=0&fs=1&controls=2&rel=0" frameborder="0" allowfullscreen></iframe>
-		</div>
-	';
+	$html .= '<div class="video-container">';
+	$html .=  $wp_embed->run_shortcode('[embed]' . $input .'[/embed]');
+	//<iframe src="http://www.youtube.com/embed/' . calpress_get_youtube_id_from_url($input) . '?modestbranding=1&showinfo=0&fs=1&controls=2&rel=0" frameborder="0" allowfullscreen></iframe>
+	$html .= '</div>';
 	
 	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 
@@ -672,24 +686,6 @@ function calpress_youtube($input, $post_id='', $title='', $caption='', $inline=f
 	return $html;	
 }
 
-/**
- * MediaElement player supports YouTube API
- *
- * @since CalPress 0.9.7
- * @return void
- */
-function calpress_add_youtube_scripts(){
-	add_action('wp_enqueue_scripts', 
-		create_function('$e=NULL', 
-			'wp_enqueue_script("media_element", "'.THEMEJS.'/mediaelement/mediaelement-and-player.min.js", array("jquery"), "2.9.1", false);'
-		), 
-	10);	
-	add_action('wp_enqueue_scripts',
-		create_function('$e=NULL',
-			'wp_enqueue_style("media_element_style", "'.THEMEJS.'/mediaelement/mediaelementplayer.min.css", array("calpress"), "2.9.1", "screen, handheld");'
-		),
-	10);
-}
 
 /**
  * Displays the input form for adding self-hosted videos
@@ -716,6 +712,9 @@ function calpress_sanitize_video($input, $post_id){
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
 	
 	if(!preg_match('/^http\:/i', $input) && calpress_legacy_support()){
+
+		return $options['legacy_video'] . $input . '/' . $input . '-iPhone.m4v';
+		/*
 		$headers = calpress_get_headers_curl($options['legacy_video'] . $input . '/' . $input . '-iPhone.m4v');
 		
 		if (strpos($headers[0], '200'))
@@ -723,15 +722,17 @@ function calpress_sanitize_video($input, $post_id){
 
 		if (empty($headers[0]))
 			return $options['legacy_video'] . $input . '/' . $input . '-iPhone.m4v';
-			
+		*/	
 	} else {
 		$headers = calpress_get_headers_curl($input);
-		
+		return $input;
+		/*
 		if (strpos($headers[0], '200'))
 			return $input;
 
 		if (empty($headers[0]))
 			return $input;
+		*/
 	}
 	
 	return false;
@@ -746,12 +747,17 @@ function calpress_sanitize_video($input, $post_id){
  * @return string|bool The HTML for the self-hosted video.
  */
 function calpress_video($input, $post_id='', $title='', $caption='', $inline=false, $poster=''){
+	//global $wp_embed;
 	$html = '';
 	
 	if($inline)
 		$html .= '<div class="inline-item inline-video">'.PHP_EOL;
 		
 	$html .= $title ? '<h3>'. esc_attr($title) . '</h3>'.PHP_EOL : '';
+
+	//Bug in WordPress media element player
+	//$html .= wp_video_shortcode(array('src'=>$input));
+	
 	$html .= '
 	
 	<video width="100%" height="100%" controls="controls" preload="none"' . $poster .'>
@@ -769,6 +775,7 @@ function calpress_video($input, $post_id='', $title='', $caption='', $inline=fal
 		</div>
 	</video>
 	';
+	
 	$html .= $caption ? '<div class="wp-caption">' . esc_attr($caption) . '</div>'.PHP_EOL : '';
 	
 	if($inline)
@@ -900,7 +907,7 @@ function calpress_inline_audio($input, $post_id=NULL, $title='', $caption=''){
 	
 	$html = '<div class="inline-audio inline-item">';
 	$html .= $title ? '<h3>'. esc_attr($title) .'</h3>'.PHP_EOL: ''.PHP_EOL;
-	
+
 	$html .= '<audio controls="controls" preload="none">'.PHP_EOL;
 	$html .= '	<source src="' . $input .'" ' . trim($query_string) . ' />'.PHP_EOL;
 	$html .= '	<object width="280" height="30" type="application/x-shockwave-flash" data="' . THEMEURI . '/js/mediaelement/flashmediaelement.swf">'.PHP_EOL;
