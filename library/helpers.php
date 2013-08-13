@@ -1558,7 +1558,7 @@ add_action('wp_head', 'calpress_featured_comment_color');
  */
 function calpress_custom_comments($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; 
-
+   global $post;
    // get correct avatar type from Settings->Discussion
    $default = get_option('avatar_default');
 
@@ -1582,13 +1582,19 @@ function calpress_custom_comments($comment, $args, $depth) {
        $post_author_name = $user_info->display_name;
        $post_author_registered_date = strtotime($user_info->user_registered);
        $commentauthorlink = "<a href=\"$post_author_link\">$post_author_name</a>";
-       
-       // is this registered user also the post author?
-       if ( $post = get_post($post_id) ) {
-			if ( $comment->user_id === $post->post_author )
-				$post_author = true;
+
+       //co-authors integration
+       if(function_exists('is_coauthor_for_post')){
+       		if(is_coauthor_for_post($comment->user_id))
+       			$post_author = true;
+       } else {
+	       // is this registered user also the post author?
+	       if ( $thepost = get_post($comment->comment_post_ID)) {
+				if ( $comment->user_id === $thepost->post_author )
+					$post_author = true;
+			}
 		}
-		
+	
 		// is the registered user a staff member (editor level or above)?
 		if ($user_info->user_level >= 7) {
 		  $staff_memeber = true;
@@ -1608,8 +1614,6 @@ function calpress_custom_comments($comment, $args, $depth) {
              printf(__('<cite class="fn">%s</cite> <span class="member-status">Post author</span>'), $commentauthorlink);
          } elseif ($staff_memeber) {
              printf(__('<cite class="fn">%s</cite> <span class="member-status">Staff</span>'), $commentauthorlink);
-         } elseif ($registered_user) {
-             printf(__('<cite class="fn">%s</cite> <span class="member-status">Joined %s</span>'), $commentauthorlink, $post_author_registered_date);
          } else {
              printf(__('<cite class="fn">%s</cite>'), $commentauthorlink);  
          }
