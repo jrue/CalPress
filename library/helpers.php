@@ -311,21 +311,26 @@ function calpress_add_multimedia_scripts(){
 	endforeach;
 	
 	//add open graph protocols if the sfc plugin is installed
-	if(isset($post_custom['lead_art']) && ($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo')):
-		if(function_exists('sfc_media_find_video')){
-			function calpress_add_meta($og){
-				global $wp_query;
-				global $calpress_supported_multimedia;
+	if(isset($post_custom['lead_art']) && ($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo') && function_exists('sfc_media_find_video')):
+		
+		function calpress_add_meta($og){
+			global $wp_query;
+			global $calpress_supported_multimedia;
 
-				$thePostID = $wp_query->post->ID;
-				$post_custom = get_post_custom($thePostID);
-				
-				$tempmedia = $calpress_supported_multimedia->$post_custom['lead_art'][0];
-				$vids = sfc_media_find_video($wp_query->post, call_user_func($tempmedia['display_function'], $post_custom[$post_custom['lead_art'][0]][0]));
-				return array_merge($og, $vids);
-			}
-			add_filter('sfc_base_meta', 'calpress_add_meta', 11);
+			$thePostID = $wp_query->post->ID;
+			$post_custom = get_post_custom($thePostID);
+			
+			$tempmedia = $calpress_supported_multimedia->$post_custom['lead_art'][0];
+			$vids = sfc_media_find_video($wp_query->post, call_user_func($tempmedia['display_function'], $post_custom[$post_custom['lead_art'][0]][0]));
+			return array_merge($og, $vids);
 		}
+		add_filter('sfc_base_meta', 'calpress_add_meta', 11);
+		
+
+	else:
+
+		add_action('wp_head', 'calpress_story_meta_data_header', 4);
+
 	endif;
 	
 	return;
@@ -335,37 +340,67 @@ function calpress_add_multimedia_scripts(){
  * Add open graph meta tags to head when not using SFC plugin
  *
  * @todo Will add open graph meta tags to head when not using SFC plugin
- * @uses language_attributes filter
  * @global obj $wp_query
+ * @global obj $calpress_supported_multimedia
  * @since CalPress 0.9.7
- * @param string $output Current language attributes
  * @return string HTML attributes with open graph appended
  */
-function calpress_story_meta_data_header($media){
+function calpress_story_meta_data_header(){
 	global $wp_query;
+	global $calpress_supported_multimedia;
 	
+	//only do this if the sfc plugin is not installed
 	if(!function_exists('sfc_base_meta') && is_single()):
+
 		//store post excerpt if it exists, or make one from content
 		$the_excerpt = ($wp_query->post->post_excerpt ? 
 			substr($wp_query->post->post_excerpt, 0, 199) : 
 			substr($wp_query->post->post_content, 0, 199)
 		);
 	
+		//get the post thumbnail if it is set
 		$post_thumbnail = has_post_thumbnail() ? wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'): '';
 			
+		//basic open graph tags for all content
 		echo '<meta property="og:type" content="article"/>'.PHP_EOL;
 		echo '<meta property="og:url" content="' . get_permalink() . '"/>'.PHP_EOL;
 		echo '<meta property="og:title" content="' . get_the_title() .'"/>'.PHP_EOL;
 		echo '<meta property="og:description" content="' . $the_excerpt . '"/>'.PHP_EOL;
 	
+		//add image to open graph if exists
 		if($post_thumbnail):
 			echo '<meta property="og:image" content="' . $post_thumbnail[0] .'"/>'.PHP_EOL;
 		endif;
-	
-		//<meta property="og:video" content="http://www.youtube.com/v/k86xpd26M2g?version=3&amp;autohide=1">
-	    //<meta property="og:video:type" content="application/x-shockwave-flash">
-	    //<meta property="og:video:width" content="398">
-	    //<meta property="og:video:height" content="224">
+
+		//Add open graph tags if lead art is video
+		$thePostID = $wp_query->post->ID;
+		$post_custom = get_post_custom($thePostID);
+		$tempmedia = $calpress_supported_multimedia->$post_custom['lead_art'][0];
+
+		//if lead art is vimeo or youtube
+		if(($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo')  && isset($post_custom[$post_custom['lead_art'][0]][0])){
+
+			//for vimeo, copy the pattern used on vimeo's own website about moogaloop
+			if($post_custom['lead_art'][0] == 'vimeo'){
+				preg_match('/^(http|https):\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/', $post_custom[$post_custom['lead_art'][0]][0], $match);
+
+				if(isset($match[4])){
+					echo '<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=' . $match[4] . '">'.PHP_EOL;
+	    			echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
+	    			echo '<meta property="og:video:width" content="620">'.PHP_EOL;
+	    			echo '<meta property="og:video:height" content="400">'.PHP_EOL;
+				}
+
+			//For youtube, copy model used on Youtube's website
+			} else {
+
+				echo '<meta property="og:video" content="' . $post_custom[$post_custom['lead_art'][0]][0] . '">'.PHP_EOL;
+		    	echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
+		    	echo '<meta property="og:video:width" content="620">'.PHP_EOL;
+		    	echo '<meta property="og:video:height" content="400">'.PHP_EOL;
+			}
+		} 
+
 	endif;
 }
 
@@ -388,7 +423,7 @@ function calpress_website_meta_data_header(){
 		endif;
 	endif;
 }
-add_action('wp_head', 'calpress_website_meta_data_header');
+add_action('wp_head', 'calpress_website_meta_data_header', 5);
 
 /**
  * Adds open graph attribute to html tag.
