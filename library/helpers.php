@@ -932,12 +932,20 @@ add_action('calpress_hook_below_category_blocks', 'calpress_add_special_projects
  * @return array
  */
 function calpress_add_parent_nav_menu_class($items) {
-    foreach ($items as &$item) {
-        if (hasSub($item->ID, &$items)) {
-            $item->classes[] = 'menu-parent-item';
-        }
-    }
-    return $items;    
+	$parents = array();
+	foreach ( $items as $item ) {
+		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
+			$parents[] = $item->menu_item_parent;
+		}
+	}
+	
+	foreach ( $items as $item ) {
+		if ( in_array( $item->ID, $parents ) ) {
+			$item->classes[] = 'menu-parent-item'; 
+		}
+	}
+	
+	return $items;    
 }
 
 /**
