@@ -1160,6 +1160,10 @@ nav#nav-below a:hover{
 	margin-top:15px;
 }
 
+.tribe-filter-live.events-gridview #content{
+	max-width: 940px;
+}
+
 /*===== Category Block ======*/
 
 section.category-block{
