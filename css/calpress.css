@@ -1131,6 +1131,35 @@ nav#nav-below a:hover{
 	font-size: 14px !important;
 }
 
+/*===== Tribe Events Page ====*/
+
+.single-tribe_events .tribe-events-content{
+	font-size:14px !important;
+	line-height: 1.5em !important;
+}
+
+.single-tribe_events .tribe-events-content:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.single-tribe_events .tribe-events-schedule h3{
+	font-size: 14px !important;
+}
+
+.single-tribe_events #tribe-events-footer a{
+	font-size: 10px !important;
+}
+
+.single-tribe_venue a.tribe-events-gmap{
+	display:block;
+	margin-top:15px;
+}
+
 /*===== Category Block ======*/
 
 section.category-block{
