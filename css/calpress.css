@@ -1051,12 +1051,23 @@ nav#nav-below a:hover{
 
 /*===== Sidebar Widget: Event Calendar ======*/
 
-.eventsListWidget h2.widgettitle, .eventsAdvancedListWidget h2.widgettitle{
+.eventsListWidget h2.widgettitle, 
+.eventsAdvancedListWidget h2.widgettitle
+.tribe-events-adv-list-widget h4.entry-title{
 	cursor: pointer;
 }
 
-.eventsListWidget .event-image img, .eventsAdvancedListWidget .event-image img{
+.eventsListWidget .event-image img, 
+.eventsAdvancedListWidget .event-image img{
 	width: 70px;
+	height: auto;
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.tribe-events-adv-list-widget .tribe-events-event-image img{
+	display: block;
+	width:70px;
 	height: auto;
 	float: left;
 	margin: 0 10px 0 0;
@@ -1065,19 +1076,23 @@ nav#nav-below a:hover{
 .eventsListWidget ul,
 .eventsListWidget li,
 .eventsAdvancedListWidget ul,
-.eventsAdvancedListWidget li{
+.eventsAdvancedListWidget li,
+.tribe-events-adv-list-widget ul,
+.tribe-events-adv-list-widget li{
 	margin: 0;
 	padding: 0;
 	text-indent: 0;
 }
 
 .eventsListWidget li:before,
-.eventsAdvancedListWidget li:before{
+.eventsAdvancedListWidget li:before,
+.tribe-events-adv-list-widget li:before{
 	content: none;
 }
 
 .eventsListWidget .event,
-.eventsAdvancedListWidget .event{
+.eventsAdvancedListWidget .event,
+.tribe-events-adv-list-widget{
 	font: bold 1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
@@ -1100,6 +1115,21 @@ nav#nav-below a:hover{
 	text-align: center;
 	font: bold 2em/1.5em "Gnuolane", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	margin: 10px 0 0;
+}
+
+.tribe-events-adv-list-widget .tribe-events-meta{
+	clear: both;
+	display: block !important;
+	font-size: 12px !important;
+	font-weight: 400 !important;
+}
+
+.tribe-events-adv-list-widget .tribe-venue{
+	display: inline !important;
+}
+
+.tribe-events-adv-list-widget h4.entry-title{
+	font-size: 14px !important;
 }
 
 /*===== Category Block ======*/

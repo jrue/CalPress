@@ -375,31 +375,34 @@ function calpress_story_meta_data_header(){
 		//Add open graph tags if lead art is video
 		$thePostID = $wp_query->post->ID;
 		$post_custom = get_post_custom($thePostID);
-		$tempmedia = $calpress_supported_multimedia->$post_custom['lead_art'][0];
 
-		//if lead art is vimeo or youtube
-		if(($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo')  && isset($post_custom[$post_custom['lead_art'][0]][0])){
+		if(isset($post_custom['lead_art'][0])):
+			$tempmedia = $calpress_supported_multimedia->$post_custom['lead_art'][0];
 
-			//for vimeo, copy the pattern used on vimeo's own website about moogaloop
-			if($post_custom['lead_art'][0] == 'vimeo'){
-				preg_match('/^(http|https):\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/', $post_custom[$post_custom['lead_art'][0]][0], $match);
+			//if lead art is vimeo or youtube
+			if(($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo')  && isset($post_custom[$post_custom['lead_art'][0]][0])){
 
-				if(isset($match[4])){
-					echo '<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=' . $match[4] . '">'.PHP_EOL;
-	    			echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
-	    			echo '<meta property="og:video:width" content="620">'.PHP_EOL;
-	    			echo '<meta property="og:video:height" content="400">'.PHP_EOL;
+				//for vimeo, copy the pattern used on vimeo's own website about moogaloop
+				if($post_custom['lead_art'][0] == 'vimeo'){
+					preg_match('/^(http|https):\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/', $post_custom[$post_custom['lead_art'][0]][0], $match);
+
+					if(isset($match[4])){
+						echo '<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=' . $match[4] . '">'.PHP_EOL;
+		    			echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
+		    			echo '<meta property="og:video:width" content="620">'.PHP_EOL;
+		    			echo '<meta property="og:video:height" content="400">'.PHP_EOL;
+					}
+
+				//For youtube, copy model used on Youtube's website
+				} else {
+
+					echo '<meta property="og:video" content="' . $post_custom[$post_custom['lead_art'][0]][0] . '">'.PHP_EOL;
+			    	echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
+			    	echo '<meta property="og:video:width" content="620">'.PHP_EOL;
+			    	echo '<meta property="og:video:height" content="400">'.PHP_EOL;
 				}
-
-			//For youtube, copy model used on Youtube's website
-			} else {
-
-				echo '<meta property="og:video" content="' . $post_custom[$post_custom['lead_art'][0]][0] . '">'.PHP_EOL;
-		    	echo '<meta property="og:video:type" content="application/x-shockwave-flash">'.PHP_EOL;
-		    	echo '<meta property="og:video:width" content="620">'.PHP_EOL;
-		    	echo '<meta property="og:video:height" content="400">'.PHP_EOL;
-			}
-		} 
+			} 
+		endif; // isset lead_art
 
 	endif;
 }

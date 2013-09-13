@@ -270,27 +270,28 @@ function calpress_theme_options_init() {
 		'calpress_site_admin_options',
 		'advanced' 
 	);
-	/*
+	
 	add_settings_section(
 		'facebook', // Unique identifier for the settings section
 		__('Facebook Integration', 'calpress'), // Section title
 		'__return_false', // Section callback (we don't want anything)
-		'theme_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
+		'calpress_site_admin_options' // Menu slug, used to uniquely identify the page; see calpress_theme_options_add_page()
 	);
 	add_settings_field(
 		'facebook_id',
 		__('Facebook App ID/API Key', 'calpress'),
 		'calpress_settings_facebook_id',
-		'theme_options',
+		'calpress_site_admin_options',
 		'facebook' 
 	);
 	add_settings_field(
 		'facebook_secret',
 		__('Facebook Application Secret', 'calpress'),
 		'calpress_settings_facebook_secret',
-		'theme_options',
+		'calpress_site_admin_options',
 		'facebook' 
 	);
+	/*
 	add_settings_field(
 		'facebook_button_layout',
 		__('Facebook Button Layout', 'calpress'),
