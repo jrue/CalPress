@@ -966,13 +966,16 @@ function calpress_inline_image_form($val, $name, $id){
 function calpress_inline_image_sanitize($input, $post_id){
 	$input = (string) esc_url($input);
 	
+	/* Doesn't work with Google Doc images which have no file extension.
 	$headers = calpress_get_headers_curl($input, 5);
 	$headers_string = implode(' ', $headers);
 	
 	if (preg_match('/image\/(png|gif|jpeg|pjpeg|svg\+xml)/i', $headers_string) )
 		return $input;
+	*/
+
 		
-	return false;	
+	return $input;	
 }
 
 /**
