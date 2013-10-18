@@ -733,7 +733,6 @@ body.front article#big-news{
 	behavior: url("/wp-content/themes/calpress2/css/PIE.php");
 	border-radius: 10px;
 	display: table;
-	width: 100%;
 }
 
 body.front h3#big-news-topic{
