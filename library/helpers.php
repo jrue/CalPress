@@ -365,7 +365,7 @@ function calpress_story_meta_data_header(){
 		echo '<meta property="og:type" content="article"/>'.PHP_EOL;
 		echo '<meta property="og:url" content="' . get_permalink() . '"/>'.PHP_EOL;
 		echo '<meta property="og:title" content="' . get_the_title() .'"/>'.PHP_EOL;
-		echo '<meta property="og:description" content="' . $the_excerpt . '"/>'.PHP_EOL;
+		echo '<meta property="og:description" content="' . htmlentities($the_excerpt) . '"/>'.PHP_EOL;
 	
 		//add image to open graph if exists
 		if($post_thumbnail):
