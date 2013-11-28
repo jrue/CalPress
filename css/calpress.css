@@ -652,7 +652,7 @@ body.breaking .front-featured-post #entry-liveblog li:before{
 
 #carousel-container .slider article header{
 	position: absolute;
-	bottom: 30px;
+	bottom: 0px;
 	background: url('../images/transparent-bg.png') repeat left top;
 	width: 90%;
 }
@@ -1475,7 +1475,6 @@ body.single-post aside.entry-inline > div{
 
 body.single-post aside.entry-inline h3{
 	font: bold 2em/1.5em "Gnuolane", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	;
 }
 
 body.single-post aside.entry-inline ul li{
