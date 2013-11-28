@@ -55,7 +55,8 @@ footer, header, hgroup, menu, nav, section {
     display:block;
 }
 
-audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio, canvas, video { display: inline-block; }
+.lte7 audio, .lte7 canvas, .lte7 video {display: inline; zoom: 1;}
 audio:not([controls]) { display: none; }
 [hidden] { display: none; }
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
@@ -106,8 +107,10 @@ form { margin: 0; }
 fieldset { border: 0; margin: 0; padding: 0; }
 /* Indicate that 'label' will shift focus to the associated form element */
 label { cursor: pointer; }
-legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
-button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+legend { border: 0; padding: 0; white-space: normal; }
+.lte7 legend{ margin-left: -7px;}
+button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; }
+.lte7 button, .lte7 input, .lte7 select, .lte7 textarea {vertical-align: middle;}
 /* 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet) */
 button, input { line-height: normal; }
 
@@ -116,9 +119,11 @@ button, input { line-height: normal; }
  * 2. Allow styling of clickable form elements in iOS
  * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
  */
-button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
+.lte7 button, .lte7 input[type="button"], .lte7 input[type="reset"], .lte7 input[type="submit"] {overflow: visible;}
 button[disabled], input[disabled] { cursor: default; }
-input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; }
+.lte7 input[type="checkbox"], .lte7 input[type="radio"] {width: 13px; height: 13px;}
 input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
 button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
@@ -135,7 +140,8 @@ td { vertical-align: top; }
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
 /* For image replacement */
-.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr;}
+.lte7 .ir { line-height: 0; }
 .ir br { display: none; }
 
 /* Hide from both screenreaders and browsers: h5bp.com/u */
@@ -153,4 +159,4 @@ td { vertical-align: top; }
 /* Contain floats: h5bp.com/q */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
-.clearfix { *zoom: 1; }
+.lte7 .clearfix { zoom: 1; }
