@@ -248,39 +248,41 @@ function calpress_show_legacy_lead_art(){
 	
 	$html = '';
 	
-	foreach($post_custom as $key => $custom):
-		foreach($custom as $cus):
-			switch($key){
-				case 'lead_vimeo':
-					$vimeo = calpress_explodeandtrim("|", $cus);
-					$html = calpress_vimeo('http://vimeo.com/' . $vimeo[0]);
-					if(isset($vimeo[2])) $html .= '<div class="wp-caption">' . $vimeo[2] . '</div>';
-					break;
-				case 'lead_youtube':
-					$youtube = calpress_explodeandtrim("|", $cus);
-					$html = calpress_youtube('http://www.youtube.com/watch?v=' . $youtube[0]);
-					if(isset($youtube[2])) $html .= '<div class="wp-caption">' . $youtube[2] . '</div>';
-					break;
-				case 'lead_video':
-					$lead_video = calpress_explodeandtrim("|", $cus);
-					$html = '<script type="text/javascript" src="' . THEMEJS . '/mediaelement/mediaelement-and-player.min.js" charset="utf-8"></script>'.PHP_EOL;
-					$html .= '<link rel="stylesheet" href="' . THEMEJS .'/mediaelement/mediaelementplayer.css" />'.PHP_EOL;
-					$poster = ' poster="'. calpress_legacy_video_poster($lead_video[0]) .'"';
-					$html .= calpress_video(calpress_legacy_video_url($lead_video[0]), '', '', '', false, $poster);
-					if(isset($lead_video[2])) $html .= '<div class="wp-caption">' . $lead_video[2] . '</div>';
-					break;
-				case 'lead_soundslides':
-					$lead_soundslides = calpress_explodeandtrim("|", $cus);
-					$html = calpress_legacy_soundslides_embed_code($lead_soundslides[0], $post_date, "620", "498");
-					if(isset($lead_soundslides[2])) $html .= '<div class="wp-caption">' . $lead_soundslides[2] . '</div>';
-					break;
-				case 'lead_embed':
-					$html = '<script type="text/javascript" src="' . THEMEJS . '/swfobject.js" charset="utf-8"></script>'.PHP_EOL;
-					$html .= $cus;
-					break;
-			}
-			endforeach;
-	endforeach;
+	if(is_array($post_custom)):
+		foreach($post_custom as $key => $custom):
+			foreach($custom as $cus):
+				switch($key){
+					case 'lead_vimeo':
+						$vimeo = calpress_explodeandtrim("|", $cus);
+						$html = calpress_vimeo('http://vimeo.com/' . $vimeo[0]);
+						if(isset($vimeo[2])) $html .= '<div class="wp-caption">' . $vimeo[2] . '</div>';
+						break;
+					case 'lead_youtube':
+						$youtube = calpress_explodeandtrim("|", $cus);
+						$html = calpress_youtube('http://www.youtube.com/watch?v=' . $youtube[0]);
+						if(isset($youtube[2])) $html .= '<div class="wp-caption">' . $youtube[2] . '</div>';
+						break;
+					case 'lead_video':
+						$lead_video = calpress_explodeandtrim("|", $cus);
+						$html = '<script type="text/javascript" src="' . THEMEJS . '/mediaelement/mediaelement-and-player.min.js" charset="utf-8"></script>'.PHP_EOL;
+						$html .= '<link rel="stylesheet" href="' . THEMEJS .'/mediaelement/mediaelementplayer.css" />'.PHP_EOL;
+						$poster = ' poster="'. calpress_legacy_video_poster($lead_video[0]) .'"';
+						$html .= calpress_video(calpress_legacy_video_url($lead_video[0]), '', '', '', false, $poster);
+						if(isset($lead_video[2])) $html .= '<div class="wp-caption">' . $lead_video[2] . '</div>';
+						break;
+					case 'lead_soundslides':
+						$lead_soundslides = calpress_explodeandtrim("|", $cus);
+						$html = calpress_legacy_soundslides_embed_code($lead_soundslides[0], $post_date, "620", "498");
+						if(isset($lead_soundslides[2])) $html .= '<div class="wp-caption">' . $lead_soundslides[2] . '</div>';
+						break;
+					case 'lead_embed':
+						$html = '<script type="text/javascript" src="' . THEMEJS . '/swfobject.js" charset="utf-8"></script>'.PHP_EOL;
+						$html .= $cus;
+						break;
+				}
+				endforeach;
+		endforeach;
+	endif;
 	
 	if($html)
 		return $html;

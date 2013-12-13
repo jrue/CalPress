@@ -267,48 +267,50 @@ function calpress_add_multimedia_scripts(){
 	
 	$thePostID = $wp_query->post->ID;
 	$post_custom = get_post_custom($thePostID);
-		
-	foreach($post_custom as $key => $value):
-		//for lead_art scripts
-		if(is_serialized($value[0]) == false && isset($calpress_supported_multimedia->$value[0])){
-			$post_meta = $calpress_supported_multimedia->$value[0];
-			if($post_meta['support_scripts'])
-				call_user_func($post_meta['support_scripts'], $value[0]);
-		}
-		//for advanced scripts like extracss
-		if(is_serialized($value[0]) == false && isset($calpress_supported_multimedia->$key)){
-			$post_meta = $calpress_supported_multimedia->$key;
-			if($post_meta['support_scripts'])
-				call_user_func($post_meta['support_scripts'], $value[0]);			
-		}
-		//for inline scripts
-		if(is_serialized($value[0])):
-			$arrayval = unserialize($value[0]);
-			foreach($arrayval as $array):
-				if(is_array($array)) $array = implode($array);
-				if(isset($calpress_supported_multimedia->$array)){
-					$post_meta = $calpress_supported_multimedia->$array;
-					if($post_meta['support_scripts'])
-						call_user_func($post_meta['support_scripts']);
+
+	if(is_array($post_custom)):
+		foreach($post_custom as $key => $value):
+			//for lead_art scripts
+			if(is_serialized($value[0]) == false && isset($calpress_supported_multimedia->$value[0])){
+				$post_meta = $calpress_supported_multimedia->$value[0];
+				if($post_meta['support_scripts'])
+					call_user_func($post_meta['support_scripts'], $value[0]);
+			}
+			//for advanced scripts like extracss
+			if(is_serialized($value[0]) == false && isset($calpress_supported_multimedia->$key)){
+				$post_meta = $calpress_supported_multimedia->$key;
+				if($post_meta['support_scripts'])
+					call_user_func($post_meta['support_scripts'], $value[0]);			
+			}
+			//for inline scripts
+			if(is_serialized($value[0])):
+				$arrayval = unserialize($value[0]);
+				foreach($arrayval as $array):
+					if(is_array($array)) $array = implode($array);
+					if(isset($calpress_supported_multimedia->$array)){
+						$post_meta = $calpress_supported_multimedia->$array;
+						if($post_meta['support_scripts'])
+							call_user_func($post_meta['support_scripts']);
+					}
+				endforeach;
+			endif;
+			//for legacy support
+			if(function_exists('calpress_legacy_support') && calpress_legacy_support()){
+				if($key == 'extra_css'){
+					foreach($value as $val):
+						add_action('wp_head', create_function('', 'echo \'<link rel="stylesheet" href="' . $val .'" />\'.PHP_EOL; return;'));
+					endforeach;
 				}
-			endforeach;
-		endif;
-		//for legacy support
-		if(function_exists('calpress_legacy_support') && calpress_legacy_support()){
-			if($key == 'extra_css'){
-				foreach($value as $val):
-					add_action('wp_head', create_function('', 'echo \'<link rel="stylesheet" href="' . $val .'" />\'.PHP_EOL; return;'));
-				endforeach;
+				if($key == 'extra_js'){
+					foreach($value as $val):
+						add_action('wp_head', create_function('', 'echo \'<script type="text/javascript" src="' . $val .'" charset="utf-8"></script>\'.PHP_EOL; return;'));
+					endforeach;
+				}
+				if(is_page())
+					add_action('wp_enqueue_scripts', create_function('', 'wp_enqueue_style("calpress_960"); return;'));
 			}
-			if($key == 'extra_js'){
-				foreach($value as $val):
-					add_action('wp_head', create_function('', 'echo \'<script type="text/javascript" src="' . $val .'" charset="utf-8"></script>\'.PHP_EOL; return;'));
-				endforeach;
-			}
-			if(is_page())
-				add_action('wp_enqueue_scripts', create_function('', 'wp_enqueue_style("calpress_960"); return;'));
-		}
-	endforeach;
+		endforeach;
+	endif;
 	
 	//add open graph protocols if the sfc plugin is installed
 	if(isset($post_custom['lead_art']) && ($post_custom['lead_art'][0] == 'youtube' || $post_custom['lead_art'][0] == 'vimeo') && function_exists('sfc_media_find_video')):
@@ -1779,5 +1781,4 @@ if(!function_exists('_log')){
     }
   }
 }
-
 ?>
