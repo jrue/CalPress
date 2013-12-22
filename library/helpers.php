@@ -1293,8 +1293,8 @@ function calpress_rss_leadart_enclosure(){
 		
 	endif;
 }
-add_action('rss_item', 'calpress_rss_leadart_enclosure');
-add_action('rss2_item', 'calpress_rss_leadart_enclosure');
+//add_action('rss_item', 'calpress_rss_leadart_enclosure');
+//add_action('rss2_item', 'calpress_rss_leadart_enclosure');
 
 /**
  * Adds the lead image to the description tag of RSS feeds.
