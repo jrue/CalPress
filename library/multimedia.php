@@ -315,6 +315,7 @@ function calpress_wp_polls_render($val, $name, $id){
  */
 function calpress_wp_polls_display($input, $post_id='', $title='', $caption='', $inline=false){
 
+  if(function_exists('get_poll')):
   $html  = '<div class="wp-poll-inline inline-item">';
   $html .= $title ? ' <h3>' . esc_attr($title) . '</h3>' : '';
   $html .= '  <ul>';
@@ -325,6 +326,9 @@ function calpress_wp_polls_display($input, $post_id='', $title='', $caption='', 
   $html .= '<style type="text/css">.wp-poll-inline ul li{list-style-type:none !important;}</style>';
 
   return $html;
+  else:
+  return false;
+  endif;
 }
 
 /**
