@@ -113,6 +113,7 @@ function calpress_login_logo() {
 			-webkit-background-origin:content-box; /* Safari */
 			background-origin:content-box;
 			background-position: center;
+			width: 100%; /* override WordPress 3.8 small logo */
         }
     </style>
 <?php 
