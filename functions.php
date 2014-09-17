@@ -130,11 +130,10 @@ function calpress_setup() {
 	if ( function_exists( 'add_theme_support' ) ) {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'automatic-feed-links' );
-		if ( function_exists( 'is_wp_version')){
-			if(is_wp_version( '3.4' )){ 
-				add_theme_support( 'custom-header', $header_defaults );
-				add_theme_support( 'custom-background', $background_defaults);
-			}
+
+		if( (int)get_bloginfo('version') > 3.4 ){
+			add_theme_support( 'custom-header', $header_defaults );
+			add_theme_support( 'custom-background', $background_defaults);
 		}
 	
 		//when a user uploads an image, the following copies will be made.
