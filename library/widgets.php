@@ -252,6 +252,9 @@ class FeaturedCategory extends WP_Widget {
 		$loop_args['post_status'] = 'publish';
 		$loop_args['category_name'] = $category;
 		$loop_args['posts_per_page'] = (int) $numofposts;
+		$loop_args['cache_results'] = false;
+		$loop_args['update_post_term_cache'] = false;
+ 		$loop_args['update_post_meta_cache'] = false;
 		
 		
 		$widget_query = new WP_Query($loop_args);
