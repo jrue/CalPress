@@ -421,6 +421,11 @@ function calpress_website_meta_data_header(){
 	global $wp_query;
 	$options = unserialize(CALPRESSTHEMEOPTIONS);
 	if($options['twitter_handle']):
+		if(is_front_page()){
+			echo '<meta name="twitter:title" value="' . wp_title(" | ", false) . '"/>'.PHP_EOL;
+		} else {
+			echo '<meta name="twitter:title" value="' . wp_title("", false, "right") . '"/>'.PHP_EOL;
+		}
 		echo '<meta name="twitter:card" value="summary"/>'.PHP_EOL;
 		echo '<meta name="twitter:site" value="@' . $options['twitter_handle'] . '"/>'.PHP_EOL;
 		if(is_single() && $twitter_author = get_the_author_meta('twitter', $wp_query->post->post_author)):
