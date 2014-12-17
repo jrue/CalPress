@@ -1365,6 +1365,7 @@ body.single-post span.time:before {
 body.single-post div.entry-lead-art{
 	width: 100%;
 	max-width: 620px;
+	min-height: 400px; /* added 12/14 because videos were getting covered */
 	margin: 0;
 	overflow: hidden;
 }
